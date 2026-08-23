@@ -1,0 +1,65 @@
+{
+  "_comment": "Conjugated form -> infinitive. ARASAAC bestsearch handles plurals and accents but NOT conjugations: bestsearch/quiero 404s, bestsearch/querer succeeds. Keys must be lowercased and keep their accents. Only add forms this child actually uses.",
+
+  "quiero": "querer",
+  "quieres": "querer",
+  "quiere": "querer",
+  "queremos": "querer",
+  "quieren": "querer",
+
+  "puedo": "poder",
+  "puedes": "poder",
+  "puede": "poder",
+
+  "tengo": "tener",
+  "tienes": "tener",
+  "tiene": "tener",
+
+  "voy": "ir",
+  "vas": "ir",
+  "va": "ir",
+  "vamos": "ir",
+
+  "como": "comer",
+  "comes": "comer",
+  "come": "comer",
+  "comemos": "comer",
+
+  "bebo": "beber",
+  "bebes": "beber",
+  "bebe": "beber",
+
+  "juego": "jugar",
+  "juegas": "jugar",
+  "juega": "jugar",
+  "jugamos": "jugar",
+
+  "duermo": "dormir",
+  "duermes": "dormir",
+  "duerme": "dormir",
+
+  "veo": "ver",
+  "ves": "ver",
+  "ve": "ver",
+
+  "hago": "hacer",
+  "haces": "hacer",
+  "hace": "hacer",
+
+  "dame": "dar",
+  "doy": "dar",
+  "das": "dar",
+  "da": "dar",
+
+  "ayúdame": "ayudar",
+  "ayuda": "ayudar",
+
+  "necesito": "necesitar",
+  "necesitas": "necesitar",
+
+  "gusta": "gustar",
+  "gustan": "gustar",
+
+  "duele": "doler",
+  "duelen": "doler"
+}

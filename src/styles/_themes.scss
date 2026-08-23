@@ -1,0 +1,48 @@
+:root {
+    --bg-color: #{$light-bg};
+    --text-color: #{$light-text};
+
+    // Pictograms are drawn for a white ground. Keep it white in both themes so
+    // the symbol the child learns never changes appearance.
+    --picto-bg: #ffffff;
+    --picto-placeholder-border: #6b6b6b;
+    --picto-placeholder-text: #595959;
+    --input-border: #595959;
+    --focus-ring: #0b5fff;
+
+    // Muted text as a real colour, not opacity. Opacity composites against the
+    // background and silently drops contrast below 4.5:1, which axe flagged.
+    // #595959 on #ffffff is 7.0:1.
+    --text-muted: #595959;
+    --link-color: #0b52cc;
+
+    // Mic state colours. Each pairs with a text label, never colour alone.
+    --mic-bg: #f2f2f2;
+    --mic-border: #595959;
+    --mic-idle: #6b6b6b;
+    --mic-connecting: #8a5a00;
+    --mic-live: #1a7f37;
+    --mic-error: #b3261e;
+}
+
+[data-theme="dark"] {
+    --bg-color: #{$dark-bg};
+    --text-color: #{$dark-text};
+
+    --picto-bg: #ffffff;
+    --picto-placeholder-border: #a8a8a8;
+    --picto-placeholder-text: #c9c9c9;
+    --input-border: #a8a8a8;
+    --focus-ring: #7aa7ff;
+
+    // #b8b8b8 on #222222 is 7.4:1.
+    --text-muted: #b8b8b8;
+    --link-color: #8ab4ff;
+
+    --mic-bg: #2e2e2e;
+    --mic-border: #a8a8a8;
+    --mic-idle: #9e9e9e;
+    --mic-connecting: #e3a008;
+    --mic-live: #4ade80;
+    --mic-error: #ff6b6b;
+}

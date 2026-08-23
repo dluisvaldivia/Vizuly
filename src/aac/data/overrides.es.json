@@ -1,0 +1,5 @@
+{
+  "_comment": "Hand-curated word -> ARASAAC pictogram id. Checked BEFORE the API and beats it by design. Populate from real use, when a wrong symbol actually shows up. Keys are lowercased and keep their accents. Fixing a wrong symbol is ALWAYS an entry here, never a ranking heuristic.",
+
+  "papá": 31146
+}

@@ -1,0 +1,55 @@
+{
+  "_comment": "Inflected form -> base form. ARASAAC bestsearch already handles plurals (cats -> cat), so this map only covers verb forms it misses. Keys must be lowercased. Only add forms this child actually uses.",
+
+  "wants": "want",
+  "wanted": "want",
+
+  "eating": "eat",
+  "eats": "eat",
+  "ate": "eat",
+
+  "drinking": "drink",
+  "drinks": "drink",
+  "drank": "drink",
+
+  "playing": "play",
+  "plays": "play",
+  "played": "play",
+
+  "sleeping": "sleep",
+  "sleeps": "sleep",
+  "slept": "sleep",
+
+  "going": "go",
+  "goes": "go",
+  "went": "go",
+
+  "running": "run",
+  "runs": "run",
+  "ran": "run",
+
+  "helping": "help",
+  "helps": "help",
+  "helped": "help",
+
+  "giving": "give",
+  "gives": "give",
+  "gave": "give",
+
+  "seeing": "see",
+  "sees": "see",
+  "saw": "see",
+
+  "making": "make",
+  "makes": "make",
+  "made": "make",
+
+  "hurts": "hurt",
+  "hurting": "hurt",
+
+  "needs": "need",
+  "needed": "need",
+
+  "feels": "feel",
+  "feeling": "feel"
+}

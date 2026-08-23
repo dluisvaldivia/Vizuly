@@ -1,0 +1,344 @@
+// Child-facing layout.
+//
+// Large targets throughout: assume imprecise motor control. Minimal text: he
+// does not read. See .claude/rules/UI-ACCESSIBILITY.md.
+
+$target-min: 3rem; // Never smaller than this for anything tappable.
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.app__title {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.app__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+// The pictogram strip
+
+.pictogram-strip {
+  min-height: 30vh;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.pictogram-strip__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.pictogram-strip__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pictogram-strip__image,
+.pictogram-strip__placeholder {
+  width: clamp(7rem, 22vw, 12rem);
+  height: clamp(7rem, 22vw, 12rem);
+  object-fit: contain;
+  background: var(--picto-bg, #fff);
+  border-radius: 0.75rem;
+}
+
+.pictogram-strip__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // Neutral, not a warning. A miss is not the child's fault and there are no
+  // failure states in this app.
+  border: 3px dashed var(--picto-placeholder-border, #b0b0b0);
+  color: var(--picto-placeholder-text, #767676);
+  font-size: 3rem;
+  background: transparent;
+}
+
+.pictogram-strip__word {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.pictogram-strip__empty {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+// Typed input
+
+.text-input__label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.text-input__row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.text-input__field {
+  flex: 1 1 12rem;
+  min-height: $target-min;
+  font-size: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--input-border, #767676);
+}
+
+.text-input__submit,
+.app__clear,
+.app__temp-controls button {
+  min-height: $target-min;
+  min-width: $target-min;
+  padding: 0.5rem 1.25rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.app__clear {
+  align-self: flex-start;
+}
+
+// Focus must always be visible, in both themes.
+:focus-visible {
+  outline: 3px solid var(--focus-ring, #0b5fff);
+  outline-offset: 2px;
+}
+
+.attribution {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+// Respect a user who has asked for less motion.
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+// Microphone
+
+.app__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mic__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  // Deliberately oversized: this is the primary control for a child with
+  // imprecise motor control.
+  min-width: clamp(6rem, 30vw, 10rem);
+  min-height: clamp(6rem, 30vw, 10rem);
+  border-radius: 50%;
+  border: 4px solid var(--mic-border, #595959);
+  background: var(--mic-bg, #f0f0f0);
+  color: var(--text-color);
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.mic__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.mic__button--listening {
+  border-color: var(--mic-live, #1a7f37);
+  // Motion as a third channel alongside colour and text, so the child can tell
+  // at a glance that the app is hearing him.
+  animation: mic-pulse 1.4s ease-in-out infinite;
+}
+
+.mic__button--error {
+  border-color: var(--mic-error, #b3261e);
+}
+
+@keyframes mic-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--mic-live, #1a7f37); }
+  50%      { box-shadow: 0 0 0 0.9rem transparent; }
+}
+
+.mic__status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.mic__dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--mic-idle, #767676);
+  flex-shrink: 0;
+}
+
+.mic__dot--listening { background: var(--mic-live, #1a7f37); }
+.mic__dot--connecting { background: var(--mic-connecting, #9a6700); }
+.mic__dot--error { background: var(--mic-error, #b3261e); }
+
+.mic__interim {
+  margin: 0;
+  color: var(--text-muted);
+  font-style: italic;
+  min-height: 1.5em;
+}
+
+// Adult panel
+//
+// Reached only by a long press on the title. Plain, dense, text-heavy: this is
+// the one surface in the app aimed at an adult rather than the child.
+
+.app__title {
+  // Signals the long-press affordance without drawing the child's eye.
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  // Stops the OS text-selection callout hijacking the press on iOS.
+  -webkit-touch-callout: none;
+}
+
+.adult-panel__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 100;
+}
+
+.adult-panel {
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  max-width: 26rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 2px solid var(--input-border, #767676);
+}
+
+.adult-panel__title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.adult-panel__group {
+  border: 1px solid var(--input-border, #767676);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin: 0;
+
+  legend {
+    font-size: 0.9rem;
+    padding: 0 0.35rem;
+    float: none;
+    width: auto;
+  }
+
+  button {
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+  }
+}
+
+.adult-panel__row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.adult-panel__group button.is-active {
+  outline: 3px solid var(--focus-ring, #0b5fff);
+  outline-offset: 1px;
+  font-weight: 700;
+}
+
+.adult-panel__help {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.adult-panel__close {
+  min-height: 2.75rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+// Links must meet contrast in both themes. The attribution link sits on muted
+// text, which axe flagged when it inherited the muted colour.
+a {
+  color: var(--link-color);
+}
+
+.attribution a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+// The title is a real button so the adult gate is keyboard reachable, but it
+// must still look like a heading to the child.
+.app__title-wrap {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+button.app__title {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  // Comfortably above the 44px minimum without looking like a button.
+  min-height: 2.75rem;
+}

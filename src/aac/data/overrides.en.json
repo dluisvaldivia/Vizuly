@@ -1,0 +1,3 @@
+{
+  "_comment": "Hand-curated word -> ARASAAC pictogram id. Checked BEFORE the API and beats it by design. Ships empty on purpose: populate from real use, when a wrong symbol actually shows up. Keys are lowercased. Fixing a wrong symbol is ALWAYS an entry here, never a ranking heuristic."
+}
