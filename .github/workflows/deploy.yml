@@ -40,7 +40,11 @@ jobs:
         env:
           VITE_DEEPGRAM_API_KEY: ${{ secrets.VITE_DEEPGRAM_API_KEY }}
 
+      # enablement: turns Pages on via the API if it is not already enabled,
+      # so a fresh clone or a reset Pages setting does not hard-fail the job.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
