@@ -106,6 +106,16 @@ export async function resolveAll(
 ): Promise<ResolvedWord[]> {
   return Promise.all(
     tokens.map(async (token) => {
+      // Reading-mode connector. The id is fixed and hand-verified, so it skips
+      // every layer including the cache: there is nothing to look up and nothing
+      // worth storing. Deliberately handled here rather than as a layer inside
+      // resolve(), which keeps resolve(word, lang) untouched for the v2 swap and
+      // makes it structurally impossible for a connector to appear in speech
+      // mode, where connector tokens are never produced in the first place.
+      if (token.connectorId !== undefined) {
+        return { token, pictogramId: token.connectorId, source: 'connector' as const };
+      }
+
       const before = readCache(token.lookup, lang);
       const pictogramId = await resolve(token.lookup, lang, signal);
 

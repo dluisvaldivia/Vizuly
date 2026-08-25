@@ -165,3 +165,115 @@ describe('llamarse, the phrase a child uses to say his own name', () => {
     expect(lookups('llamas', 'es')).toEqual(['llamas']);
   });
 });
+
+// Reading mode. Everything above this line uses the two-argument call and must
+// keep passing untouched: that is the signal that speech output did not change.
+
+/** Shorthand for reading mode at a given tier. */
+const reading = (input: string, lang: 'es' | 'en', tier: 'connectors' | 'articles' | 'clitics') =>
+  tokenize(input, lang, { mode: 'reading', tier }).map((t) => t.lookup);
+
+describe('tokenize: reading mode', () => {
+  it('speech mode is the default, and passing it explicitly changes nothing', () => {
+    const implicit = tokenize('el gato de la casa', 'es');
+    const explicit = tokenize('el gato de la casa', 'es', { mode: 'speech' });
+
+    expect(explicit).toEqual(implicit);
+    expect(implicit.map((t) => t.lookup)).toEqual(['gato', 'casa']);
+  });
+
+  it('a tier is ignored entirely in speech mode', () => {
+    expect(tokenize('el gato de la casa', 'es', { mode: 'speech', tier: 'clitics' }).map((t) => t.lookup)).toEqual([
+      'gato',
+      'casa',
+    ]);
+  });
+
+  it('keeps connectors but not articles at the connectors tier', () => {
+    expect(reading('el niño llega a casa y dice', 'es', 'connectors')).toEqual([
+      'niño',
+      'llega',
+      'a',
+      'casa',
+      'y',
+      'dice',
+    ]);
+  });
+
+  it('keeps articles too at the articles tier', () => {
+    expect(reading('el niño llega a casa y dice', 'es', 'articles')).toEqual([
+      'el',
+      'niño',
+      'llega',
+      'a',
+      'casa',
+      'y',
+      'dice',
+    ]);
+  });
+
+  it('tiers are cumulative, so clitics still includes connectors and articles', () => {
+    expect(reading('en el colegio me dicen', 'es', 'clitics')).toEqual([
+      'en',
+      'el',
+      'colegio',
+      'me',
+      'dicen',
+    ]);
+  });
+
+  it('does not keep clitics below the clitics tier', () => {
+    expect(reading('en el colegio me dicen', 'es', 'articles')).toEqual([
+      'en',
+      'el',
+      'colegio',
+      'dicen',
+    ]);
+  });
+
+  it('works in English', () => {
+    expect(reading('the cat in the house', 'en', 'articles')).toEqual([
+      'the',
+      'cat',
+      'in',
+      'the',
+      'house',
+    ]);
+  });
+
+  it('drops a function word the table has no symbol for, rather than guessing', () => {
+    // ARASAAC 404s on both of these, so they are deliberately absent from the
+    // table. They must fall through exactly as speech mode would.
+    expect(reading('about their house', 'en', 'clitics')).toEqual(['house']);
+  });
+
+  it('carries a fixed pictogram id on connector tokens and nothing else', () => {
+    const tokens = tokenize('a casa', 'es', { mode: 'reading', tier: 'connectors' });
+
+    expect(tokens[0]).toMatchObject({ normalized: 'a', connectorId: 7041 });
+    expect(tokens[1].connectorId).toBeUndefined();
+  });
+
+  it('never lemmatises a connector: the lookup is the word itself', () => {
+    const [connector] = tokenize('a casa', 'es', { mode: 'reading', tier: 'connectors' });
+
+    expect(connector.lookup).toBe(connector.normalized);
+  });
+});
+
+describe('tokenize: reading mode does not weaken the guards', () => {
+  it('protected core vocabulary still resolves normally, never as a connector', () => {
+    // "sí" must reach the API as a content word. If a tier ever swallowed it,
+    // the child would say yes and get a pronoun symbol.
+    const [word] = tokenize('sí', 'es', { mode: 'reading', tier: 'clitics' });
+
+    expect(word.lookup).toBe('sí');
+    expect(word.connectorId).toBeUndefined();
+  });
+
+  it('keeps "no" as a content word at every tier', () => {
+    for (const tier of ['connectors', 'articles', 'clitics'] as const) {
+      expect(reading('no quiero', 'es', tier)).toEqual(['no', 'querer']);
+    }
+  });
+});

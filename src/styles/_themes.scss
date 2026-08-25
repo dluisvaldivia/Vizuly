@@ -32,6 +32,13 @@
     --turn-toggle-active-bg: #d9f2e3;
     --turn-toggle-active-border: #1a7f37;
     --echo-ring: rgba(26, 127, 55, 0.55);
+    // The ring shown while the app is saying a word. Its own colour, not the
+    // echo ring, because that already means "the other player said this too".
+    --speak-ring: rgba(11, 95, 255, 0.55);
+    // The adult notice. Informative, never alarming: no red, no warning yellow.
+    --notice-bg: #f4f6fb;
+    --notice-border: #4a5568;
+    --notice-text: #1a1a1a;
     // Deliberately translucent: pictograms must stay visible underneath.
     --celebrate-overlay: rgba(26, 127, 55, 0.35);
 }
@@ -62,5 +69,9 @@
     --turn-toggle-active-bg: #1e3b28;
     --turn-toggle-active-border: #4ade80;
     --echo-ring: rgba(74, 222, 128, 0.6);
+    --speak-ring: rgba(122, 167, 255, 0.65);
+    --notice-bg: #24262b;
+    --notice-border: #8f9bb3;
+    --notice-text: #f2f2f2;
     --celebrate-overlay: rgba(74, 222, 128, 0.32);
 }

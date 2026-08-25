@@ -10,7 +10,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "test": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "voices": "node scripts/generate-voices.mjs"
   },
   "dependencies": {
     "@deepgram/sdk": "^5.8.0",

@@ -1,3 +1,15 @@
 {
-  "_comment": "Hand-curated word -> ARASAAC pictogram id. Checked BEFORE the API and beats it by design. Ships empty on purpose: populate from real use, when a wrong symbol actually shows up. Keys are lowercased. Fixing a wrong symbol is ALWAYS an entry here, never a ranking heuristic."
+  "_comment": "Hand-curated word -> ARASAAC pictogram id. Checked BEFORE the API and beats it by design. Ships empty on purpose: populate from real use, when a wrong symbol actually shows up. Keys are lowercased. Fixing a wrong symbol is ALWAYS an entry here, never a ranking heuristic.",
+
+  "_comment_miss": "bestsearch/en/miss leads with 22033, a man chasing a bus: miss the bus, not miss a person. 36909 is the person sense, the same pictogram Spanish reaches via extrañar. The affective sense is the one this child needs; swap the id here if 'miss the bus' ever turns out to be what he means.",
+  "miss": 36909,
+
+  "_comment_exported": "Pinned on the device by the adult, exported 2026-08-25, verified live before landing here. 'don't' keeps its apostrophe: normalize() strips edge punctuation only, so the internal one survives and this key matches what tokenize produces.",
+
+  "_comment_miss_conflict": "That same export pinned miss -> 39426, and it was DELIBERATELY not taken. 39426 is also the affective sense (es: anorar) but a different drawing, and 36909 above is the one Spanish reaches via extranar, so the child sees one symbol for one meaning in both languages. The device still holds the 39426 pin and corrections outrank overrides, so that tablet keeps showing 39426 until the pin is undone in the adult panel. Do not re-import it from a future export.",
+
+  "don't": 5525,
+  "five": 2631,
+  "like": 37721,
+  "why": 36719
 }

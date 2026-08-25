@@ -1,0 +1,41 @@
+{
+  "_comment": "FIXED function word -> pictogram id, used ONLY in reading mode. See connectors.es.json for the full reasoning: the table is CLOSED, there is no search and no API fallback, and a word missing from it drops exactly as in speech mode. Ids repeat across languages on purpose: ARASAAC pictograms are language neutral and only their keywords differ, so 'and' and 'y' are both 11399. Verified live: real metadata, clean keywords, PNG returns 200.",
+
+  "_comment_tiers": "Cumulative. connectors < articles < clitics.",
+
+  "_comment_gaps": "'about' and 'their' are deliberately absent: bestsearch returns 404 for both, so ARASAAC has no symbol and they drop. Do not invent one.",
+
+  "connectors": {
+    "to": 7041,
+    "at": 7041,
+    "in": 7034,
+    "on": 7814,
+    "over": 7814,
+    "under": 5437,
+    "with": 7064,
+    "of": 7074,
+    "from": 7077,
+    "for": 7194,
+    "and": 11399,
+    "or": 11317,
+    "between": 7765,
+    "but": 11377,
+    "that": 11351
+  },
+
+  "articles": {
+    "the": 8476,
+    "a": 8474,
+    "an": 8474
+  },
+
+  "_comment_clitics": "Possessives rather than clitics in English, but the same tier and the same caveat: these are the least precise entries and are opt-in. English 'me' is PROTECTED core vocabulary, never a stopword, so it resolves normally and is correctly absent here.",
+
+  "clitics": {
+    "my": 12264,
+    "your": 12281,
+    "his": 12272,
+    "her": 12272,
+    "our": 12268
+  }
+}

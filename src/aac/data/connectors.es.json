@@ -1,0 +1,47 @@
+{
+  "_comment": "FIXED function word -> pictogram id, used ONLY in reading mode. Every id here was verified live against api.arasaac.org: real metadata, clean keywords, PNG returns 200. This table is CLOSED: there is no search and no API fallback. bestsearch cannot resolve connectors, it returns the LETTER 'a' (3021, 3049) before the connector (7041), and picking the right one automatically would need a schematic-first ranking rule, which is the heuristic this project tried and rejected. A word missing from this table simply drops, exactly as in speech mode. Never guess. Keys are lowercased and keep their accents.",
+
+  "_comment_tiers": "Cumulative. connectors < articles < clitics. The adult picks the tier in settings; the header toggle only picks the mode.",
+
+  "connectors": {
+    "a": 7041,
+    "y": 11399,
+    "e": 11399,
+    "en": 7034,
+    "de": 7074,
+    "del": 11712,
+    "con": 7064,
+    "para": 7194,
+    "por": 7212,
+    "sin": 7813,
+    "sobre": 7814,
+    "que": 11351
+  },
+
+  "_comment_articles": "8476 (el/la) and 8477 (los/las) are the CLEAN article pictograms. Do NOT use 6481 or 7029 here: those are pronoun symbols that carry 'sí' among their keywords, and showing the child a 'yes' symbol when he said 'el' is exactly the wrong-symbol failure rule 4 forbids.",
+
+  "articles": {
+    "el": 8476,
+    "la": 8476,
+    "los": 8477,
+    "las": 8477,
+    "un": 8474,
+    "una": 8474,
+    "al": 11709
+  },
+
+  "_comment_clitics": "The least precise tier, and opt-in for that reason. ARASAAC has no dedicated clitic symbols, so these borrow pronoun pictograms: 'me' and 'mi' show the YO symbol, 'te' and 'tu' show TÚ, and 'se'/'le' share 6481. Semantically loose but visually consistent. Safe for 'sí': bestsearch/sí returns 5584, a different pictogram, so enabling this tier does not change what he sees when he says yes.",
+
+  "clitics": {
+    "me": 6632,
+    "te": 6625,
+    "se": 6481,
+    "le": 6481,
+    "les": 7033,
+    "nos": 7186,
+    "os": 7307,
+    "mi": 6632,
+    "tu": 6625,
+    "su": 12272
+  }
+}

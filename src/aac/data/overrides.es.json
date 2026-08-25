@@ -1,5 +1,15 @@
 {
   "_comment": "Hand-curated word -> ARASAAC pictogram id. Checked BEFORE the API and beats it by design. Populate from real use, when a wrong symbol actually shows up. Keys are lowercased and keep their accents. Fixing a wrong symbol is ALWAYS an entry here, never a ranking heuristic.",
 
-  "papá": 31146
+  "papá": 31146,
+
+  "_comment_extranar": "36909 is labelled 'echar de menos, añorar' in ARASAAC's Spanish, so bestsearch/extrañar 404s: the Latin American synonym is simply not in their keyword list. Same pictogram, different word. The English label on 36909 is 'miss'.",
+  "extrañar": 36909,
+
+  "_comment_exported": "Pinned on the device by the adult, exported 2026-08-25, verified live before landing here.",
+
+  "quién": 13358,
+
+  "_comment_viene": "A conjugation gap, not a wrong symbol: bestsearch/viene 404s because ARASAAC does not conjugate, so the child saw a placeholder. Deliberately NOT added to lemmas.es.json as viene -> venir, which would send resolve() looking for 'venir' and leave this override orphaned.",
+  "viene": 32669
 }

@@ -17,9 +17,13 @@ Every rule below follows from those two facts.
   just a button changing shade. He needs to know the app heard him.
 - **Adult controls behind a deliberate gesture.** Settings sit behind a long press or a
   corner tap sequence. He must not be able to wander into them by exploring, and exploring
-  is exactly what he will do. The per-word fix dialog uses the same gesture on a pictogram,
-  so a plain tap on a pictogram does nothing. Anything reachable that way must be undoable
-  from the adult panel, because he will eventually get in. The language toggle is the one
+  is exactly what he will do. The per-word fix dialog uses the same gesture on a pictogram.
+  A plain tap on a pictogram says the word out loud, first whole and then
+  syllable by syllable in Spanish, and does nothing else: it opens nothing and
+  changes nothing, so there is still nowhere a tap can take him. In game mode
+  the strips are silent, because there the strip is the turn itself.
+  Anything reachable by the gesture must be undoable from the adult panel,
+  because he will eventually get in. The language toggle is the one
   exception: it lives as a plain, visible flag button in the header, next to the game-mode
   toggle, because a wrong tap only changes which language pictograms resolve in and loses
   nothing, the same reasoning that keeps game mode outside the gesture gate.

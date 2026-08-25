@@ -38,3 +38,6 @@ __pycache__/
 
 # Vendored third-party Claude Code skills. Reinstallable, not part of the app.
 .claude/skills/
+
+# Voice comparison clips from "npm run voices -- --samples". Not part of the app.
+/voice-samples/

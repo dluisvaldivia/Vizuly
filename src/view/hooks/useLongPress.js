@@ -9,8 +9,14 @@ import { useCallback, useRef } from 'react';
  *
  * Keyboard users get the same affordance through onKeyDown, since a long press
  * is not keyboard-operable and the control must still meet WCAG 2.1.1.
+ *
+ * `onTap` is optional and fires on an ordinary short press. It lives in this
+ * hook rather than in a separate onClick on the caller, because the two have to
+ * agree about one thing: a completed long press must never also fire the tap.
+ * Keeping both in the same handler makes that structural instead of a rule
+ * every caller has to remember.
  */
-export function useLongPress(onLongPress, { durationMs = 1200 } = {}) {
+export function useLongPress(onLongPress, { durationMs = 1200, onTap } = {}) {
   const timer = useRef(null);
   const triggered = useRef(false);
 
@@ -30,14 +36,19 @@ export function useLongPress(onLongPress, { durationMs = 1200 } = {}) {
   }, []);
 
   // Suppress the click that follows a completed long press, so the control does
-  // not also fire its ordinary action.
-  const onClick = useCallback((event) => {
-    if (triggered.current) {
-      event.preventDefault();
-      event.stopPropagation();
-      triggered.current = false;
-    }
-  }, []);
+  // not also fire its ordinary action. Anything left is a genuine short tap.
+  const onClick = useCallback(
+    (event) => {
+      if (triggered.current) {
+        event.preventDefault();
+        event.stopPropagation();
+        triggered.current = false;
+        return;
+      }
+      onTap?.();
+    },
+    [onTap],
+  );
 
   return {
     onPointerDown: start,

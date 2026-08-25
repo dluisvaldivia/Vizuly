@@ -112,6 +112,35 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   margin: 0;
 }
 
+// Reading mode: a connector joins two words, it is not one of the words.
+//
+// Smaller and unframed, matching ARASAAC's own easy-reading layout, so the
+// content words keep the visual weight. That salience is the whole reason the
+// telegraphic mode exists, and it must survive turning connectors on.
+//
+// The IMAGE shrinks, the target does not: the clamp floor is 3rem, comfortably
+// above the 44px WCAG minimum, because the long press that opens the fix dialog
+// has to stay usable on a connector too.
+//
+// Size alone carries the hierarchy. An earlier version dropped the background to
+// make these "unframed" like the printed ARASAAC material, which works on paper
+// but not here: that material assumes a white page, and these pictograms are
+// black line art, so on the dark theme the hollow "el" triangle and the arrow
+// inside "a" simply vanished. Rule 4 says never show nothing, so the panel stays
+// and the connectors are set apart by scale and a squarer corner instead.
+.pictogram-strip__item--connector {
+  .pictogram-strip__image,
+  .pictogram-strip__placeholder {
+    width: clamp(3rem, 13vw, 6.5rem);
+    height: clamp(3rem, 13vw, 6.5rem);
+    border-radius: 0.25rem;
+  }
+
+  .pictogram-strip__word {
+    font-size: 0.75rem;
+  }
+}
+
 // Game mode's gentle echo: a shape cue (ring) plus a brief glow, never a
 // colour-only tint, so it still reads without colour.
 .pictogram-strip__item--echo .pictogram-strip__button {
@@ -122,6 +151,48 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
 @keyframes echo-glow {
   from { box-shadow: 0 0 0 0 var(--echo-ring); }
   to   { box-shadow: 0 0 0 4px var(--echo-ring); }
+}
+
+// The adult-facing note when the browser voice stands in for a recorded clip.
+// Sits out of the way at the bottom, never over a pictogram, and never blocks a
+// tap: the child must be able to keep going while it is on screen.
+.voice-notice {
+  position: fixed;
+  left: 50%;
+  // Clear of the ARASAAC attribution, which the licence requires to stay
+  // visible. A notice that covers it, even for five seconds, is not acceptable.
+  bottom: 3.5rem;
+  transform: translateX(-50%);
+  z-index: 20;
+  pointer-events: none;
+  max-width: min(32rem, calc(100vw - 2rem));
+}
+
+.voice-notice__message {
+  margin: 0;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--notice-border);
+  background: var(--notice-bg);
+  color: var(--notice-text);
+  font-size: 0.95rem;
+  line-height: 1.35;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 18%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.voice-notice__icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+// The word is being spoken right now. A static ring, not an animation: the
+// global prefers-reduced-motion block below flattens every animation in the
+// app, and this cue has to survive that, so it must not be motion-only.
+.pictogram-strip__item--speaking .pictogram-strip__button {
+  box-shadow: 0 0 0 4px var(--speak-ring);
 }
 
 // The one-shot celebration bounce, only present on a matched pictogram while
@@ -333,6 +404,28 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   }
 }
 
+// Same box as the game-mode toggle, same theme variables, no new ones.
+.output-mode-toggle {
+  flex-shrink: 0;
+  width: $target-min;
+  height: $target-min;
+  min-width: $target-min;
+  min-height: $target-min;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--turn-toggle-bg);
+  border: 2px solid var(--turn-toggle-border);
+  color: var(--text-color);
+  cursor: pointer;
+
+  &.is-active {
+    background: var(--turn-toggle-active-bg);
+    border-color: var(--turn-toggle-active-border);
+  }
+}
+
 .language-toggle {
   flex-shrink: 0;
   width: $target-min;
@@ -484,6 +577,29 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   font-weight: 700;
 }
 
+// Reading-tier radios. An adult surface, so text-led: the tier name carries the
+// state, never colour or position alone.
+.adult-panel__radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  // Comfortably tappable even though only an adult reaches this.
+  min-height: 2.75rem;
+  cursor: pointer;
+
+  input {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  input:focus-visible {
+    outline: 3px solid var(--focus-ring, #0b5fff);
+    outline-offset: 2px;
+  }
+}
+
 .adult-panel__help {
   margin: 0.5rem 0 0;
   font-size: 0.85rem;
@@ -535,8 +651,9 @@ button.app__title {
 
 .pictogram-strip__button {
   // A bare wrapper: the pictogram is the control, so the button must add no
-  // visible chrome of its own. A tap does nothing, only a long press opens the
-  // fix dialog, so this must not look pressable to the child.
+  // visible chrome of its own. A tap says the word and a long press opens the
+  // fix dialog, and neither needs a border to invite it: the pictogram itself
+  // is the thing he wants to touch, and the ring while speaking is the answer.
   padding: 0;
   border: none;
   background: none;

@@ -1,8 +1,25 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useAac } from '../../aac/useAac.ts';
 import { useSpeech } from '../../speech/useSpeech.ts';
+import { useVoice } from '../../speech/useVoice.ts';
 import { getInitialLang, setLang } from '../../controllers/languageController.js';
+import {
+  getInitialOutputMode,
+  setOutputMode,
+} from '../../controllers/outputModeController.js';
+import {
+  getInitialReadingTier,
+  setReadingTier,
+} from '../../controllers/readingTierController.js';
+import {
+  getInitialSyllableMode,
+  setSyllableMode,
+} from '../../controllers/syllableModeController.js';
+import {
+  getInitialLiveVoice,
+  setLiveVoice,
+} from '../../controllers/liveVoiceController.js';
 import { useLongPress } from '../hooks/useLongPress.js';
 import PictogramStrip from '../components/PictogramStrip.jsx';
 import TextInput from '../components/TextInput.jsx';
@@ -13,6 +30,8 @@ import Attribution from '../components/Attribution.jsx';
 import GameModeToggle from '../components/GameModeToggle.jsx';
 import GameMode from '../components/GameMode.jsx';
 import LanguageToggle from '../components/LanguageToggle.jsx';
+import VoiceNotice from '../components/VoiceNotice.jsx';
+import OutputModeToggle from '../components/OutputModeToggle.jsx';
 
 /**
  * The app.
@@ -30,6 +49,24 @@ export default function Home() {
   /** The word whose fix dialog is open, or null. Set by a long press. */
   const [fixTarget, setFixTarget] = useState(null);
   const [gameModeOn, setGameModeOn] = useState(false);
+  /**
+   * Telegraphic speech output, or reading output with connectors.
+   *
+   * Persisted, unlike game mode: this is how the child's strip should look by
+   * default, not a place he visits and leaves.
+   */
+  const [outputMode, setOutputModeState] = useState(getInitialOutputMode);
+  /** How many function words reading mode shows. Set by an adult in settings. */
+  const [readingTier, setReadingTierState] = useState(getInitialReadingTier);
+  /** Whether a tap says the syllables after the word. */
+  const [syllableMode, setSyllableModeState] = useState(getInitialSyllableMode);
+  /**
+   * Whether words outside the pre-generated list may be sent to Deepgram.
+   *
+   * Off by default on purpose: the daily cap lives in each browser, so on a
+   * public site it would be a cap per visitor rather than a cap in total.
+   */
+  const [liveVoice, setLiveVoiceState] = useState(getInitialLiveVoice);
 
   const {
     words,
@@ -43,20 +80,91 @@ export default function Home() {
     undoCorrection,
     correctionFor,
     corrections,
-  } = useAac(lang);
+  } = useAac(lang, { mode: outputMode, tier: readingTier });
 
   useEffect(() => {
     setLang(lang);
   }, [lang]);
 
-  // Speech feeds the same entry point as typing.
-  const handleTranscript = useCallback((transcript) => say(transcript), [say]);
+  useEffect(() => {
+    setOutputMode(outputMode);
+  }, [outputMode]);
+
+  useEffect(() => {
+    setReadingTier(readingTier);
+  }, [readingTier]);
+
+  useEffect(() => {
+    setSyllableMode(syllableMode);
+  }, [syllableMode]);
+
+  useEffect(() => {
+    setLiveVoice(liveVoice);
+  }, [liveVoice]);
+
+  /**
+   * True while the app itself is talking.
+   *
+   * A ref, not state: nothing renders from it, and putting it through setState
+   * would re-render the whole strip in the middle of a tap.
+   */
+  const speakingRef = useRef(false);
+
+  // Speech feeds the same entry point as typing, except while the app is the
+  // one talking. Tapping a pictogram stops the mic first, but teardown holds
+  // the socket open briefly so the child's last utterance is never lost, so a
+  // transcript of the app's own voice can still arrive after that. Dropping it
+  // here is what stops the app from talking to itself and rewriting the strip.
+  const handleTranscript = useCallback(
+    (transcript) => {
+      if (speakingRef.current) return;
+      say(transcript);
+    },
+    [say],
+  );
   const speech = useSpeech(lang, handleTranscript);
+
+  const voice = useVoice(lang, {
+    syllables: syllableMode === 'on',
+    live: liveVoice === 'on',
+    words,
+  });
+
+  /**
+   * A tap on a pictogram: the word, then its syllables.
+   *
+   * The mic goes off first. It stays off afterwards rather than resuming on its
+   * own, because a mic that switches itself back on is a mic he cannot tell the
+   * state of, and the listening indicator has to mean what it says.
+   */
+  const handleSpeak = useCallback(
+    (word, { onStart, onEnd } = {}) => {
+      speech.stop();
+      speakingRef.current = true;
+      voice.speak(word, {
+        onStart,
+        onEnd: () => {
+          speakingRef.current = false;
+          onEnd?.();
+        },
+      });
+    },
+    [speech, voice],
+  );
 
   const openAdult = useCallback(() => setAdultOpen(true), []);
   const longPress = useLongPress(openAdult);
 
   const closeFix = useCallback(() => setFixTarget(null), []);
+
+  /**
+   * One button, both stores. The adult panel says "forget saved pictograms",
+   * and the audio this device generated on its own is saved in the same sense.
+   */
+  const handleForgetAll = useCallback(() => {
+    forgetAll();
+    voice.forgetClips();
+  }, [forgetAll, voice]);
 
   /**
    * A pin is keyed on the lookup form and an ignore on the normalized form,
@@ -114,6 +222,13 @@ export default function Home() {
           {/* Plain tap, not gated behind the long-press gesture: unlike
               settings, a wrong tap into game mode does no harm. */}
           <GameModeToggle active={gameModeOn} onToggle={() => setGameModeOn((v) => !v)} lang={lang} />
+          {/* Same reasoning: this only changes how the strip looks, so it stays
+              a plain visible button rather than hiding behind the gesture. */}
+          <OutputModeToggle
+            active={outputMode === 'reading'}
+            onToggle={() => setOutputModeState((m) => (m === 'reading' ? 'speech' : 'reading'))}
+            lang={lang}
+          />
           <LanguageToggle lang={lang} onChange={setLangState} />
         </div>
       </header>
@@ -134,11 +249,15 @@ export default function Home() {
           />
         ) : (
           <>
+            {/* Game mode deliberately gets no onSpeak: there the strips are
+                the turn itself, and hearing the answer read out changes what
+                the activity is. */}
             <PictogramStrip
               words={words}
               isResolving={isResolving}
               lang={lang}
               onFix={setFixTarget}
+              onSpeak={handleSpeak}
             />
 
             <div className="app__inputs">
@@ -162,15 +281,24 @@ export default function Home() {
         )}
       </main>
 
+      <VoiceNotice notice={voice.notice} lang={lang} />
+
       <Attribution />
 
       <AdultPanel
         open={adultOpen}
         onClose={() => setAdultOpen(false)}
         lang={lang}
-        onForgetAll={forgetAll}
+        onForgetAll={handleForgetAll}
         corrections={corrections}
         onUndoCorrection={undoCorrection}
+        readingTier={readingTier}
+        onReadingTierChange={setReadingTierState}
+        syllableMode={syllableMode}
+        onSyllableModeChange={setSyllableModeState}
+        liveVoice={liveVoice}
+        onLiveVoiceChange={setLiveVoiceState}
+        voiceBudget={voice.budget}
       />
 
       {/* Adult-only, reached by a long press on a pictogram. Mounted only while

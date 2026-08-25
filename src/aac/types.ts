@@ -10,12 +10,33 @@ export type Lang = 'es' | 'en';
 
 /**
  * Language codes per service. Kept in one place because they disagree:
- * ARASAAC wants a bare two-letter code, Deepgram wants a locale for English.
+ * ARASAAC wants a bare two-letter code, Deepgram wants a locale for English,
+ * and the browser's speech synthesis wants a full BCP-47 tag for both.
  */
-export const LANG_CODES: Record<Lang, { arasaac: string; deepgram: string }> = {
-  es: { arasaac: 'es', deepgram: 'es' },
-  en: { arasaac: 'en', deepgram: 'en-US' },
+export const LANG_CODES: Record<Lang, { arasaac: string; deepgram: string; voice: string }> = {
+  es: { arasaac: 'es', deepgram: 'es', voice: 'es-ES' },
+  en: { arasaac: 'en', deepgram: 'en-US', voice: 'en-US' },
 };
+
+/**
+ * How much of the input reaches the strip.
+ *
+ * `speech` is the default and the one the child uses to talk: function words are
+ * dropped and the output is telegraphic, which is correct AAC output rather than
+ * a compromise. See rule 2 in CLAUDE.md.
+ *
+ * `reading` mirrors ARASAAC's pictographed easy-reading material, where
+ * connectors DO appear as schematic symbols. It exists so the app can match what
+ * the child already works with on paper.
+ */
+export type OutputMode = 'speech' | 'reading';
+
+/**
+ * How many function words reading mode shows. Cumulative, each tier includes the
+ * previous one. The adult picks this in settings; the header toggle only picks
+ * the mode. See data/connectors.{lang}.json.
+ */
+export type ReadingTier = 'connectors' | 'articles' | 'clitics';
 
 /** A single word pulled out of the input, before resolution. */
 export interface Token {
@@ -28,6 +49,16 @@ export interface Token {
    * for example quiero -> querer. Kept separate so a wrong lemma is debuggable.
    */
   lookup: string;
+  /**
+   * A fixed pictogram id for a function word kept by reading mode.
+   *
+   * Present ONLY on connector tokens, which only exist in reading mode. Carrying
+   * the id on the token rather than adding a layer inside resolve() is
+   * deliberate: it makes it structurally impossible for a connector to leak into
+   * speech mode, and it leaves resolve(word, lang) untouched, which is the one
+   * obligation the roadmap puts on v1 for the v2 migration.
+   */
+  connectorId?: number;
 }
 
 /**
@@ -37,7 +68,13 @@ export interface Token {
  * wrong symbol shows up, it is obvious whether an adult correction, the cache,
  * the overrides map, or the API produced it. See src/aac/CLAUDE.md.
  */
-export type ResolutionSource = 'correction' | 'cache' | 'override' | 'api' | 'miss';
+export type ResolutionSource =
+  | 'correction'
+  | 'cache'
+  | 'override'
+  | 'api'
+  | 'miss'
+  | 'connector';
 
 /** A word paired with the pictogram it resolved to, or a miss. */
 export interface ResolvedWord {

@@ -6,13 +6,15 @@
  * wrong. Do not add spaCy or compromise.js. See .claude/rules/ROADMAP.md.
  */
 
-import type { Lang, Lexicon } from './types';
+import type { Lang, Lexicon, ReadingTier } from './types';
 import { isIgnored } from './corrections';
 
 import stopwordsEs from './data/stopwords.es.json';
 import stopwordsEn from './data/stopwords.en.json';
 import lemmasEs from './data/lemmas.es.json';
 import lemmasEn from './data/lemmas.en.json';
+import connectorsEs from './data/connectors.es.json';
+import connectorsEn from './data/connectors.en.json';
 
 /**
  * Words that must NEVER be treated as function words, even if someone adds them
@@ -71,6 +73,48 @@ const LEXICONS: Record<Lang, Lexicon> = {
   },
 };
 
+/**
+ * Reading-mode connector tables, one map per tier, each already containing the
+ * tiers below it.
+ *
+ * Built cumulatively at load so the per-word lookup in tokenize stays a single
+ * map get. The shape of the JSON is grouped by tier for a human reading the data
+ * file; the shape here is what the hot path wants.
+ */
+const TIER_ORDER: readonly ReadingTier[] = ['connectors', 'articles', 'clitics'];
+
+/** The raw grouped JSON. Comment keys are stripped by buildConnectorTiers. */
+type ConnectorFile = Record<string, unknown>;
+
+function buildConnectorTiers(
+  file: ConnectorFile,
+): Record<ReadingTier, ReadonlyMap<string, number>> {
+  const tiers = {} as Record<ReadingTier, ReadonlyMap<string, number>>;
+  const accumulated = new Map<string, number>();
+
+  for (const tier of TIER_ORDER) {
+    const group = file[tier];
+
+    // A tier may legitimately be absent, and a malformed one must not take the
+    // app down at import time. Either way the tier simply adds nothing.
+    if (group && typeof group === 'object') {
+      for (const [word, id] of Object.entries(group as Record<string, unknown>)) {
+        if (word !== COMMENT_KEY && typeof id === 'number') accumulated.set(word, id);
+      }
+    }
+
+    // Snapshot: later tiers must not mutate the maps handed to earlier ones.
+    tiers[tier] = new Map(accumulated);
+  }
+
+  return tiers;
+}
+
+const CONNECTORS: Record<Lang, Record<ReadingTier, ReadonlyMap<string, number>>> = {
+  es: buildConnectorTiers(connectorsEs),
+  en: buildConnectorTiers(connectorsEn),
+};
+
 /** The lexicon for a language. Built once at module load, never mutated. */
 export function getLexicon(lang: Lang): Lexicon {
   return LEXICONS[lang];
@@ -109,4 +153,50 @@ export function isProtected(word: string, lang: Lang): boolean {
  */
 export function toLookupForm(word: string, lang: Lang): string {
   return LEXICONS[lang].lemmas.get(word) ?? word;
+}
+
+/**
+ * True if an ADULT deliberately silenced this word, as opposed to it being a
+ * shipped stopword.
+ *
+ * isStopword() collapses those two cases into one boolean, which is right for
+ * speech mode where both mean "drop it". Reading mode has to tell them apart:
+ * it revives shipped stopwords by design, but must never revive a word an adult
+ * chose to silence. Protected core vocabulary is never ignorable, here as
+ * everywhere.
+ */
+export function isAdultIgnored(word: string, lang: Lang): boolean {
+  if (isProtected(word, lang)) return false;
+
+  return isIgnored(word, lang);
+}
+
+/**
+ * The fixed pictogram for a function word in reading mode, or undefined.
+ *
+ * Undefined means "no symbol for this word", and the caller drops the word
+ * exactly as speech mode would. That is the whole miss policy: the table is
+ * closed and hand-verified, there is no search and no API fallback, so a word
+ * absent from it is never guessed at. ARASAAC genuinely has no symbol for some
+ * function words ("about" and "their" both 404), and bestsearch cannot be used
+ * to fill the gap because it returns the LETTER "a" ahead of the connector.
+ * See data/connectors.{lang}.json.
+ */
+export function lookupConnector(
+  word: string,
+  lang: Lang,
+  tier: ReadingTier,
+): number | undefined {
+  return CONNECTORS[lang][tier].get(word);
+}
+
+/**
+ * Every connector word in a language, across all tiers. Test-only.
+ *
+ * Exported so the suite can hold the invariant that every key is already a
+ * stopword. If one were not, it would reach resolve() in speech mode and change
+ * the telegraphic output, which is the one thing reading mode must not do.
+ */
+export function connectorWords(lang: Lang): readonly string[] {
+  return [...CONNECTORS[lang].clitics.keys()];
 }

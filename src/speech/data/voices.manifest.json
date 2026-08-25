@@ -1,0 +1,7 @@
+{
+  "_comment": "Empty on purpose: clips are generated when a word is first tapped, not ahead of time. npm run voices fills this in for words you want to ship with the app and never pay for again.",
+  "version": 1,
+  "model": "",
+  "generated": "",
+  "clips": {}
+}

@@ -1,0 +1,72 @@
+{
+  "_comment": "Palabras que npm run voices convierte en audio Aura-2. Una palabra por entrada, nunca dos (el toque resuelve palabras sueltas). Español de España. Añade las que él use de verdad y vuelve a lanzar el script: solo se generan las nuevas.",
+
+  "esenciales": [
+    "sí", "no", "más", "menos", "hola", "adiós", "gracias", "vale",
+    "yo", "tú", "él", "ella", "mío", "tuyo",
+    "aquí", "allí", "ahora", "después", "otro", "todo", "nada", "ya"
+  ],
+
+  "familia": [
+    "mamá", "papá", "abuela", "abuelo", "hermano", "hermana",
+    "bebé", "familia", "tío", "tía", "primo", "amigo"
+  ],
+
+  "cuerpo": [
+    "cabeza", "pelo", "ojo", "oreja", "nariz", "boca", "diente", "lengua",
+    "cuello", "mano", "dedo", "brazo", "pierna", "pie", "rodilla",
+    "barriga", "espalda", "corazón"
+  ],
+
+  "comida": [
+    "agua", "leche", "zumo", "pan", "galleta", "bocadillo",
+    "plátano", "manzana", "naranja", "fresa", "uva",
+    "patatas", "arroz", "pasta", "pollo", "pescado", "huevo", "queso", "yogur",
+    "tomate", "sopa", "chocolate", "tarta", "helado", "caramelo",
+    "desayuno", "comida", "cena", "merienda", "hambre", "sed"
+  ],
+
+  "acciones": [
+    "quiero", "comer", "beber", "dormir", "jugar", "correr", "saltar", "andar",
+    "mirar", "escuchar", "hablar", "cantar", "bailar", "leer", "pintar",
+    "abrir", "cerrar", "dar", "coger", "tirar", "subir", "bajar",
+    "entrar", "salir", "venir", "ir", "esperar", "ayudar",
+    "lavar", "peinar", "abrazar", "besar", "llorar", "reír", "parar"
+  ],
+
+  "emociones": [
+    "contento", "feliz", "triste", "enfadado", "cansado", "asustado",
+    "miedo", "dolor", "bien", "mal", "guapo", "solo"
+  ],
+
+  "casa": [
+    "casa", "cama", "puerta", "ventana", "mesa", "silla", "sofá",
+    "baño", "ducha", "cocina", "cuarto", "luz", "llave",
+    "tele", "teléfono", "ordenador", "libro", "pelota", "muñeca", "globo",
+    "mochila", "ropa", "camiseta", "pantalón", "chaqueta", "abrigo",
+    "calcetines", "zapatos", "gorro", "pijama", "bufanda"
+  ],
+
+  "fuera": [
+    "colegio", "parque", "calle", "tienda", "playa", "piscina",
+    "médico", "coche", "autobús", "tren", "avión", "bici", "moto"
+  ],
+
+  "animales": [
+    "perro", "gato", "pájaro", "pez", "caballo", "vaca", "cerdo", "oveja",
+    "gallina", "pato", "león", "elefante", "mono", "conejo", "mariposa"
+  ],
+
+  "tiempo": [
+    "hoy", "mañana", "noche", "día", "sol", "lluvia", "nieve",
+    "frío", "calor", "grande", "pequeño", "rápido", "despacio"
+  ],
+
+  "colores": [
+    "rojo", "azul", "amarillo", "verde", "negro", "blanco", "rosa", "marrón"
+  ],
+
+  "números": [
+    "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez"
+  ]
+}

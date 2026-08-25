@@ -53,6 +53,20 @@ first, portfolio piece second.** When a choice is between "works every single ti
   which drops it like a stopword, except that `PROTECTED_WORDS` still wins.
 - **The image URL in the original brief is wrong.** Correct pattern is in the ARASAAC rules
   file. Sizes 300, 500, 2500 only.
+- **Tapping a pictogram says the word out loud**, whole and then syllable by syllable, from
+  clips generated ahead of time. A long press still opens the fix dialog and never speaks.
+- **Deepgram has no spending cap of any kind**, so the only limit is `DAILY_LIMIT` in
+  `voiceBudget.ts`, and it is per browser on a public site. Do not raise it casually, and do
+  not hook `npm run voices` into `npm run build`: CI would need the key and would bill on
+  every push.
+- **A word is recorded when it appears in the strip, not when it is tapped.** Aura takes 0.8
+  to 2 seconds, measured, and a child must never wait after touching something.
+- **Sixteen words are never split into syllables**, because an isolated syllable starting with
+  a single r turns into the trill: "quie-rro". Every punctuation workaround was tried against
+  the live API and none works. See `canSplitAloud`.
+- **Spanish syllable rules live in `src/aac/syllables.ts` and are shared** by the generator
+  and the browser fallback. English deliberately does not split: it needs a dictionary, and a
+  wrong split spoken aloud teaches the child something false.
 
 ## Commands
 
@@ -62,7 +76,15 @@ npm run build     production build
 npm run lint      eslint
 npm test          vitest
 npm run deploy    build + publish to GitHub Pages
+npm run voices    optionally pre-record words with Deepgram Aura-2 (costs money)
 ```
+
+Words are normally recorded on demand, in the browser, the first time they appear, and then
+kept on that device forever. `npm run voices` is the optional way to make chosen words ship
+with the app and be free for everyone: it reads `src/speech/data/vocabulary.es.json` and
+writes committed MP3s into `public/voices/`. It is deliberately NOT part of the build, so
+building and deploying need no key and spend nothing. Try `npm run voices -- --dry-run`
+first: it prints the exact cost and calls nothing.
 
 ## Working agreements
 

@@ -250,3 +250,67 @@ describe('clearCache', () => {
     await expect(resolve('galleta', 'es')).resolves.toBe(8312);
   });
 });
+
+describe('resolveAll: reading-mode connectors', () => {
+  const connector = (word: string, id: number): Token => ({
+    raw: word,
+    normalized: word,
+    lookup: word,
+    connectorId: id,
+  });
+
+  it('returns the fixed id without touching the network', async () => {
+    const [resolved] = await resolveAll([connector('a', 7041)], 'es');
+
+    expect(resolved.pictogramId).toBe(7041);
+    expect(resolved.source).toBe('connector');
+    expect(findSpy).not.toHaveBeenCalled();
+  });
+
+  it('does not write connectors to the cache', async () => {
+    await resolveAll([connector('y', 11399)], 'es');
+
+    // Nothing to cache: the id is already fixed in the shipped table, and a
+    // cache entry would only create a second place to have to change it.
+    expect(readCache('y', 'es').hit).toBe(false);
+  });
+
+  it('an adult pin does not override a connector, because none can be made', async () => {
+    // The fix dialog pins on the lookup form, so this is what a pin on "a"
+    // would look like. Connectors short-circuit above every layer, so the strip
+    // stays consistent with the shipped table.
+    setCorrection('a', 'es', { kind: 'pin', pictogramId: 999 });
+
+    const [resolved] = await resolveAll([connector('a', 7041)], 'es');
+
+    expect(resolved.pictogramId).toBe(7041);
+  });
+
+  it('keeps position among content words', async () => {
+    findSpy.mockResolvedValue(42);
+
+    const resolved = await resolveAll(
+      [token('niño'), connector('a', 7041), token('casa')],
+      'es',
+    );
+
+    expect(resolved.map((r) => r.pictogramId)).toEqual([42, 7041, 42]);
+    expect(resolved.map((r) => r.source)).toEqual(['api', 'connector', 'api']);
+  });
+});
+
+describe('overrides: pins exported from the device', () => {
+  it.each([
+    ['quién', 'es', 13358],
+    ['viene', 'es', 32669],
+    ["don't", 'en', 5525],
+    ['five', 'en', 2631],
+    ['like', 'en', 37721],
+    ['why', 'en', 36719],
+  ])('%s (%s) resolves to the pinned id and beats the API', async (word, lang, id) => {
+    findSpy.mockResolvedValue(999);
+
+    expect(await resolve(word, lang as 'es' | 'en')).toBe(id);
+    expect(findSpy).not.toHaveBeenCalled();
+  });
+});

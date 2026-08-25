@@ -1,0 +1,3 @@
+{
+  "_comment": "Cómo se le dicta una palabra al sintetizador cuando la lee mal. La clave es la palabra tal como la escribe el niño; el valor es lo que se manda a la voz. Solo cambia el sonido: en pantalla sigue apareciendo la palabra de verdad. Mismo mecanismo que overrides.es.json para un pictograma equivocado: una entrada aquí, nunca un apaño general."
+}

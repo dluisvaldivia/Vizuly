@@ -7,7 +7,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { Lang, ResolvedWord } from './types';
+import type { Lang, OutputMode, ReadingTier, ResolvedWord } from './types';
 import type { Correction, CorrectionEntry } from './corrections';
 import { tokenize } from './tokenize';
 import { resolveAll } from './resolve';
@@ -19,7 +19,7 @@ import {
   setCorrection,
 } from './corrections';
 
-export type { Lang, ResolvedWord } from './types';
+export type { Lang, OutputMode, ReadingTier, ResolvedWord } from './types';
 export type { Correction, CorrectionEntry } from './corrections';
 export { pictogramImageUrl, searchCandidates } from './arasaac';
 export { exportCorrections } from './corrections';
@@ -62,12 +62,24 @@ export interface UseAacResult {
 }
 
 /**
+ * How the strip is built. Omitted means speech mode, the telegraphic default.
+ *
+ * Passed in rather than owned here for the same reason as language: the caller
+ * controls persistence and the hook stays a pure transform.
+ */
+export interface UseAacOptions {
+  mode?: OutputMode;
+  tier?: ReadingTier;
+}
+
+/**
  * Turn text into a pictogram sequence.
  *
  * Language is passed in rather than owned here, so the caller controls
  * persistence and the hook stays a pure transform.
  */
-export function useAac(lang: Lang): UseAacResult {
+export function useAac(lang: Lang, options: UseAacOptions = {}): UseAacResult {
+  const { mode = 'speech', tier = 'connectors' } = options;
   const [words, setWords] = useState<ResolvedWord[]>([]);
   const [isResolving, setIsResolving] = useState(false);
   const [phrase, setPhrase] = useState('');
@@ -94,7 +106,7 @@ export function useAac(lang: Lang): UseAacResult {
 
   const say = useCallback(
     (input: string) => {
-      const tokens = tokenize(input, lang);
+      const tokens = tokenize(input, lang, { mode, tier });
       setPhrase(input);
 
       // Nothing to show. Not an error, just an empty strip.
@@ -129,7 +141,9 @@ export function useAac(lang: Lang): UseAacResult {
           setIsResolving(false);
         });
     },
-    [lang],
+    // mode and tier belong here: changing either must rebuild the strip, which
+    // is also what makes the header toggle feel instant.
+    [lang, mode, tier],
   );
 
   const clear = useCallback(() => {
@@ -155,6 +169,23 @@ export function useAac(lang: Lang): UseAacResult {
   useEffect(() => {
     sayRef.current = say;
   }, [say]);
+
+  /**
+   * Rebuild the strip when the output mode or tier changes.
+   *
+   * Without this the toggle would only take effect on the next thing the child
+   * said, which reads as a broken button. Skipped on mount so an empty strip is
+   * not resolved for nothing. Costs no network: every word is already cached.
+   */
+  const isFirstSettingsRun = useRef(true);
+  useEffect(() => {
+    if (isFirstSettingsRun.current) {
+      isFirstSettingsRun.current = false;
+      return;
+    }
+
+    if (phraseRef.current) sayRef.current(phraseRef.current);
+  }, [mode, tier]);
 
   /**
    * Write a decision and show its effect at once.
