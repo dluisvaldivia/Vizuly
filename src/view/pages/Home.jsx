@@ -8,7 +8,11 @@ import PictogramStrip from '../components/PictogramStrip.jsx';
 import TextInput from '../components/TextInput.jsx';
 import MicButton from '../components/MicButton.jsx';
 import AdultPanel from '../components/AdultPanel.jsx';
+import FixWordDialog from '../components/FixWordDialog.jsx';
 import Attribution from '../components/Attribution.jsx';
+import GameModeToggle from '../components/GameModeToggle.jsx';
+import GameMode from '../components/GameMode.jsx';
+import LanguageToggle from '../components/LanguageToggle.jsx';
 
 /**
  * The app.
@@ -23,8 +27,23 @@ import Attribution from '../components/Attribution.jsx';
 export default function Home() {
   const [lang, setLangState] = useState(getInitialLang);
   const [adultOpen, setAdultOpen] = useState(false);
+  /** The word whose fix dialog is open, or null. Set by a long press. */
+  const [fixTarget, setFixTarget] = useState(null);
+  const [gameModeOn, setGameModeOn] = useState(false);
 
-  const { words, isResolving, say, clear, forgetAll } = useAac(lang);
+  const {
+    words,
+    isResolving,
+    say,
+    clear,
+    forgetAll,
+    correct,
+    ignoreWord,
+    flagWord,
+    undoCorrection,
+    correctionFor,
+    corrections,
+  } = useAac(lang);
 
   useEffect(() => {
     setLang(lang);
@@ -36,6 +55,26 @@ export default function Home() {
 
   const openAdult = useCallback(() => setAdultOpen(true), []);
   const longPress = useLongPress(openAdult);
+
+  const closeFix = useCallback(() => setFixTarget(null), []);
+
+  /**
+   * A pin is keyed on the lookup form and an ignore on the normalized form,
+   * because that is where each one takes effect: resolution sees the lookup,
+   * tokenize sees the normalized word. Undo clears both, so the adult never has
+   * to know the difference.
+   */
+  const undoBoth = useCallback(
+    (token) => {
+      undoCorrection(token.normalized);
+      if (token.lookup !== token.normalized) undoCorrection(token.lookup);
+    },
+    [undoCorrection],
+  );
+
+  const activeCorrection = fixTarget
+    ? (correctionFor(fixTarget.token.lookup) ?? correctionFor(fixTarget.token.normalized))
+    : null;
 
   const labels = {
     es: {
@@ -70,31 +109,57 @@ export default function Home() {
             Vizuly
           </button>
         </h1>
+
+        <div className="app__header-controls">
+          {/* Plain tap, not gated behind the long-press gesture: unlike
+              settings, a wrong tap into game mode does no harm. */}
+          <GameModeToggle active={gameModeOn} onToggle={() => setGameModeOn((v) => !v)} lang={lang} />
+          <LanguageToggle lang={lang} onChange={setLangState} />
+        </div>
       </header>
 
       <main className="app__main">
-        <PictogramStrip words={words} isResolving={isResolving} lang={lang} />
-
-        <div className="app__inputs">
-          {speech.isAvailable ? (
-            <MicButton
-              status={speech.status}
-              isListening={speech.isListening}
-              interim={speech.interim}
+        {gameModeOn ? (
+          // GameMode is only ever mounted here, so toggling off and back on
+          // unmounts and remounts it, resetting its held/turn state fresh
+          // every time without any extra bookkeeping.
+          <GameMode
+            words={words}
+            isResolving={isResolving}
+            say={say}
+            clear={clear}
+            lang={lang}
+            speech={speech}
+            onFix={setFixTarget}
+          />
+        ) : (
+          <>
+            <PictogramStrip
+              words={words}
+              isResolving={isResolving}
               lang={lang}
-              onToggle={speech.toggle}
+              onFix={setFixTarget}
             />
-          ) : (
-            <p className="mic__status">{labels.micUnavailable}</p>
-          )}
 
-          {/* Never disabled by speech state. The two paths are independent. */}
-          <TextInput onSubmit={say} lang={lang} />
-        </div>
+            <div className="app__inputs">
+              {speech.isAvailable ? (
+                <MicButton
+                  status={speech.status}
+                  isListening={speech.isListening}
+                  interim={speech.interim}
+                  levelRef={speech.levelRef}
+                  lang={lang}
+                  onToggle={speech.toggle}
+                />
+              ) : (
+                <p className="mic__status">{labels.micUnavailable}</p>
+              )}
 
-        <button className="app__clear" type="button" onClick={clear}>
-          {labels.clear}
-        </button>
+              {/* Never disabled by speech state. The two paths are independent. */}
+              <TextInput onSubmit={say} onClear={clear} clearLabel={labels.clear} lang={lang} />
+            </div>
+          </>
+        )}
       </main>
 
       <Attribution />
@@ -103,9 +168,37 @@ export default function Home() {
         open={adultOpen}
         onClose={() => setAdultOpen(false)}
         lang={lang}
-        onLangChange={setLangState}
         onForgetAll={forgetAll}
+        corrections={corrections}
+        onUndoCorrection={undoCorrection}
       />
+
+      {/* Adult-only, reached by a long press on a pictogram. Mounted only while
+          open so its search state starts clean for each word. */}
+      {fixTarget ? (
+        <FixWordDialog
+          word={fixTarget}
+          lang={lang}
+          correction={activeCorrection}
+          onPin={(id) => {
+            correct(fixTarget.token.lookup, id);
+            closeFix();
+          }}
+          onIgnore={() => {
+            ignoreWord(fixTarget.token.normalized);
+            closeFix();
+          }}
+          onFlag={() => {
+            flagWord(fixTarget.token.normalized);
+            closeFix();
+          }}
+          onUndo={() => {
+            undoBoth(fixTarget.token);
+            closeFix();
+          }}
+          onClose={closeFix}
+        />
+      ) : null}
     </div>
   );
 }

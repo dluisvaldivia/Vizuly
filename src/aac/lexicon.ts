@@ -7,6 +7,7 @@
  */
 
 import type { Lang, Lexicon } from './types';
+import { isIgnored } from './corrections';
 
 import stopwordsEs from './data/stopwords.es.json';
 import stopwordsEn from './data/stopwords.en.json';
@@ -30,11 +31,17 @@ const PROTECTED_WORDS: Record<Lang, readonly string[]> = {
   en: ['yes', 'no', 'more', 'less', 'i', 'you', 'he', 'she', 'me', 'mine'],
 };
 
+/** Built once, so the per-word guard in isStopword stays a set lookup. */
+const PROTECTED_SETS: Record<Lang, ReadonlySet<string>> = {
+  es: new Set(PROTECTED_WORDS.es),
+  en: new Set(PROTECTED_WORDS.en),
+};
+
 /** JSON comment keys, stripped at load. Lets the data files document themselves. */
 const COMMENT_KEY = '_comment';
 
 function buildStopwords(list: readonly string[], lang: Lang): ReadonlySet<string> {
-  const protectedWords = new Set(PROTECTED_WORDS[lang]);
+  const protectedWords = PROTECTED_SETS[lang];
   const kept = list.filter((word) => !protectedWords.has(word));
 
   if (import.meta.env?.DEV && kept.length !== list.length) {
@@ -72,9 +79,28 @@ export function getLexicon(lang: Lang): Lexicon {
 /**
  * True if the word is a function word that should be dropped before resolution.
  * Protected core vocabulary always returns false.
+ *
+ * Two sources, and the guard applies to both:
+ *
+ *   1. The shipped stopword list.
+ *   2. Words an adult marked "ignore" in the app, which is how a gap in the
+ *      shipped list gets closed without a code change. English "my" is one:
+ *      Spanish already strips "mi", so "my name is Noah" was resolving a
+ *      possessive to the "mine" pictogram while the Spanish phrase did not.
+ *
+ * PROTECTED_WORDS wins over both. An adult cannot make "no" or "sí" disappear
+ * by tapping the wrong button, because a child who cannot be heard saying "no"
+ * has lost something the app exists to give him.
  */
 export function isStopword(word: string, lang: Lang): boolean {
-  return LEXICONS[lang].stopwords.has(word);
+  if (isProtected(word, lang)) return false;
+
+  return LEXICONS[lang].stopwords.has(word) || isIgnored(word, lang);
+}
+
+/** True for core vocabulary that must never be dropped. */
+export function isProtected(word: string, lang: Lang): boolean {
+  return PROTECTED_SETS[lang].has(word);
 }
 
 /**

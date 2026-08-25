@@ -31,6 +31,16 @@ export interface SpeechCallbacks {
    * because a source may not produce them.
    */
   onInterim?: (transcript: string) => void;
+  /**
+   * Microphone loudness, 0 to 1, emitted continuously while capturing.
+   *
+   * Exists so the child can see the app reacting to his voice in real time,
+   * rather than waiting for a transcript. Deliberately a raw level and not a
+   * word: it responds to any sound he makes, including ones Deepgram will
+   * never turn into text. Optional because a source may not produce audio
+   * levels at all.
+   */
+  onLevel?: (level: number) => void;
   onStatus: (status: SpeechStatus) => void;
   /** Diagnostic. Adult-facing, never shown to the child. */
   onError?: (message: string) => void;

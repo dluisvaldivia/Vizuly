@@ -13,6 +13,7 @@ types.ts        shared types
 lexicon.ts      stopword lists + lemma maps (es, en), loaded from JSON
 tokenize.ts     text -> content words
 arasaac.ts      API client. 404 means miss, not error
+corrections.ts  adult fixes made inside the app. Beats everything
 resolve.ts      word -> pictogram id, cache-first
 overrides/      hand-curated word -> id maps per language. Ships empty
 useAac.ts       the ONLY module the UI imports
@@ -28,8 +29,10 @@ must stay testable as plain functions.
 
 ## Resolution order
 
-`resolve()` checks three layers in strict order and stops at the first hit:
+`resolve()` checks four layers in strict order and stops at the first hit:
 
+0. **Adult correction.** Pinned in the app. Above the cache because the cache holds the
+   answer being corrected, so a correction that lost to it would do nothing.
 1. **localStorage cache.** Returns directly, no network.
 2. **Overrides map.** Hand-curated correct answers. Beats the API by design.
 3. **ARASAAC API.** `bestsearch`, then `search`, then a miss placeholder.
@@ -49,10 +52,32 @@ shapes, or network state through it.
 
 ## Wrong symbols
 
-The fix for a wrong pictogram is **an entry in `overrides/`**, never a ranking heuristic.
-One was tried and rejected; see `.claude/rules/ARASAAC-API.md`.
+The fix for a wrong pictogram is **a pinned correction or an entry in `overrides/`**, never
+a ranking heuristic. One was tried and rejected; see `.claude/rules/ARASAAC-API.md`.
 
 The overrides map ships empty by decision, and is populated from real use.
+
+`corrections.ts` is the same mechanism at runtime, for fixing a symbol on the tablet rather
+than in the repo. Three kinds, and the key differs per kind:
+
+| kind | means | keyed on |
+|---|---|---|
+| `pin` | wrong symbol, here is the right one | the **lookup** form, what `resolve()` sees |
+| `ignore` | not a content word, drop it | the **normalized** form, what `tokenize()` sees |
+| `flag` | wrong, not fixed yet | the normalized form. Changes nothing |
+
+Two invariants:
+
+- **Corrections are not cache entries and survive `clearCache()`.** Clearing the cache is
+  how an adult recovers from bad API answers, so wiping their hand-made fixes with it would
+  make one fix undo all the others.
+- **`PROTECTED_WORDS` beats `ignore`.** A mistaken tap must not be able to make the child
+  unhearable when he says "no".
+
+`exportCorrections()` renders all three kinds, both languages, as JSON for the adult panel.
+localStorage is unreadable from outside that browser, so this text is the only way a
+correction reaches the repo or another device. Its `pins` sections are
+`overrides.{lang}.json` shaped and paste straight in. In v2 this store syncs to SQLite.
 
 Known trap: `bestsearch/papá` returns a potato, because accent-insensitivity collides "papá"
 with "papa". Verified fix, ready to paste into the Spanish overrides file:

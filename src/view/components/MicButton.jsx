@@ -1,31 +1,44 @@
+import MicWave from './MicWave.jsx';
+import touchIcon from '../../assets/touchicon.png';
+
 /**
  * The microphone control and its listening indicator.
  *
- * The indicator is deliberately more than a colour change: an animated pulse
- * ring, a state word, and an icon swap. Colour alone fails WCAG 1.4.1 and, more
- * importantly, fails a child who needs to know the app is hearing him.
+ * The indicator is deliberately more than a colour change: an inward sound
+ * wave driven by his actual voice, plus an animated pulse ring while
+ * listening. Colour alone fails WCAG 1.4.1, so the one state that needs text
+ * to be understood, connecting, gets it inside the circle, and the one state
+ * that is a genuine problem, no connection, gets a visible alert. Idle and
+ * listening are conveyed by the wave and the ring colour alone: there is
+ * nothing to read, and nothing wrong to report.
+ *
+ * The wave answers a question the state word cannot: not "is the mic on" but
+ * "is it hearing *me*, right now". It reacts to any sound he makes, including
+ * ones that never become a transcript.
  */
-export default function MicButton({ status, isListening, interim, lang, onToggle, disabled }) {
+export default function MicButton({
+  status,
+  isListening,
+  interim,
+  levelRef,
+  lang,
+  onToggle,
+  disabled,
+}) {
   const labels = {
     es: {
       start: 'Hablar',
       stop: 'Parar',
-      idle: 'Toca para hablar',
       connecting: 'Conectando',
-      listening: 'Te escucho',
       error: 'El micrófono no funciona',
     },
     en: {
       start: 'Talk',
       stop: 'Stop',
-      idle: 'Tap to talk',
       connecting: 'Connecting',
-      listening: 'Listening',
       error: 'Microphone not working',
     },
   }[lang];
-
-  const stateText = labels[status] ?? labels.idle;
 
   return (
     <div className="mic">
@@ -39,18 +52,26 @@ export default function MicButton({ status, isListening, interim, lang, onToggle
         aria-label={isListening ? labels.stop : labels.start}
         aria-pressed={isListening}
       >
-        <span className="mic__icon" aria-hidden="true">
-          {isListening ? '■' : '●'}
-        </span>
-        <span className="mic__label">{isListening ? labels.stop : labels.start}</span>
+        {/* Behind the text, inside the button. Decorative only: every state it
+            reflects is also carried by the border. */}
+        <MicWave levelRef={levelRef} active={isListening} />
+
+        {status === 'connecting' ? (
+          <span className="mic__label mic__label--connecting">{labels.connecting}</span>
+        ) : null}
+
+        {status === 'idle' ? (
+          <img className="mic__touch-icon" src={touchIcon} alt="" aria-hidden="true" />
+        ) : null}
       </button>
 
-      {/* Colour plus text plus motion. Announced politely so it does not
-          interrupt the pictogram strip's own announcements. */}
-      <p className="mic__status" aria-live="polite">
-        <span className={`mic__dot mic__dot--${status}`} aria-hidden="true" />
-        {stateText}
-      </p>
+      {/* The only state worth interrupting for. Idle and listening need no
+          text: the ring colour and the wave already say everything. */}
+      {status === 'error' ? (
+        <p className="mic__error" role="alert">
+          {labels.error}
+        </p>
+      ) : null}
 
       {interim ? (
         <p className="mic__interim" aria-hidden="true">

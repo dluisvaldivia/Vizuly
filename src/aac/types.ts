@@ -34,10 +34,10 @@ export interface Token {
  * How a word came to have (or not have) a pictogram.
  *
  * This is diagnostic only. The child never sees it. It exists so that when a
- * wrong symbol shows up, it is obvious whether the cache, the overrides map, or
- * the API produced it. See src/aac/CLAUDE.md.
+ * wrong symbol shows up, it is obvious whether an adult correction, the cache,
+ * the overrides map, or the API produced it. See src/aac/CLAUDE.md.
  */
-export type ResolutionSource = 'cache' | 'override' | 'api' | 'miss';
+export type ResolutionSource = 'correction' | 'cache' | 'override' | 'api' | 'miss';
 
 /** A word paired with the pictogram it resolved to, or a miss. */
 export interface ResolvedWord {

@@ -7,7 +7,7 @@ import { useState } from 'react';
  * on any speech state. If Deepgram is down, the key is missing, or the mic is
  * denied, typing still works perfectly.
  */
-export default function TextInput({ onSubmit, lang, disabled = false }) {
+export default function TextInput({ onSubmit, onClear, clearLabel, lang, disabled = false }) {
   const [value, setValue] = useState('');
 
   const labels = {
@@ -61,6 +61,12 @@ export default function TextInput({ onSubmit, lang, disabled = false }) {
         >
           {labels.submit}
         </button>
+
+        {onClear ? (
+          <button className="app__clear" type="button" onClick={onClear}>
+            {clearLabel}
+          </button>
+        ) : null}
       </div>
     </form>
   );

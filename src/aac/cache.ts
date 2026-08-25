@@ -84,21 +84,14 @@ export function writeCache(word: string, lang: Lang, pictogramId: number | null)
 }
 
 /**
- * Overwrite one entry with a known-correct id.
- *
- * This is the correction mechanism: when a word shows the wrong pictogram, an
- * adult pins the right one and it sticks permanently. In v2 this store syncs to
- * SQLite across devices.
- */
-export function pinCorrection(word: string, lang: Lang, pictogramId: number): void {
-  writeCache(word, lang, pictogramId);
-}
-
-/**
  * Remove every cached pictogram, leaving other app settings alone.
  *
  * Adult-only escape hatch for when the cache has accumulated wrong answers.
  * Deliberately explicit: nothing calls this automatically.
+ *
+ * Adult corrections live under a different prefix and deliberately survive
+ * this. Clearing the cache is how an adult recovers from bad API answers, and
+ * it must not also destroy the fixes they made by hand. See corrections.ts.
  */
 export function clearCache(): void {
   try {

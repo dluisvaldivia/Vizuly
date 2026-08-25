@@ -22,6 +22,15 @@ export interface UseSpeechResult {
   error: string | null;
   /** True when speech can work at all: mic API present and a key configured. */
   isAvailable: boolean;
+  /**
+   * Live microphone loudness, 0 to 1, as a ref rather than state.
+   *
+   * Deliberately not state: this updates several times a second while the child
+   * is talking, and putting it through setState would re-render the whole app
+   * (pictogram strip included) on every audio frame. The visualiser reads it
+   * from its own animation frame instead.
+   */
+  levelRef: { current: number };
   toggle: () => void;
   stop: () => void;
 }
@@ -38,6 +47,7 @@ export function useSpeech(lang: Lang, onFinal: (transcript: string) => void): Us
   const [error, setError] = useState<string | null>(null);
 
   const sourceRef = useRef<SpeechSource | null>(null);
+  const levelRef = useRef(0);
 
   // Held in a ref so changing the callback does not tear down a live socket
   // mid-sentence.
@@ -57,6 +67,7 @@ export function useSpeech(lang: Lang, onFinal: (transcript: string) => void): Us
     sourceRef.current?.stop();
     setStatus('idle');
     setInterim('');
+    levelRef.current = 0;
   }, []);
 
   // Always release the microphone when the component goes away.
@@ -81,6 +92,7 @@ export function useSpeech(lang: Lang, onFinal: (transcript: string) => void): Us
     sourceRef.current?.stop();
     setStatus('idle');
     setInterim('');
+    levelRef.current = 0;
   }, [lang]);
 
   const toggle = useCallback(() => {
@@ -91,6 +103,7 @@ export function useSpeech(lang: Lang, onFinal: (transcript: string) => void): Us
 
     setError(null);
     setInterim('');
+    levelRef.current = 0;
 
     void sourceRef.current?.start(lang, {
       onFinal: (transcript) => {
@@ -98,6 +111,10 @@ export function useSpeech(lang: Lang, onFinal: (transcript: string) => void): Us
         onFinalRef.current(transcript);
       },
       onInterim: setInterim,
+      // Straight into the ref. No setState: see levelRef above.
+      onLevel: (level) => {
+        levelRef.current = level;
+      },
       onStatus: setStatus,
       onError: setError,
     });
@@ -109,6 +126,7 @@ export function useSpeech(lang: Lang, onFinal: (transcript: string) => void): Us
     interim,
     error,
     isAvailable,
+    levelRef,
     toggle,
     stop,
   };

@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 
 import { resolve, resolveAll } from './resolve';
-import { readCache, writeCache, clearCache, pinCorrection } from './cache';
+import { readCache, writeCache, clearCache } from './cache';
+import { setCorrection, readCorrection } from './corrections';
 import * as arasaac from './arasaac';
 import type { Token } from './types';
 
@@ -127,7 +128,7 @@ describe('resolve: overrides beat the API', () => {
     await resolve('galleta', 'es');
     expect(readCache('galleta', 'es')).toEqual({ hit: true, pictogramId: 9999 });
 
-    pinCorrection('galleta', 'es', 8312);
+    setCorrection('galleta', 'es', { kind: 'pin', pictogramId: 8312 });
 
     await expect(resolve('galleta', 'es')).resolves.toBe(8312);
   });
@@ -234,5 +235,18 @@ describe('clearCache', () => {
 
     expect(readCache('gato', 'es')).toEqual({ hit: false });
     expect(localStorage.getItem('theme')).toBe('dark');
+  });
+
+  // Clearing the cache is how an adult recovers from bad API answers. If it
+  // also wiped their hand-made fixes, the fix for one wrong symbol would undo
+  // every correction they had ever made.
+  it('leaves adult corrections alone', async () => {
+    setCorrection('galleta', 'es', { kind: 'pin', pictogramId: 8312 });
+    writeCache('galleta', 'es', 9999);
+
+    clearCache();
+
+    expect(readCorrection('galleta', 'es')).toEqual({ kind: 'pin', pictogramId: 8312 });
+    await expect(resolve('galleta', 'es')).resolves.toBe(8312);
   });
 });

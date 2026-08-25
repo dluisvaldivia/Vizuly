@@ -9,6 +9,7 @@
 
 import type { Lang, ResolvedWord, Token } from './types';
 import { readCache, writeCache } from './cache';
+import { readCorrection } from './corrections';
 import { findPictogramId } from './arasaac';
 
 import overridesEs from './data/overrides.es.json';
@@ -33,11 +34,12 @@ const OVERRIDES: Record<Lang, ReadonlyMap<string, number>> = {
 /**
  * Resolve one word to a pictogram id.
  *
- * Three layers, strict order, stop at the first hit:
+ * Four layers, strict order, stop at the first hit:
  *
- *   1. Cache     already known, returns directly, no network
- *   2. Overrides hand-curated correct answers, beats the API by design
- *   3. API       ARASAAC bestsearch, then search
+ *   0. Correction an adult fixed this word inside the app. Beats everything
+ *   1. Cache      already known, returns directly, no network
+ *   2. Overrides  hand-curated correct answers, beats the API by design
+ *   3. API        ARASAAC bestsearch, then search
  *
  * Results from layers 2 and 3 are written to the cache before returning, which
  * is what makes the answer permanent.
@@ -51,7 +53,16 @@ export async function resolve(
   lang: Lang,
   signal?: AbortSignal,
 ): Promise<number | null> {
-  // Layer 1: cache. Checked first, always. A hit is returned verbatim, including
+  // Layer 0: an adult correction made inside the app. Above the cache on
+  // purpose: the cache is usually holding the very answer being corrected, and
+  // a correction that lost to it would appear to do nothing. See corrections.ts.
+  //
+  // An 'ignore' word never reaches here, tokenize drops it. A 'flag' is a note
+  // for the adult and deliberately changes nothing about resolution.
+  const correction = readCorrection(word, lang);
+  if (correction?.kind === 'pin') return correction.pictogramId;
+
+  // Layer 1: cache. A hit is returned verbatim, including
   // a cached miss, so we never re-request a word we already know has no symbol.
   const cached = readCache(word, lang);
   if (cached.hit) return cached.pictogramId;
@@ -119,6 +130,10 @@ function describeSource(
   word: string,
   lang: Lang,
 ): ResolvedWord['source'] {
+  // Checked first because it is checked first in resolve(), and because the fix
+  // dialog shows it: an adult needs to see that the symbol in front of them is
+  // one they pinned, not one ARASAAC chose.
+  if (readCorrection(word, lang)?.kind === 'pin') return 'correction';
   if (wasCached) return 'cache';
   if (pictogramId === null) return 'miss';
   if (OVERRIDES[lang].has(word)) return 'override';

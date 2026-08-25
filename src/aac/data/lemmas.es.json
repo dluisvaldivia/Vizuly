@@ -1,5 +1,5 @@
 {
-  "_comment": "Conjugated form -> infinitive. ARASAAC bestsearch handles plurals and accents but NOT conjugations: bestsearch/quiero 404s, bestsearch/querer succeeds. Keys must be lowercased and keep their accents. Only add forms this child actually uses.",
+  "_comment": "Conjugated form -> infinitive. ARASAAC bestsearch handles plurals and accents but NOT conjugations: bestsearch/quiero 404s, bestsearch/querer succeeds. Keys must be lowercased and keep their accents. Only add forms this child actually uses. Ambiguous forms are left out on purpose: llamar has llamo and llamamos here but NOT llama or llamas, which are also the animal.",
 
   "quiero": "querer",
   "quieres": "querer",
@@ -61,5 +61,8 @@
   "gustan": "gustar",
 
   "duele": "doler",
-  "duelen": "doler"
+  "duelen": "doler",
+
+  "llamo": "llamar",
+  "llamamos": "llamar"
 }

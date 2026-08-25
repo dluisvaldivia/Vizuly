@@ -23,6 +23,17 @@
     --mic-connecting: #8a5a00;
     --mic-live: #1a7f37;
     --mic-error: #b3261e;
+
+    // Game mode. Same green family as --mic-live: this app's established
+    // "positive" colour. Always paired with a shape or motion cue elsewhere,
+    // never colour alone.
+    --turn-toggle-bg: #f2f2f2;
+    --turn-toggle-border: #595959;
+    --turn-toggle-active-bg: #d9f2e3;
+    --turn-toggle-active-border: #1a7f37;
+    --echo-ring: rgba(26, 127, 55, 0.55);
+    // Deliberately translucent: pictograms must stay visible underneath.
+    --celebrate-overlay: rgba(26, 127, 55, 0.35);
 }
 
 [data-theme="dark"] {
@@ -45,4 +56,11 @@
     --mic-connecting: #e3a008;
     --mic-live: #4ade80;
     --mic-error: #ff6b6b;
+
+    --turn-toggle-bg: #2e2e2e;
+    --turn-toggle-border: #a8a8a8;
+    --turn-toggle-active-bg: #1e3b28;
+    --turn-toggle-active-border: #4ade80;
+    --echo-ring: rgba(74, 222, 128, 0.6);
+    --celebrate-overlay: rgba(74, 222, 128, 0.32);
 }

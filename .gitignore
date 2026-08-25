@@ -31,3 +31,10 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Python bytecode (vendored .claude skills)
+__pycache__/
+*.pyc
+
+# Vendored third-party Claude Code skills. Reinstallable, not part of the app.
+.claude/skills/

@@ -52,6 +52,13 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
   let processor: ScriptProcessorNode | null = null;
   let keepAlive: ReturnType<typeof setInterval> | null = null;
 
+  /**
+   * Held at this scope, unlike the other callbacks, because teardown() must be
+   * able to zero the level and teardown() is called from paths that have no
+   * callbacks object in hand.
+   */
+  let onLevel: ((level: number) => void) | undefined;
+
   /** True when not capturing. Gates audio capture and status updates. */
   let stopped = true;
 
@@ -73,6 +80,10 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
 
     processor?.disconnect();
     processor = null;
+
+    // Settle the waveform. Without this the last loud frame stays on screen and
+    // the button looks like it is still hearing something after stop.
+    onLevel?.(0);
 
     // Release the microphone. Without this the browser keeps showing the
     // recording indicator, which would confuse both the child and the adult.
@@ -120,6 +131,7 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
     if (!stopped) return;
     stopped = false;
     abandoned = false;
+    onLevel = callbacks.onLevel;
 
     callbacks.onStatus('connecting');
 
@@ -241,6 +253,10 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
 
       const input = event.inputBuffer.getChannelData(0);
 
+      // Report loudness before anything that can throw, so the child keeps
+      // seeing the waveform react even if the socket has gone away.
+      callbacks.onLevel?.(peakLevel(input));
+
       try {
         socket.sendMedia(floatToPcm16(input));
       } catch (error) {
@@ -276,6 +292,25 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
   }
 
   return { start, stop, isAvailable };
+}
+
+/**
+ * Loudest sample in the frame, 0 to 1.
+ *
+ * Peak rather than RMS on purpose: RMS averages a short excited noise down to
+ * almost nothing, and a child who shouts one syllable should see the waveform
+ * jump. Peak over-reports steady background noise, which the visualiser's own
+ * floor handles.
+ */
+function peakLevel(input: Float32Array): number {
+  let peak = 0;
+
+  for (let i = 0; i < input.length; i += 1) {
+    const magnitude = Math.abs(input[i]);
+    if (magnitude > peak) peak = magnitude;
+  }
+
+  return peak > 1 ? 1 : peak;
 }
 
 /** Float32 [-1,1] to signed 16-bit PCM, which is what linear16 means. */

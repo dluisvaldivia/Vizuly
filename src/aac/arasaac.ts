@@ -39,18 +39,21 @@ export function pictogramImageUrl(id: number, size: PictogramSize = 500): string
 }
 
 /**
- * One search request.
+ * One search request, every result id in the order ARASAAC returned them.
  *
- * Returns the first result's id, or null for a miss (404) or an empty array.
- * Throws only on a genuine failure worth retrying differently: network error,
- * timeout, or a 5xx.
+ * Returns an empty array for a miss (404) or an empty body. Throws only on a
+ * genuine failure worth handling differently: network error, timeout, or a 5xx.
+ *
+ * The order is ARASAAC's own and is NOT re-ranked. A heuristic re-rank was tried
+ * and rejected. The adult picking from this list in the fix dialog is the
+ * ranking, and their pick becomes an override.
  */
-async function searchOnce(
+async function searchIds(
   endpoint: 'bestsearch' | 'search',
   word: string,
   lang: Lang,
   signal?: AbortSignal,
-): Promise<number | null> {
+): Promise<number[]> {
   const code = LANG_CODES[lang].arasaac;
   const url = `${API_BASE}/pictograms/${code}/${endpoint}/${encodeURIComponent(word)}`;
 
@@ -59,7 +62,7 @@ async function searchOnce(
   // A miss. This is the documented shape of "no pictogram for this word" and is
   // an ordinary outcome, not an error. Treating it as one is the single easiest
   // mistake to make against this API.
-  if (response.status === 404) return null;
+  if (response.status === 404) return [];
 
   if (!response.ok) {
     throw new Error(`ARASAAC ${endpoint} failed for "${word}" (${response.status})`);
@@ -67,10 +70,20 @@ async function searchOnce(
 
   const results = (await response.json()) as ArasaacSearchResult[];
 
-  if (!Array.isArray(results) || results.length === 0) return null;
+  if (!Array.isArray(results)) return [];
 
-  const id = results[0]?._id;
-  return typeof id === 'number' ? id : null;
+  return results.map((result) => result?._id).filter((id): id is number => typeof id === 'number');
+}
+
+/** The first result, or null. What resolution uses: one word, one symbol. */
+async function searchOnce(
+  endpoint: 'bestsearch' | 'search',
+  word: string,
+  lang: Lang,
+  signal?: AbortSignal,
+): Promise<number | null> {
+  const ids = await searchIds(endpoint, word, lang, signal);
+  return ids[0] ?? null;
 }
 
 /**
@@ -105,6 +118,32 @@ async function fetchWithTimeout(url: string, signal?: AbortSignal): Promise<Resp
  *
  * Returns null when both miss.
  */
+/**
+ * Candidate pictograms for a word, for an adult to choose between.
+ *
+ * NOT part of resolution. Resolution takes one answer and caches it; this is
+ * the fix dialog asking "what else is there?" when that answer was wrong.
+ * Because it is adult-facing and never blocks the child, it is allowed to be
+ * broad: bestsearch first so the most likely candidates lead, then search for
+ * everything else, deduplicated.
+ *
+ * Returns an empty array rather than throwing, so a network failure shows an
+ * empty result list and the other fix actions still work.
+ */
+export async function searchCandidates(
+  word: string,
+  lang: Lang,
+  signal?: AbortSignal,
+  limit = 30,
+): Promise<number[]> {
+  const [best, broad] = await Promise.all([
+    searchIds('bestsearch', word, lang, signal).catch(() => []),
+    searchIds('search', word, lang, signal).catch(() => []),
+  ]);
+
+  return [...new Set([...best, ...broad])].slice(0, limit);
+}
+
 export async function findPictogramId(
   word: string,
   lang: Lang,

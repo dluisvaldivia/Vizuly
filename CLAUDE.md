@@ -47,7 +47,10 @@ first, portfolio piece second.** When a choice is between "works every single ti
 - **Deepgram needs an explicit `CloseStream` on stop**, or the child's last utterance is
   never flushed and is silently lost.
 - **Do not add a ranking heuristic.** One was tried and rejected: it fixed some words and
-  broke others. Wrong symbols get an overrides entry.
+  broke others. Wrong symbols get an overrides entry, or a correction pinned in the app.
+- **Adult corrections live in `corrections.ts`, not `cache.ts`.** They outrank the cache in
+  `resolve()` and survive "clear saved pictograms". An adult can also mark a word `ignore`,
+  which drops it like a stopword, except that `PROTECTED_WORDS` still wins.
 - **The image URL in the original brief is wrong.** Correct pattern is in the ARASAAC rules
   file. Sizes 300, 500, 2500 only.
 

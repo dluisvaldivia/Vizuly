@@ -136,3 +136,32 @@ describe('tokenize: language independence', () => {
     expect(lookups('the', 'es')).toEqual(['the']);
   });
 });
+
+describe('possessives are function words in both languages', () => {
+  // Spanish already stripped "mi", English did not, so "my name is Noah" put a
+  // "mine" pictogram in front of the child while "mi nombre es Noah" did not.
+  // Anything this list still gets wrong is fixable in the app: long press the
+  // pictogram and choose "ignore this word".
+  it('strips English possessive determiners, as Spanish does', () => {
+    expect(lookups('my name is noah', 'en')).toEqual(['name', 'noah']);
+    expect(lookups('mi nombre es noah', 'es')).toEqual(['nombre', 'noah']);
+  });
+
+  // "mine" is protected core vocabulary and must survive.
+  it('keeps the standalone possessive pronoun', () => {
+    expect(lookups('mine', 'en')).toEqual(['mine']);
+  });
+});
+
+describe('llamarse, the phrase a child uses to say his own name', () => {
+  it('lemmatises the unambiguous forms', () => {
+    expect(lookups('me llamo noah', 'es')).toEqual(['llamar', 'noah']);
+  });
+
+  // "llama" and "llamas" are also the animal. A child asking for the llama
+  // pictogram must still get it.
+  it('leaves the animal alone', () => {
+    expect(lookups('llama', 'es')).toEqual(['llama']);
+    expect(lookups('llamas', 'es')).toEqual(['llamas']);
+  });
+});
