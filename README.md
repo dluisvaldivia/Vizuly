@@ -6,6 +6,8 @@ sentence and immediately see the matching ARASAAC pictograms.
 Speech and typing are two independent input paths. Both work on their own: if the microphone
 is unavailable, typing still works perfectly.
 
+WORK IN PROGRESS: visit **[VIZUALY](https://dluisvaldivia.github.io/Vizuly/)** [Bloom](http://147.93.114.210:3001/)**
+
 ## Getting started
 
 ```bash
