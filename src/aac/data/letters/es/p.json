@@ -1,0 +1,31 @@
+{
+  "id": "p",
+  "label": "P",
+  "graphemes": [
+    "p"
+  ],
+  "words": [
+    { "word": "papá", "syllables": 2, "position": "inicial" },
+    { "word": "pato", "syllables": 2, "position": "inicial" },
+    { "word": "pelo", "syllables": 2, "position": "inicial" },
+    { "word": "pila", "syllables": 2, "position": "inicial" },
+    { "word": "pino", "syllables": 2, "position": "inicial" },
+    { "word": "pipa", "syllables": 2, "position": "inicial" },
+    { "word": "peso", "syllables": 2, "position": "inicial" },
+    { "word": "pesa", "syllables": 2, "position": "inicial" },
+    { "word": "pozo", "syllables": 2, "position": "inicial" },
+    { "word": "puma", "syllables": 2, "position": "inicial" },
+    { "word": "pera", "syllables": 2, "position": "inicial" },
+    { "word": "palo", "syllables": 2, "position": "inicial" },
+    { "word": "capa", "syllables": 2, "position": "media" },
+    { "word": "copa", "syllables": 2, "position": "media" },
+    { "word": "sopa", "syllables": 2, "position": "media" },
+    { "word": "mapa", "syllables": 2, "position": "media" },
+    { "word": "ropa", "syllables": 2, "position": "media" },
+    { "word": "tapa", "syllables": 2, "position": "media" },
+    { "word": "lupa", "syllables": 2, "position": "media" },
+    { "word": "sapo", "syllables": 2, "position": "media" },
+    { "word": "apio", "syllables": 2, "position": "media" },
+    { "word": "campo", "syllables": 2, "position": "media" }
+  ]
+}

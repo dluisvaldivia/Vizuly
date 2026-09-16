@@ -23,6 +23,9 @@ export type { Lang, OutputMode, ReadingTier, ResolvedWord } from './types';
 export type { Correction, CorrectionEntry } from './corrections';
 export { pictogramImageUrl, searchCandidates } from './arasaac';
 export { exportCorrections } from './corrections';
+export { listDecks, cardWords, cardLetter } from './letterDecks';
+export type { LetterDeck, DeckWord, CardPosition } from './letterDecks';
+export { useWordCards } from './useWordCards';
 
 export interface UseAacResult {
   /** The pictogram sequence, in order. Empty until something is submitted. */

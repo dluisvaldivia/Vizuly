@@ -1,0 +1,17 @@
+{
+  "id": "bl",
+  "label": "BL",
+  "graphemes": [
+    "bl"
+  ],
+  "words": [
+    { "word": "blusa", "syllables": 2 },
+    { "word": "bloque", "syllables": 2 },
+    { "word": "cable", "syllables": 2 },
+    { "word": "tabla", "syllables": 2 },
+    { "word": "niebla", "syllables": 2 },
+    { "word": "pueblo", "syllables": 2 },
+    { "word": "doble", "syllables": 2 },
+    { "word": "roble", "syllables": 2 }
+  ]
+}

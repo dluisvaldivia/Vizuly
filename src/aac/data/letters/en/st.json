@@ -1,0 +1,12 @@
+{
+  "id": "st",
+  "label": "ST",
+  "graphemes": [
+    "st"
+  ],
+  "words": [
+    { "word": "star", "syllables": 1, "position": "inicial" },
+    { "word": "stamp", "syllables": 1, "position": "inicial" },
+    { "word": "strawberry", "syllables": 3, "position": "inicial" }
+  ]
+}

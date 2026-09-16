@@ -1,0 +1,14 @@
+{
+  "id": "i",
+  "label": "I",
+  "graphemes": [
+    "i"
+  ],
+  "words": [
+    { "word": "hilo", "syllables": 2 },
+    { "word": "isla", "syllables": 2 },
+    { "word": "imán", "syllables": 2 },
+    { "word": "hijo", "syllables": 2 },
+    { "word": "higo", "syllables": 2 }
+  ]
+}

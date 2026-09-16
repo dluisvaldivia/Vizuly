@@ -5,6 +5,9 @@
     // Pictograms are drawn for a white ground. Keep it white in both themes so
     // the symbol the child learns never changes appearance.
     --picto-bg: #ffffff;
+    // The back of a letter card is paper, like its front, in both themes.
+    --card-text: #1a1a1a;
+    --card-border: #595959;
     --picto-placeholder-border: #6b6b6b;
     --picto-placeholder-text: #595959;
     --input-border: #595959;
@@ -23,6 +26,16 @@
     --mic-connecting: #8a5a00;
     --mic-live: #1a7f37;
     --mic-error: #b3261e;
+
+    // The level meter's colour scale, quietest to loudest. Blended into a
+    // gradient, so these are read as a ramp rather than five separate states.
+    // Never the only cue: the marked line says where "loud enough" is by
+    // position, which is what carries it without colour.
+    --meter-quiet: #767676;
+    --meter-low: #c62828;
+    --meter-mid: #e0a200;
+    --meter-good: #1a7f37;
+    --meter-great: #0b5fff;
 
     // Game mode. Same green family as --mic-live: this app's established
     // "positive" colour. Always paired with a shape or motion cue elsewhere,
@@ -48,6 +61,8 @@
     --text-color: #{$dark-text};
 
     --picto-bg: #ffffff;
+    --card-text: #1a1a1a;
+    --card-border: #a8a8a8;
     --picto-placeholder-border: #a8a8a8;
     --picto-placeholder-text: #c9c9c9;
     --input-border: #a8a8a8;
@@ -63,6 +78,12 @@
     --mic-connecting: #e3a008;
     --mic-live: #4ade80;
     --mic-error: #ff6b6b;
+
+    --meter-quiet: #9e9e9e;
+    --meter-low: #ff6b6b;
+    --meter-mid: #ffc93c;
+    --meter-good: #4ade80;
+    --meter-great: #7aa7ff;
 
     --turn-toggle-bg: #2e2e2e;
     --turn-toggle-border: #a8a8a8;

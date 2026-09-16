@@ -1,0 +1,12 @@
+{
+  "id": "sn",
+  "label": "SN",
+  "graphemes": [
+    "sn"
+  ],
+  "words": [
+    { "word": "snake", "syllables": 1, "position": "inicial" },
+    { "word": "snail", "syllables": 1, "position": "inicial" },
+    { "word": "snowman", "syllables": 2, "position": "inicial" }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "u",
+  "label": "U",
+  "graphemes": [
+    "u"
+  ],
+  "words": [
+    { "word": "uva", "syllables": 2 },
+    { "word": "uña", "syllables": 2 },
+    { "word": "uno", "syllables": 2 },
+    { "word": "humo", "syllables": 2 },
+    { "word": "hueso", "syllables": 2 }
+  ]
+}

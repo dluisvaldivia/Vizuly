@@ -1,0 +1,14 @@
+{
+  "id": "gl",
+  "label": "GL",
+  "graphemes": [
+    "gl"
+  ],
+  "words": [
+    { "word": "globo", "syllables": 2 },
+    { "word": "glotón", "syllables": 2 },
+    { "word": "iglú", "syllables": 2 },
+    { "word": "regla", "syllables": 2 },
+    { "word": "siglo", "syllables": 2 }
+  ]
+}

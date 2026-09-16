@@ -1,0 +1,11 @@
+{
+  "id": "sw",
+  "label": "SW",
+  "graphemes": [
+    "sw"
+  ],
+  "words": [
+    { "word": "swing", "syllables": 1, "position": "inicial" },
+    { "word": "swan", "syllables": 1, "position": "inicial" }
+  ]
+}

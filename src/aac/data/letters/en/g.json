@@ -1,0 +1,23 @@
+{
+  "_comment": "Hard g only, as in goat. No giraffe.",
+  "id": "g",
+  "label": "G",
+  "graphemes": [
+    "g"
+  ],
+  "words": [
+    { "word": "goat", "syllables": 1, "position": "inicial" },
+    { "word": "girl", "syllables": 1, "position": "inicial" },
+    { "word": "gate", "syllables": 1, "position": "inicial" },
+    { "word": "gift", "syllables": 1, "position": "inicial" },
+    { "word": "dog", "syllables": 1, "position": "media" },
+    { "word": "bag", "syllables": 1, "position": "media" },
+    { "word": "pig", "syllables": 1, "position": "media" },
+    { "word": "egg", "syllables": 1, "position": "media" },
+    { "word": "garden", "syllables": 2, "position": "inicial" },
+    { "word": "guitar", "syllables": 2, "position": "inicial" },
+    { "word": "tiger", "syllables": 2, "position": "media" },
+    { "word": "dragon", "syllables": 2, "position": "media" },
+    { "word": "gorilla", "syllables": 3, "position": "inicial" }
+  ]
+}

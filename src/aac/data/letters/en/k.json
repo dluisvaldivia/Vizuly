@@ -1,0 +1,27 @@
+{
+  "_comment": "The k sound written k or ck. No silent k, as in knee.",
+  "id": "k",
+  "label": "K",
+  "graphemes": [
+    "ck",
+    "k"
+  ],
+  "words": [
+    { "word": "key", "syllables": 1, "position": "inicial" },
+    { "word": "kite", "syllables": 1, "position": "inicial" },
+    { "word": "king", "syllables": 1, "position": "inicial" },
+    { "word": "kiss", "syllables": 1, "position": "inicial" },
+    { "word": "duck", "syllables": 1, "position": "media" },
+    { "word": "sock", "syllables": 1, "position": "media" },
+    { "word": "book", "syllables": 1, "position": "media" },
+    { "word": "milk", "syllables": 1, "position": "media" },
+    { "word": "cake", "syllables": 1, "position": "media" },
+    { "word": "kitten", "syllables": 2, "position": "inicial" },
+    { "word": "monkey", "syllables": 2, "position": "media" },
+    { "word": "rocket", "syllables": 2, "position": "media" },
+    { "word": "pocket", "syllables": 2, "position": "media" },
+    { "word": "donkey", "syllables": 2, "position": "media" },
+    { "word": "kangaroo", "syllables": 3, "position": "inicial" },
+    { "word": "koala", "syllables": 3, "position": "inicial" }
+  ]
+}

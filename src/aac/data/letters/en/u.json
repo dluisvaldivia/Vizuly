@@ -1,0 +1,24 @@
+{
+  "_comment": "Short u only, as in sun. No music.",
+  "id": "u",
+  "label": "U",
+  "graphemes": [
+    "u"
+  ],
+  "words": [
+    { "word": "up", "syllables": 1, "position": "inicial" },
+    { "word": "sun", "syllables": 1, "position": "media" },
+    { "word": "bus", "syllables": 1, "position": "media" },
+    { "word": "cup", "syllables": 1, "position": "media" },
+    { "word": "duck", "syllables": 1, "position": "media" },
+    { "word": "rug", "syllables": 1, "position": "media" },
+    { "word": "jump", "syllables": 1, "position": "media" },
+    { "word": "under", "syllables": 2, "position": "inicial" },
+    { "word": "button", "syllables": 2, "position": "media" },
+    { "word": "bucket", "syllables": 2, "position": "media" },
+    { "word": "muffin", "syllables": 2, "position": "media" },
+    { "word": "puppet", "syllables": 2, "position": "media" },
+    { "word": "umbrella", "syllables": 3, "position": "inicial" },
+    { "word": "butterfly", "syllables": 3, "position": "media" }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "_comment": "Z, and C before e or i. In Andalucía with seseo these sound the same as S: that is the local variety, not an articulation error.",
+  "id": "z-c",
+  "label": "Z / C",
+  "graphemes": [
+    "z",
+    "c"
+  ],
+  "words": [
+    { "word": "zorro", "syllables": 2 },
+    { "word": "zumo", "syllables": 2 },
+    { "word": "zanja", "syllables": 2 },
+    { "word": "cero", "syllables": 2 },
+    { "word": "cena", "syllables": 2 },
+    { "word": "cine", "syllables": 2 },
+    { "word": "cielo", "syllables": 2 },
+    { "word": "taza", "syllables": 2 },
+    { "word": "caza", "syllables": 2 },
+    { "word": "pozo", "syllables": 2 },
+    { "word": "lazo", "syllables": 2 },
+    { "word": "once", "syllables": 2 },
+    { "word": "doce", "syllables": 2 }
+  ]
+}

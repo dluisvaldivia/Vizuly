@@ -16,6 +16,8 @@ arasaac.ts      API client. 404 means miss, not error
 corrections.ts  adult fixes made inside the app. Beats everything
 resolve.ts      word -> pictogram id, cache-first
 overrides/      hand-curated word -> id maps per language. Ships empty
+letterDecks.ts  letter card decks, one JSON per letter or sound
+useWordCards.ts card words -> pictograms, re-exported through useAac.ts
 useAac.ts       the ONLY module the UI imports
 ```
 
@@ -141,6 +143,43 @@ with "papa". Verified fix, ready to paste into the Spanish overrides file:
 ```
 
 Other Spanish accent collisions are likely and have not been enumerated.
+
+## Letter cards
+
+`data/letters/{lang}/<id>.json`, one deck per letter or sound, and
+`data/letters/index.{lang}.json` for the order the adult picks from. Each word carries
+`syllables` and, where the list splits them, `position` (`inicial` or `media`). `media` means
+"not at the start", which in English is usually the end of the word. Spanish decks open on
+two syllables and English decks on one. Other lengths go in the same files and are filtered,
+not moved.
+
+English has 45 decks: A to Z, then sh, ch and th, then initial blends. The words come from
+early-vocabulary sources (Dolch nouns, the MacArthur-Bates CDI, Kuperman age-of-acquisition
+norms), limited to things that can be pictured. Every word was checked live against
+`bestsearch/en` and every image was checked by eye.
+
+- **English decks are main-sound only.** A word goes in a letter's deck only if the letter
+  makes its first-taught sound there: short vowels, hard c and g, unvoiced th, x as ks. No
+  cake in A, no city in C, no knee in K. A test cannot check this, so review it by hand when
+  you add a word.
+- **English syllable counts are hand-checked, not `syllabify`-checked**, because English
+  deliberately has no syllable splitter. The test only checks that each count is 1 to 3.
+  Leave out words whose count people disagree on (fire, hour, family).
+- **An English card word is also a strip word.** The overrides added for cards (`fish`,
+  `plant`, `glasses` and others) change the strip too. That is why `watch` is not a card: the
+  strip needs the verb, and a card needs the wristwatch.
+
+- **`letterDecks.test.ts` checks every hand-written syllable count against `syllabify`.** A
+  mismatch is either a typo in the data or a bug in the shared syllable rules, which the voice
+  uses too. Fix the right one, never the test.
+- **`foldForMatching` strips only the acute accent and the diaeresis, never the tilde.** Ñ is
+  a letter, not an accented N: folding it would make `año` an N card. Same family of trap as
+  `sí`/`si`.
+- **Cards skip `tokenize()` on purpose.** A card is a word an adult chose, so a stopword or an
+  ignored word still gets its card. The lemma map still applies.
+- **A word whose pictogram comes from the `search` fallback is very often wrong** for this
+  vocabulary (`ata` -> gato, `amo` -> hipopótamo, `roble` -> problema), because `search`
+  matches substrings. Fix with an override, or remove the word, never with a ranking change.
 
 ## Testing
 

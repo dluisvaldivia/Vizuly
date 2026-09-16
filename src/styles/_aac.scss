@@ -275,6 +275,23 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   gap: 0.5rem;
 }
 
+// Width of the level meter, and of the counterweight opposite it. Shared so the
+// two can never drift and leave the button off centre.
+$meter-width: clamp(1.5rem, 7vw, 2.25rem);
+
+// The button with the level meter beside it.
+.mic__row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+// Deliberately empty. Balances the meter so the button stays centred.
+.mic__row-spacer {
+  width: $meter-width;
+  flex: none;
+}
+
 .mic__button {
   display: flex;
   flex-direction: column;
@@ -379,6 +396,125 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   color: var(--text-muted);
   font-style: italic;
   min-height: 1.5em;
+}
+
+// The level meter beside the mic button. Added alongside the wave, not instead
+// of it: the wave says "it is hearing something", this says how loud, and where
+// loud enough is. Purely visual and aria-hidden, like the wave.
+.mic-meter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: $meter-width;
+  flex: none;
+  // Matches the button, so the two read as one control.
+  height: clamp(6rem, 30vw, 10rem);
+  // Dimmed while the mic is off, so an empty bar reads as "not listening"
+  // rather than "not working". The line stays visible either way.
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.mic-meter--active {
+  opacity: 1;
+}
+
+.mic-meter__track {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  border: 3px solid var(--mic-border);
+  border-radius: 999px;
+  background: var(--mic-bg);
+  overflow: hidden;
+}
+
+// The colour ramp, quiet at the bottom to loudest at the top. Always full
+// height and never transformed, so the colours never stretch or shift.
+.mic-meter__scale {
+  position: absolute;
+  inset: 0;
+}
+
+// Hides the part of the ramp above the current level. Scaled from the top every
+// frame, which is why it is a flat colour rather than the gradient itself.
+.mic-meter__shutter {
+  position: absolute;
+  inset: 0;
+  background: var(--mic-bg);
+  transform-origin: top;
+  transform: scaleY(1);
+  // No transition on purpose. A transition here is lag, and this bar has to feel
+  // attached to his voice. The movement is written frame by frame from JS.
+}
+
+// Where his voice starts counting as speech. A position cue, not a colour cue:
+// this is what makes "loud enough" readable without relying on the ramp.
+.mic-meter__threshold {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--text-color);
+}
+
+// The calibration number. Adult-facing, temporary by design, switched off in
+// settings once the sensitivity has been set against his real voice. Its own
+// line under the row rather than inside the bar, which is far too narrow for it.
+// Tabular figures so the digits do not jitter as the value changes.
+.mic__readout {
+  margin: 0;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  min-height: 1.2em;
+}
+
+// Adult panel: the sensitivity slider and its sub-group.
+.adult-panel__slider-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.adult-panel__slider {
+  width: 100%;
+  min-height: $target-min;
+}
+
+.adult-panel__select {
+  width: 100%;
+  max-width: 100%;
+  min-height: $target-min;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--input-border);
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.adult-panel__slider-ends {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.adult-panel__subgroup {
+  border: 0;
+  border-top: 1px solid var(--input-border);
+  margin: 0.75rem 0 0;
+  padding: 0.75rem 0 0;
+
+  legend {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0;
+  }
 }
 
 // Game mode
@@ -499,6 +635,290 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   100% { opacity: 0; }
 }
 
+// Letter cards
+//
+// The paper cards on screen. One card as big as the viewport allows, with the
+// speak button beside it on the right. Everything tappable is well above
+// $target-min: the arrows and the card are what his hands will be on.
+
+$card-side: 4.5rem;
+
+.letter-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.letter-cards__heading {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.letter-cards__picker {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 48rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.letter-cards__tile {
+  width: 100%;
+  min-height: 5rem;
+  padding: 0.25rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  border-radius: 0.75rem;
+  background: var(--turn-toggle-bg);
+  border: 2px solid var(--turn-toggle-border);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.letter-cards__tile--medium {
+  font-size: 1.35rem;
+  white-space: nowrap;
+}
+
+.letter-cards__tile--long {
+  font-size: 1.05rem;
+}
+
+.letter-cards__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: 40rem;
+}
+
+.letter-cards__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: $target-min;
+  padding: 0.25rem 1rem 0.25rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  background: var(--turn-toggle-bg);
+  border: 2px solid var(--turn-toggle-border);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.letter-cards__deck {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.letter-cards__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+}
+
+.letter-cards__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.letter-cards__chip {
+  min-height: $target-min;
+  padding: 0.25rem 0.9rem;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  background: var(--turn-toggle-bg);
+  border: 2px solid var(--turn-toggle-border);
+  color: var(--text-color);
+  cursor: pointer;
+
+  // Colour plus a visible mark, never colour alone.
+  &.is-active {
+    background: var(--turn-toggle-active-bg);
+    border-color: var(--turn-toggle-active-border);
+    font-weight: 700;
+
+    &::before {
+      content: "\2713\00a0";
+    }
+  }
+}
+
+.letter-cards__stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.letter-cards__side {
+  flex: 0 0 $card-side;
+  display: flex;
+  justify-content: center;
+}
+
+// On a phone every pixel goes to the card. The left spacer that keeps it
+// centred on a wide screen is dropped, and only the speak button's slot stays.
+.letter-cards__side--balance {
+  @media (max-width: 40rem) {
+    display: none;
+  }
+}
+
+.letter-cards__speak {
+  width: $card-side;
+  height: $card-side;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--turn-toggle-bg);
+  border: 3px solid var(--turn-toggle-border);
+  color: var(--text-color);
+  cursor: pointer;
+
+  &.is-speaking {
+    box-shadow: 0 0 0 6px var(--speak-ring);
+  }
+}
+
+// The card itself. Square, sized to whichever runs out first: the width left
+// beside the two side columns, or the height left under the header.
+.letter-card {
+  flex: 0 1 auto;
+  width: min(calc(100vw - 2 * #{$card-side} - 3rem), 58vh, 28rem);
+
+  @media (max-width: 40rem) {
+    width: min(calc(100vw - #{$card-side} - 2.75rem), 58vh);
+  }
+  aspect-ratio: 1;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  perspective: 1400px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  border-radius: 1.25rem;
+}
+
+.letter-card__inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.letter-card.is-flipped .letter-card__inner {
+  transform: rotateY(180deg);
+}
+
+.letter-card__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 1.25rem;
+  border: 3px solid var(--card-border);
+  background: var(--picto-bg);
+  color: var(--card-text);
+  overflow: hidden;
+}
+
+.letter-card__face--back {
+  transform: rotateY(180deg);
+  gap: 0.25rem;
+}
+
+.letter-card__image {
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.letter-card__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+  border: 3px dashed var(--picto-placeholder-border);
+  border-radius: 0.75rem;
+  color: #595959;
+  font-size: 5rem;
+}
+
+.letter-card__loading {
+  width: 80%;
+  height: 80%;
+  border-radius: 0.75rem;
+  background: #f0f0f0;
+}
+
+.letter-card__letter {
+  font-size: clamp(4rem, 24vmin, 10rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.letter-card__word {
+  font-size: clamp(2rem, 9vmin, 4rem);
+  line-height: 1.1;
+}
+
+.letter-cards__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.letter-cards__arrow {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--turn-toggle-bg);
+  border: 3px solid var(--turn-toggle-border);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.letter-cards__count {
+  min-width: 4rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.letter-cards__empty {
+  margin: 2rem 0;
+  color: var(--text-muted);
+}
+
 // Adult panel
 //
 // Reached only by a long press on the title. Plain, dense, text-heavy: this is
@@ -604,6 +1024,11 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   margin: 0.5rem 0 0;
   font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+// Help that has another control right under it, rather than ending the group.
+.adult-panel__help--spaced {
+  margin-bottom: 1rem;
 }
 
 .adult-panel__close {

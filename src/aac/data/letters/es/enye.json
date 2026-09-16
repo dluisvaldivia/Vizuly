@@ -1,0 +1,24 @@
+{
+  "_comment": "niño and niña were listed as initial, but their ñ is in the middle.",
+  "id": "enye",
+  "label": "Ñ",
+  "graphemes": [
+    "ñ"
+  ],
+  "words": [
+    { "word": "ñoño", "syllables": 2, "position": "inicial" },
+    { "word": "niño", "syllables": 2, "position": "media" },
+    { "word": "niña", "syllables": 2, "position": "media" },
+    { "word": "uña", "syllables": 2, "position": "media" },
+    { "word": "caña", "syllables": 2, "position": "media" },
+    { "word": "leña", "syllables": 2, "position": "media" },
+    { "word": "piña", "syllables": 2, "position": "media" },
+    { "word": "puño", "syllables": 2, "position": "media" },
+    { "word": "moño", "syllables": 2, "position": "media" },
+    { "word": "baño", "syllables": 2, "position": "media" },
+    { "word": "cuña", "syllables": 2, "position": "media" },
+    { "word": "peña", "syllables": 2, "position": "media" },
+    { "word": "sueño", "syllables": 2, "position": "media" },
+    { "word": "año", "syllables": 2, "position": "media" }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "_comment": "Short e only, as in bed.",
+  "id": "e",
+  "label": "E",
+  "graphemes": [
+    "e"
+  ],
+  "words": [
+    { "word": "egg", "syllables": 1, "position": "inicial" },
+    { "word": "bed", "syllables": 1, "position": "media" },
+    { "word": "red", "syllables": 1, "position": "media" },
+    { "word": "pen", "syllables": 1, "position": "media" },
+    { "word": "hen", "syllables": 1, "position": "media" },
+    { "word": "leg", "syllables": 1, "position": "media" },
+    { "word": "net", "syllables": 1, "position": "media" },
+    { "word": "web", "syllables": 1, "position": "media" },
+    { "word": "bell", "syllables": 1, "position": "media" },
+    { "word": "desk", "syllables": 1, "position": "media" },
+    { "word": "tent", "syllables": 1, "position": "media" },
+    { "word": "nest", "syllables": 1, "position": "media" },
+    { "word": "jet", "syllables": 1, "position": "media" },
+    { "word": "ten", "syllables": 1, "position": "media" },
+    { "word": "elbow", "syllables": 2, "position": "inicial" },
+    { "word": "pencil", "syllables": 2, "position": "media" },
+    { "word": "lemon", "syllables": 2, "position": "media" },
+    { "word": "helmet", "syllables": 2, "position": "media" },
+    { "word": "seven", "syllables": 2, "position": "media" },
+    { "word": "elephant", "syllables": 3, "position": "inicial" },
+    { "word": "envelope", "syllables": 3, "position": "inicial" },
+    { "word": "skeleton", "syllables": 3, "position": "media" }
+  ]
+}

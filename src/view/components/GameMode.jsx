@@ -25,6 +25,8 @@ export default function GameMode({
   clear,
   lang,
   speech,
+  speechFloorDb,
+  showReadout,
   onFix,
 }) {
   const [turn, setTurn] = useState('parent');
@@ -113,6 +115,10 @@ export default function GameMode({
             isListening={speech.isListening}
             interim={speech.interim}
             levelRef={speech.levelRef}
+            getLevel={speech.getLevel}
+            isActive={speech.isActive}
+            speechFloorDb={speechFloorDb}
+            showReadout={showReadout}
             lang={lang}
             onToggle={speech.toggle}
           />

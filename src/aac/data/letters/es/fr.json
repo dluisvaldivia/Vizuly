@@ -1,0 +1,16 @@
+{
+  "id": "fr",
+  "label": "FR",
+  "graphemes": [
+    "fr"
+  ],
+  "words": [
+    { "word": "fresa", "syllables": 2 },
+    { "word": "freno", "syllables": 2 },
+    { "word": "frente", "syllables": 2 },
+    { "word": "fruta", "syllables": 2 },
+    { "word": "frío", "syllables": 2 },
+    { "word": "cofre", "syllables": 2 },
+    { "word": "cifra", "syllables": 2 }
+  ]
+}

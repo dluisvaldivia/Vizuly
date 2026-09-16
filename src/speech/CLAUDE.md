@@ -105,6 +105,84 @@ limit, and no limit is the one outcome the module exists to prevent.
 An adult can switch recording off entirely in the panel, which stops all spending at the price
 of the plain browser voice.
 
+## The mic stops itself after 2.5 s of silence
+
+He does not press stop. Once he has started talking, `AUTO_STOP_SILENCE_MS` of frames
+below `VOICE_LEVEL_THRESHOLD` closes the session through the same `CloseStream` flush a
+button press uses, so his last words still land. The timer is armed only by a frame that
+carries his voice, so it stays dormant until he speaks, and a pause between words shorter
+than the window just resets it. Tuned against him directly: he speaks one word at a time
+with long gaps, which is why the window is longer than an adult would need.
+
+This is separate from Deepgram's `endpointing` / `utterance_end_ms`, which decide where one
+*utterance* ends. The 2.5 s timer decides when the *turn* is over.
+
+`autoStop()` also has to push the UI back to idle itself: a button press routes that through
+`useSpeech`, but a stop the source decides on its own does not.
+
+## Loudness is RMS in decibels, and one number drives everything
+
+Peak amplitude was tried for this and lies. Speech peaks 10 to 14 dB above its own energy,
+so a softly spoken word that Deepgram never transcribed still drove the meter into the blue.
+A linear amplitude scale then crushed the entire useful quiet range into the bottom few
+percent of the bar. Both are fixed by measuring `rmsLevel` and reporting `toDbfs`.
+
+`peakLevel` stays exactly as it was, for `onLevel` and the wave inside the button. That one
+*wants* to jump on a single shouted syllable. Do not merge the two.
+
+There is one tunable, the **speech floor** in dBFS: the level at which his voice counts.
+It is the adult panel's sensitivity slider, persisted by `micSensitivityController.js`, and
+it is handed to `start()` per session. Two things read it:
+
+- the meter turns green exactly there, and
+- the auto-stop's voice-activity floor sits `AUTO_STOP_MARGIN_DB` **below** it.
+
+That ordering is load bearing. It is what makes it impossible for the microphone to decide he
+has stopped talking while the bar is still telling him he is loud enough.
+
+Reference points, for when these need re-tuning: room tone with noise suppression sits near
+-50 dBFS, soft speech near -33, an ordinary speaking voice near -24. The defaults are informed
+starting points, not measurements. The dB readout beside the meter exists to replace them with
+his real numbers, and can be switched off once that is done.
+
+## Automatic gain control is an adult switch, off by default
+
+Reported from real use: the meter jumped almost to the top on the first word, then sank to
+the real level. That is the browser's automatic gain control. Left unset, Chrome and Firefox
+both switch it on, and it turns a quiet room up, so the first word arrives far louder than it
+was said. The meter was faithfully showing the boosted audio, which made a quiet voice look
+loud enough.
+
+`autoGainControl` is therefore **always sent explicitly**, never left to the browser, on
+every `getUserMedia` call including the fallbacks. It comes from `micGainController.js`
+through `useSpeech` to `start()`, and is read at `start()` like the floor and the device.
+
+Off by default so the level holds still for calibration. On stays available because the
+boost may be what gets a very soft word of his through to Deepgram, and only his real voice
+can settle that. **A speech floor measured with one setting is not valid for the other.**
+
+## Firefox opens the default mic when permission is remembered
+
+Reported from real use on Ubuntu with several inputs: the mic worked right after the prompt,
+then after a reload the button turned green and heard nothing. Chrome was fine. The meter's
+peak read -64 dB, not the -100 of digital silence, so audio was flowing from a nearly silent
+input. Firefox's prompt lets the adult pick a device; a remembered permission opens the
+**system default** instead.
+
+So the adult picks the mic in settings, and the app asks for it every time:
+
+- `start()` takes `deviceId` and requests it as **`exact`, not `ideal`**. Measured: Chromium
+  opens the default for an `ideal` device id, and the spec lets any browser do that. A chosen
+  mic that is unplugged throws `OverconstrainedError`, and `openMicrophone` then opens the
+  default, so the button keeps working. Any other error, a denied permission for example,
+  is still an error.
+- The choice comes **only** from the picker in the adult panel (`micDeviceController.js`,
+  `listMicrophones()` in `useSpeech.ts`). The mic the browser happened to open is reported
+  through `onDevice` and shown in the panel, but **never saved**. Saving it would store the
+  silent default, and with `exact` Firefox's prompt would then offer only that device, which
+  is a trap with no way out.
+- Labels are empty until the page has been granted the mic once.
+
 ## The interface exists for v2
 
 `SpeechSource` wraps a single implementation today. That seam is nearly free and is the
@@ -157,3 +235,43 @@ That flush is also why there are two flags. `stopped` halts the microphone immed
 `abandoned` gates transcript delivery and only flips once the grace window closes. Gating
 transcripts on `stopped` alone would throw away the very transcript the flush exists to
 recover.
+
+## Three axes, not two: `generation` is the one that keeps the button alive
+
+Those two flags are per-SOURCE, and three things routinely outlive the session that created
+them: the `FLUSH_GRACE_MS` timer, the `socket.on(...)` handlers, and the `keepAlive` interval.
+With nothing to compare against, a handler from a finished session happily wrote to the flags
+of the session that replaced it. That produced two failures, both silent, both reported from
+real use:
+
+- **"It starts but immediately turns off."** A press inside the grace window was marked
+  abandoned by its predecessor's flush timer, and pushed back to `idle` by its predecessor's
+  close handler, while the microphone was genuinely open.
+- **"Pressing again does nothing, so I reload."** Neither the `close` nor the `error` handler
+  ever set `stopped`. A Deepgram-side close left the UI on `idle` and the source on
+  `stopped === false`, so the next `start()` hit `if (!stopped) return` and no-opped. Forever.
+
+So: `generation` = which handler cohort you belong to. `stopped` = capture halted.
+`abandoned` = delivery window closed. Every read and every write of the latter two is behind a
+generation check, which makes them per-session in effect without a per-session object.
+
+Rules that must not be broken:
+
+- **`generation` is bumped in `start()` and nowhere else.** `stop()` ends capture, not
+  identity: the socket it is flushing is still the current one and its message handler has to
+  keep accepting the transcript CloseStream is about to produce. Bumping in `stop()` is a
+  direct regression of the flush.
+- **`close` and `error` must end the session, not just report it.** `stopped = true` then
+  `teardown(gen)` then the status. Reporting alone is the dead-button bug verbatim.
+- **Nothing is published into the shared slots before its resume check.** `getUserMedia` and
+  `connect()` both resolve into locals; on a mismatch the tracks are stopped and the socket
+  closed directly, because `teardown()` would be releasing whatever the *current* session owns.
+- **`start()` self-heals.** Called while already running, it stops first rather than returning
+  silently. A silent return is what made the dead button unrecoverable.
+
+Accepted cost, and it is the right trade: a restart inside the grace window discards the
+previous utterance's last word. A word attributed to the wrong turn is worse than a word lost.
+
+`deepgram.test.ts` holds all of this with a stubbed socket and a fake clock. It is the only
+test in this directory, for the same reason `tokenize` and `resolve` are the only tested
+modules in the engine: this is where a silent wrong answer comes from.

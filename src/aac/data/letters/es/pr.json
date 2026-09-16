@@ -1,0 +1,16 @@
+{
+  "id": "pr",
+  "label": "PR",
+  "graphemes": [
+    "pr"
+  ],
+  "words": [
+    { "word": "primo", "syllables": 2 },
+    { "word": "prado", "syllables": 2 },
+    { "word": "precio", "syllables": 2 },
+    { "word": "prisa", "syllables": 2 },
+    { "word": "premio", "syllables": 2 },
+    { "word": "compra", "syllables": 2 },
+    { "word": "propio", "syllables": 2 }
+  ]
+}

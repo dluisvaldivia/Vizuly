@@ -1,0 +1,12 @@
+{
+  "id": "fl",
+  "label": "FL",
+  "graphemes": [
+    "fl"
+  ],
+  "words": [
+    { "word": "flag", "syllables": 1, "position": "inicial" },
+    { "word": "fly", "syllables": 1, "position": "inicial" },
+    { "word": "flower", "syllables": 2, "position": "inicial" }
+  ]
+}

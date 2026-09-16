@@ -1,0 +1,13 @@
+{
+  "id": "pl",
+  "label": "PL",
+  "graphemes": [
+    "pl"
+  ],
+  "words": [
+    { "word": "plate", "syllables": 1, "position": "inicial" },
+    { "word": "plane", "syllables": 1, "position": "inicial" },
+    { "word": "plant", "syllables": 1, "position": "inicial" },
+    { "word": "plum", "syllables": 1, "position": "inicial" }
+  ]
+}

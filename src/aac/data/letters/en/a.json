@@ -1,0 +1,29 @@
+{
+  "_comment": "Short a only, as in cat. No cake, no car.",
+  "id": "a",
+  "label": "A",
+  "graphemes": [
+    "a"
+  ],
+  "words": [
+    { "word": "ant", "syllables": 1, "position": "inicial" },
+    { "word": "cat", "syllables": 1, "position": "media" },
+    { "word": "hat", "syllables": 1, "position": "media" },
+    { "word": "bag", "syllables": 1, "position": "media" },
+    { "word": "map", "syllables": 1, "position": "media" },
+    { "word": "van", "syllables": 1, "position": "media" },
+    { "word": "pan", "syllables": 1, "position": "media" },
+    { "word": "jam", "syllables": 1, "position": "media" },
+    { "word": "hand", "syllables": 1, "position": "media" },
+    { "word": "lamp", "syllables": 1, "position": "media" },
+    { "word": "apple", "syllables": 2, "position": "inicial" },
+    { "word": "rabbit", "syllables": 2, "position": "media" },
+    { "word": "jacket", "syllables": 2, "position": "media" },
+    { "word": "basket", "syllables": 2, "position": "media" },
+    { "word": "hammer", "syllables": 2, "position": "media" },
+    { "word": "ladder", "syllables": 2, "position": "media" },
+    { "word": "animal", "syllables": 3, "position": "inicial" },
+    { "word": "astronaut", "syllables": 3, "position": "inicial" },
+    { "word": "camera", "syllables": 3, "position": "media" }
+  ]
+}

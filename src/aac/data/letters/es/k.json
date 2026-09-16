@@ -1,0 +1,35 @@
+{
+  "_comment": "The K sound, written c, qu or k.",
+  "id": "k",
+  "label": "K",
+  "graphemes": [
+    "qu",
+    "c",
+    "k"
+  ],
+  "words": [
+    { "word": "casa", "syllables": 2, "position": "inicial" },
+    { "word": "cama", "syllables": 2, "position": "inicial" },
+    { "word": "cana", "syllables": 2, "position": "inicial" },
+    { "word": "cara", "syllables": 2, "position": "inicial" },
+    { "word": "copa", "syllables": 2, "position": "inicial" },
+    { "word": "cola", "syllables": 2, "position": "inicial" },
+    { "word": "coco", "syllables": 2, "position": "inicial" },
+    { "word": "cubo", "syllables": 2, "position": "inicial" },
+    { "word": "cuna", "syllables": 2, "position": "inicial" },
+    { "word": "queso", "syllables": 2, "position": "inicial" },
+    { "word": "kilo", "syllables": 2, "position": "inicial" },
+    { "word": "cuento", "syllables": 2, "position": "inicial" },
+    { "word": "boca", "syllables": 2, "position": "media" },
+    { "word": "foca", "syllables": 2, "position": "media" },
+    { "word": "loco", "syllables": 2, "position": "media" },
+    { "word": "saco", "syllables": 2, "position": "media" },
+    { "word": "seco", "syllables": 2, "position": "media" },
+    { "word": "taco", "syllables": 2, "position": "media" },
+    { "word": "vaca", "syllables": 2, "position": "media" },
+    { "word": "poco", "syllables": 2, "position": "media" },
+    { "word": "moco", "syllables": 2, "position": "media" },
+    { "word": "pico", "syllables": 2, "position": "media" },
+    { "word": "saca", "syllables": 2, "position": "media" }
+  ]
+}

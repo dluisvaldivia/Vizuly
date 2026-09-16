@@ -1,0 +1,20 @@
+{
+  "id": "h",
+  "label": "H",
+  "graphemes": [
+    "h"
+  ],
+  "words": [
+    { "word": "hat", "syllables": 1, "position": "inicial" },
+    { "word": "hand", "syllables": 1, "position": "inicial" },
+    { "word": "hen", "syllables": 1, "position": "inicial" },
+    { "word": "horse", "syllables": 1, "position": "inicial" },
+    { "word": "house", "syllables": 1, "position": "inicial" },
+    { "word": "head", "syllables": 1, "position": "inicial" },
+    { "word": "hair", "syllables": 1, "position": "inicial" },
+    { "word": "hammer", "syllables": 2, "position": "inicial" },
+    { "word": "helmet", "syllables": 2, "position": "inicial" },
+    { "word": "honey", "syllables": 2, "position": "inicial" },
+    { "word": "hamburger", "syllables": 3, "position": "inicial" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "br",
+  "label": "BR",
+  "graphemes": [
+    "br"
+  ],
+  "words": [
+    { "word": "bread", "syllables": 1, "position": "inicial" },
+    { "word": "brush", "syllables": 1, "position": "inicial" },
+    { "word": "bridge", "syllables": 1, "position": "inicial" },
+    { "word": "broom", "syllables": 1, "position": "inicial" },
+    { "word": "brother", "syllables": 2, "position": "inicial" },
+    { "word": "broccoli", "syllables": 3, "position": "inicial" }
+  ]
+}

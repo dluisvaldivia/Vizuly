@@ -1,0 +1,14 @@
+{
+  "id": "tr",
+  "label": "TR",
+  "graphemes": [
+    "tr"
+  ],
+  "words": [
+    { "word": "tree", "syllables": 1, "position": "inicial" },
+    { "word": "train", "syllables": 1, "position": "inicial" },
+    { "word": "truck", "syllables": 1, "position": "inicial" },
+    { "word": "tractor", "syllables": 2, "position": "inicial" },
+    { "word": "triangle", "syllables": 3, "position": "inicial" }
+  ]
+}

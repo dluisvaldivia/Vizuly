@@ -1,0 +1,18 @@
+{
+  "id": "gr",
+  "label": "GR",
+  "graphemes": [
+    "gr"
+  ],
+  "words": [
+    { "word": "grande", "syllables": 2 },
+    { "word": "grifo", "syllables": 2 },
+    { "word": "grasa", "syllables": 2 },
+    { "word": "grúa", "syllables": 2 },
+    { "word": "tigre", "syllables": 2 },
+    { "word": "negro", "syllables": 2 },
+    { "word": "logro", "syllables": 2 },
+    { "word": "sangre", "syllables": 2 },
+    { "word": "gruta", "syllables": 2 }
+  ]
+}

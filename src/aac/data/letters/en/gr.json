@@ -1,0 +1,13 @@
+{
+  "id": "gr",
+  "label": "GR",
+  "graphemes": [
+    "gr"
+  ],
+  "words": [
+    { "word": "grapes", "syllables": 1, "position": "inicial" },
+    { "word": "grass", "syllables": 1, "position": "inicial" },
+    { "word": "grandma", "syllables": 2, "position": "inicial" },
+    { "word": "grasshopper", "syllables": 3, "position": "inicial" }
+  ]
+}

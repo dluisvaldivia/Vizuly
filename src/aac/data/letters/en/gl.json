@@ -1,0 +1,13 @@
+{
+  "id": "gl",
+  "label": "GL",
+  "graphemes": [
+    "gl"
+  ],
+  "words": [
+    { "word": "glove", "syllables": 1, "position": "inicial" },
+    { "word": "glass", "syllables": 1, "position": "inicial" },
+    { "word": "glue", "syllables": 1, "position": "inicial" },
+    { "word": "glasses", "syllables": 2, "position": "inicial" }
+  ]
+}

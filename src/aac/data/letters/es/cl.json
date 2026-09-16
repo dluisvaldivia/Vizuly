@@ -1,0 +1,16 @@
+{
+  "id": "cl",
+  "label": "CL",
+  "graphemes": [
+    "cl"
+  ],
+  "words": [
+    { "word": "clavo", "syllables": 2 },
+    { "word": "clase", "syllables": 2 },
+    { "word": "clima", "syllables": 2 },
+    { "word": "tecla", "syllables": 2 },
+    { "word": "chicle", "syllables": 2 },
+    { "word": "ciclo", "syllables": 2 },
+    { "word": "ancla", "syllables": 2 }
+  ]
+}

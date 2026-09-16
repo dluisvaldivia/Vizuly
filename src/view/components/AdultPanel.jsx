@@ -1,7 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { exportCorrections, pictogramImageUrl } from '../../aac/useAac.ts';
+import {
+  MAX_SENSITIVITY_DB,
+  MIN_SENSITIVITY_DB,
+} from '../../controllers/micSensitivityController.js';
 import { getInitialTheme, setTheme } from '../../controllers/themeController.js';
+import { listMicrophones } from '../../speech/useSpeech.ts';
 
 /**
  * Adult-only settings.
@@ -24,6 +29,15 @@ export default function AdultPanel({
   liveVoice,
   onLiveVoiceChange,
   voiceBudget,
+  micSensitivity,
+  onMicSensitivityChange,
+  micDevice,
+  onMicDeviceChange,
+  openedMic,
+  micGain,
+  onMicGainChange,
+  levelReadout,
+  onLevelReadoutChange,
 }) {
   const closeRef = useRef(null);
   const [showJson, setShowJson] = useState(false);
@@ -43,6 +57,44 @@ export default function AdultPanel({
     [showJson, corrections],
   );
 
+  /**
+   * The microphones the browser can see. Read when the panel opens and again
+   * whenever one is plugged in or out, so the list is never stale.
+   */
+  const [microphones, setMicrophones] = useState(null);
+  useEffect(() => {
+    if (!open) return undefined;
+
+    let current = true;
+    const refresh = () => {
+      void listMicrophones().then((list) => {
+        if (current) setMicrophones(list);
+      });
+    };
+    refresh();
+
+    const devices = typeof navigator !== 'undefined' ? navigator.mediaDevices : undefined;
+    devices?.addEventListener?.('devicechange', refresh);
+    return () => {
+      current = false;
+      devices?.removeEventListener?.('devicechange', refresh);
+    };
+  }, [open]);
+
+  // Without permission the browser hides the names, and a list of blank
+  // entries helps nobody.
+  // Null until the first read, so the saved mic is not called "not connected"
+  // in the moment before the list arrives.
+  const listLoaded = microphones !== null;
+  const namedMicrophones = (microphones ?? []).filter((mic) => mic.label);
+
+  // The saved mic as it appears in today's list: by id, or by name when the
+  // browser has changed its ids since it was chosen.
+  const selectedMic =
+    namedMicrophones.find((mic) => mic.deviceId === micDevice.deviceId) ??
+    (micDevice.label ? namedMicrophones.find((mic) => mic.label === micDevice.label) : undefined);
+  const selectedValue = micDevice.deviceId ? (selectedMic?.deviceId ?? micDevice.deviceId) : '';
+
   // A fresh export has not been copied yet.
   useEffect(() => {
     setCopied(false);
@@ -61,6 +113,31 @@ export default function AdultPanel({
       tierClitics: 'Enlaces, artículos y pronombres (me, te, se)',
       tierCliticsHelp:
         'El nivel menos preciso: "me" muestra el pictograma de YO, y "se" comparte símbolo con "le".',
+      mic: 'Micrófono',
+      micDevice: 'Micrófono que se usa',
+      micDeviceDefault: 'Predeterminado del sistema',
+      micDeviceUnknown: 'Micrófono guardado (no conectado)',
+      micDeviceNotConnected: 'no conectado',
+      micDeviceHelp:
+        'Si el botón se pone verde pero no oye nada, elige aquí el micrófono correcto. Firefox abre el predeterminado del sistema al recargar, aunque en su aviso se eligiera otro. Si el elegido no está conectado, se usa el predeterminado.',
+      micDeviceNoNames: 'Usa el micrófono una vez para ver la lista.',
+      micDeviceOpened: (label) => `Última vez se abrió: ${label}.`,
+      micSensitivity: 'Volumen mínimo de voz',
+      micSensitivityHelp:
+        'A partir de qué volumen cuenta su voz. La barra junto al botón se pone verde en este punto. Más a la izquierda, más sensible: el micrófono capta una voz más floja, pero también más ruido de la sala.',
+      micSensitivityValue: (db) => `${db} dB`,
+      micMoreSensitive: 'Más sensible',
+      micLessSensitive: 'Menos sensible',
+      micGain: 'Ajuste automático del volumen',
+      micGainOn: 'Sí',
+      micGainOff: 'No',
+      micGainHelp:
+        'Con el ajuste, el navegador sube el micrófono cuando hay silencio, así que la primera palabra sale más fuerte de lo que fue y la barra salta antes de bajar a su volumen real. Sin él, la barra muestra su volumen real desde el principio. Si una voz muy suave deja de reconocerse, prueba a activarlo. Al cambiarlo, vuelve a ajustar el volumen mínimo. Se aplica la próxima vez que se abra el micrófono.',
+      levelReadout: 'Mostrar el número',
+      levelReadoutOn: 'Sí',
+      levelReadoutOff: 'No',
+      levelReadoutHelp:
+        'Muestra el volumen en dB junto a la barra mientras el micrófono está abierto, para ajustar el valor de arriba con su voz real. Quítalo cuando ya esté ajustado.',
       voice: 'Voz',
       voiceHelp: 'Qué se oye al tocar un pictograma.',
       syllablesOn: 'Palabra y sílabas ("cabeza, ca-be-za")',
@@ -103,6 +180,31 @@ export default function AdultPanel({
       tierClitics: 'Links, articles and possessives (my, your, his)',
       tierCliticsHelp:
         'The least precise tier: these borrow pronoun pictograms rather than having symbols of their own.',
+      mic: 'Microphone',
+      micDevice: 'Microphone in use',
+      micDeviceDefault: 'System default',
+      micDeviceUnknown: 'Saved microphone (not connected)',
+      micDeviceNotConnected: 'not connected',
+      micDeviceHelp:
+        'If the button turns green but hears nothing, pick the right microphone here. Firefox opens the system default on reload, even when another one was chosen in its prompt. If the chosen one is not plugged in, the default is used.',
+      micDeviceNoNames: 'Use the microphone once to see the list.',
+      micDeviceOpened: (label) => `Last opened: ${label}.`,
+      micSensitivity: 'Minimum speaking volume',
+      micSensitivityHelp:
+        'How loud his voice has to be to count. The bar beside the button turns green at this point. Further left is more sensitive: it picks up a quieter voice, and more of the room with it.',
+      micSensitivityValue: (db) => `${db} dB`,
+      micMoreSensitive: 'More sensitive',
+      micLessSensitive: 'Less sensitive',
+      micGain: 'Automatic volume adjustment',
+      micGainOn: 'Yes',
+      micGainOff: 'No',
+      micGainHelp:
+        'With it on, the browser turns the mic up while the room is quiet, so the first word comes in louder than it was said and the bar jumps before dropping to his real level. With it off, the bar shows his real level from the start. If a very soft voice stops being recognised, try turning it on. Set the minimum speaking volume again after changing this. Applies the next time the mic is opened.',
+      levelReadout: 'Show the number',
+      levelReadoutOn: 'Yes',
+      levelReadoutOff: 'No',
+      levelReadoutHelp:
+        'Shows the level in dB beside the bar while the mic is open, so the value above can be set against his real voice. Turn it off once it is set.',
       voice: 'Voice',
       voiceHelp: 'What a tap on a pictogram says.',
       syllablesOn: 'Word and syllables ("cabeza, ca-be-za")',
@@ -203,6 +305,112 @@ export default function AdultPanel({
           {readingTier === 'clitics' ? (
             <p className="adult-panel__help">{labels.tierCliticsHelp}</p>
           ) : null}
+        </fieldset>
+
+        {/* Microphone sensitivity. A calibration made once against his actual
+            voice, which is exactly what belongs behind the gesture. The readout
+            switch sits with it because the readout exists to set this value. */}
+        <fieldset className="adult-panel__group">
+          <legend>{labels.mic}</legend>
+
+          <label className="adult-panel__slider-label" htmlFor="mic-device">
+            {labels.micDevice}
+          </label>
+          <select
+            id="mic-device"
+            className="adult-panel__select"
+            value={selectedValue}
+            onChange={(event) => {
+              const picked = namedMicrophones.find((mic) => mic.deviceId === event.target.value);
+              onMicDeviceChange(picked ? { deviceId: picked.deviceId, label: picked.label } : { deviceId: '', label: '' });
+            }}
+          >
+            <option value="">{labels.micDeviceDefault}</option>
+            {namedMicrophones.map((mic) => (
+              <option key={mic.deviceId} value={mic.deviceId}>
+                {mic.label}
+              </option>
+            ))}
+            {/* The saved one, even when it is not plugged in right now, so the
+                select never silently shows a different value from the one in use. */}
+            {micDevice.deviceId && !selectedMic ? (
+              <option value={micDevice.deviceId}>
+                {!micDevice.label
+                  ? labels.micDeviceUnknown
+                  : listLoaded
+                    ? `${micDevice.label} (${labels.micDeviceNotConnected})`
+                    : micDevice.label}
+              </option>
+            ) : null}
+          </select>
+          <p className="adult-panel__help adult-panel__help--spaced">
+            {openedMic ? `${labels.micDeviceOpened(openedMic)} ` : ''}
+            {listLoaded && namedMicrophones.length === 0 ? `${labels.micDeviceNoNames} ` : ''}
+            {labels.micDeviceHelp}
+          </p>
+
+          <label className="adult-panel__slider-label" htmlFor="mic-sensitivity">
+            {labels.micSensitivity}: {labels.micSensitivityValue(micSensitivity)}
+          </label>
+          <input
+            id="mic-sensitivity"
+            className="adult-panel__slider"
+            type="range"
+            min={MIN_SENSITIVITY_DB}
+            max={MAX_SENSITIVITY_DB}
+            step={1}
+            value={micSensitivity}
+            onChange={(event) => onMicSensitivityChange(Number(event.target.value))}
+          />
+          {/* The ends named in words, because a bare dB number means nothing
+              without knowing which way is louder. */}
+          <p className="adult-panel__slider-ends" aria-hidden="true">
+            <span>{labels.micMoreSensitive}</span>
+            <span>{labels.micLessSensitive}</span>
+          </p>
+          <p className="adult-panel__help">{labels.micSensitivityHelp}</p>
+
+          {/* Beside the slider because it changes what the slider measures: a
+              floor set with the browser boosting the mic is wrong without it. */}
+          <fieldset className="adult-panel__subgroup">
+            <legend>{labels.micGain}</legend>
+            {[
+              { value: 'on', label: labels.micGainOn },
+              { value: 'off', label: labels.micGainOff },
+            ].map((option) => (
+              <label key={option.value} className="adult-panel__radio">
+                <input
+                  type="radio"
+                  name="mic-gain"
+                  value={option.value}
+                  checked={micGain === option.value}
+                  onChange={() => onMicGainChange(option.value)}
+                />
+                <span>{option.label}</span>
+              </label>
+            ))}
+            <p className="adult-panel__help">{labels.micGainHelp}</p>
+          </fieldset>
+
+          <fieldset className="adult-panel__subgroup">
+            <legend>{labels.levelReadout}</legend>
+            {[
+              { value: 'on', label: labels.levelReadoutOn },
+              { value: 'off', label: labels.levelReadoutOff },
+            ].map((option) => (
+              <label key={option.value} className="adult-panel__radio">
+                <input
+                  type="radio"
+                  name="level-readout"
+                  value={option.value}
+                  checked={levelReadout === option.value}
+                  onChange={() => onLevelReadoutChange(option.value)}
+                />
+                <span>{option.label}</span>
+              </label>
+            ))}
+            <p className="adult-panel__help">{labels.levelReadoutHelp}</p>
+          </fieldset>
         </fieldset>
 
         {/* Voice. Same reasoning as the reading tier: a calibration an adult

@@ -1,0 +1,23 @@
+{
+  "_comment": "No th words, which have their own deck.",
+  "id": "t",
+  "label": "T",
+  "graphemes": [
+    "t"
+  ],
+  "words": [
+    { "word": "ten", "syllables": 1, "position": "inicial" },
+    { "word": "tent", "syllables": 1, "position": "inicial" },
+    { "word": "toy", "syllables": 1, "position": "inicial" },
+    { "word": "cat", "syllables": 1, "position": "media" },
+    { "word": "hat", "syllables": 1, "position": "media" },
+    { "word": "pot", "syllables": 1, "position": "media" },
+    { "word": "table", "syllables": 2, "position": "inicial" },
+    { "word": "tiger", "syllables": 2, "position": "inicial" },
+    { "word": "turtle", "syllables": 2, "position": "inicial" },
+    { "word": "kitten", "syllables": 2, "position": "media" },
+    { "word": "button", "syllables": 2, "position": "media" },
+    { "word": "tomato", "syllables": 3, "position": "inicial" },
+    { "word": "telephone", "syllables": 3, "position": "inicial" }
+  ]
+}

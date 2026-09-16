@@ -1,0 +1,33 @@
+{
+  "_comment": "B and V are the same sound. jabón was listed as initial, but its b is in the middle.",
+  "id": "b-v",
+  "label": "B / V",
+  "graphemes": [
+    "b",
+    "v"
+  ],
+  "words": [
+    { "word": "bebé", "syllables": 2, "position": "inicial" },
+    { "word": "bota", "syllables": 2, "position": "inicial" },
+    { "word": "boca", "syllables": 2, "position": "inicial" },
+    { "word": "beso", "syllables": 2, "position": "inicial" },
+    { "word": "bolo", "syllables": 2, "position": "inicial" },
+    { "word": "buzo", "syllables": 2, "position": "inicial" },
+    { "word": "vaca", "syllables": 2, "position": "inicial" },
+    { "word": "vaso", "syllables": 2, "position": "inicial" },
+    { "word": "vela", "syllables": 2, "position": "inicial" },
+    { "word": "vino", "syllables": 2, "position": "inicial" },
+    { "word": "botón", "syllables": 2, "position": "inicial" },
+    { "word": "jabón", "syllables": 2, "position": "media" },
+    { "word": "uva", "syllables": 2, "position": "media" },
+    { "word": "ave", "syllables": 2, "position": "media" },
+    { "word": "nube", "syllables": 2, "position": "media" },
+    { "word": "lobo", "syllables": 2, "position": "media" },
+    { "word": "tubo", "syllables": 2, "position": "media" },
+    { "word": "cubo", "syllables": 2, "position": "media" },
+    { "word": "sabe", "syllables": 2, "position": "media" },
+    { "word": "llave", "syllables": 2, "position": "media" },
+    { "word": "nieve", "syllables": 2, "position": "media" },
+    { "word": "sabio", "syllables": 2, "position": "media" }
+  ]
+}

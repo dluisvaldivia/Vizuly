@@ -1,0 +1,12 @@
+{
+  "id": "bl",
+  "label": "BL",
+  "graphemes": [
+    "bl"
+  ],
+  "words": [
+    { "word": "black", "syllables": 1, "position": "inicial" },
+    { "word": "blue", "syllables": 1, "position": "inicial" },
+    { "word": "blanket", "syllables": 2, "position": "inicial" }
+  ]
+}

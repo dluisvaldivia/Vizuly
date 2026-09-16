@@ -1,0 +1,18 @@
+{
+  "id": "br",
+  "label": "BR",
+  "graphemes": [
+    "br"
+  ],
+  "words": [
+    { "word": "brazo", "syllables": 2 },
+    { "word": "bruja", "syllables": 2 },
+    { "word": "brocha", "syllables": 2 },
+    { "word": "cebra", "syllables": 2 },
+    { "word": "libro", "syllables": 2 },
+    { "word": "cobre", "syllables": 2 },
+    { "word": "sobre", "syllables": 2 },
+    { "word": "cabra", "syllables": 2 },
+    { "word": "abre", "syllables": 2 }
+  ]
+}

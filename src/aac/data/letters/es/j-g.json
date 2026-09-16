@@ -1,0 +1,30 @@
+{
+  "_comment": "The J sound, written j, or g before e or i.",
+  "id": "j-g",
+  "label": "J / G",
+  "graphemes": [
+    "j",
+    "g"
+  ],
+  "words": [
+    { "word": "jabón", "syllables": 2, "position": "inicial" },
+    { "word": "jarra", "syllables": 2, "position": "inicial" },
+    { "word": "jugo", "syllables": 2, "position": "inicial" },
+    { "word": "jefe", "syllables": 2, "position": "inicial" },
+    { "word": "joya", "syllables": 2, "position": "inicial" },
+    { "word": "jaula", "syllables": 2, "position": "inicial" },
+    { "word": "jamón", "syllables": 2, "position": "inicial" },
+    { "word": "junto", "syllables": 2, "position": "inicial" },
+    { "word": "gente", "syllables": 2, "position": "inicial" },
+    { "word": "ajo", "syllables": 2, "position": "media" },
+    { "word": "hoja", "syllables": 2, "position": "media" },
+    { "word": "ojo", "syllables": 2, "position": "media" },
+    { "word": "caja", "syllables": 2, "position": "media" },
+    { "word": "teja", "syllables": 2, "position": "media" },
+    { "word": "reja", "syllables": 2, "position": "media" },
+    { "word": "roja", "syllables": 2, "position": "media" },
+    { "word": "mojo", "syllables": 2, "position": "media" },
+    { "word": "viejo", "syllables": 2, "position": "media" },
+    { "word": "dibujo", "syllables": 3, "position": "media" }
+  ]
+}

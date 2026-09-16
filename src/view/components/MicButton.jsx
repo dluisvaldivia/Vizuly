@@ -1,4 +1,7 @@
+import { useRef } from 'react';
+
 import MicWave from './MicWave.jsx';
+import MicLevelMeter from './MicLevelMeter.jsx';
 import touchIcon from '../../assets/touchicon.png';
 
 /**
@@ -19,12 +22,24 @@ import touchIcon from '../../assets/touchicon.png';
 export default function MicButton({
   status,
   isListening,
+  isActive,
   interim,
   levelRef,
+  getLevel,
+  speechFloorDb,
+  showReadout,
   lang,
   onToggle,
   disabled,
 }) {
+  // What pressing the button would do, which during 'connecting' is not the same
+  // as whether audio is flowing. The label and the pressed state follow the
+  // action; the wave and the meter follow the audio.
+  const pressed = isActive ?? isListening;
+
+  // Filled in by the meter's animation frame, never by React. Lives out here
+  // because the number is wider than the bar and needs its own line.
+  const readoutRef = useRef(null);
   const labels = {
     es: {
       start: 'Hablar',
@@ -42,28 +57,50 @@ export default function MicButton({
 
   return (
     <div className="mic">
-      <button
-        type="button"
-        className={`mic__button mic__button--${status}`}
-        onClick={onToggle}
-        disabled={disabled}
-        // The accessible name changes with state, so a screen reader user knows
-        // what pressing it will do.
-        aria-label={isListening ? labels.stop : labels.start}
-        aria-pressed={isListening}
-      >
-        {/* Behind the text, inside the button. Decorative only: every state it
-            reflects is also carried by the border. */}
-        <MicWave levelRef={levelRef} active={isListening} />
+      {/* The meter sits to the right of the button. The empty counterweight on
+          the left keeps the button itself dead centre, because it is the target
+          he aims at and it must not move just because something was added
+          beside it. */}
+      <div className="mic__row">
+        <span className="mic__row-spacer" aria-hidden="true" />
 
-        {status === 'connecting' ? (
-          <span className="mic__label mic__label--connecting">{labels.connecting}</span>
-        ) : null}
+        <button
+          type="button"
+          className={`mic__button mic__button--${status}`}
+          onClick={onToggle}
+          disabled={disabled}
+          // The accessible name changes with state, so a screen reader user knows
+          // what pressing it will do.
+          aria-label={pressed ? labels.stop : labels.start}
+          aria-pressed={pressed}
+        >
+          {/* Behind the text, inside the button. Decorative only: every state it
+              reflects is also carried by the border. */}
+          <MicWave levelRef={levelRef} active={isListening} />
 
-        {status === 'idle' ? (
-          <img className="mic__touch-icon" src={touchIcon} alt="" aria-hidden="true" />
-        ) : null}
-      </button>
+          {status === 'connecting' ? (
+            <span className="mic__label mic__label--connecting">{labels.connecting}</span>
+          ) : null}
+
+          {status === 'idle' ? (
+            <img className="mic__touch-icon" src={touchIcon} alt="" aria-hidden="true" />
+          ) : null}
+        </button>
+
+        <MicLevelMeter
+          getLevel={getLevel}
+          active={isListening}
+          speechFloorDb={speechFloorDb}
+          readoutRef={showReadout ? readoutRef : null}
+        />
+      </div>
+
+      {/* Adult-facing calibration number, for setting the sensitivity against
+          his real voice. Switched off in settings once that is done: the child's
+          screen should not carry a number forever. */}
+      {showReadout && isListening ? (
+        <p ref={readoutRef} className="mic__readout" aria-hidden="true" />
+      ) : null}
 
       {/* The only state worth interrupting for. Idle and listening need no
           text: the ring colour and the wave already say everything. */}

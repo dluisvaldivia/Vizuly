@@ -42,8 +42,46 @@ export interface SpeechCallbacks {
    */
   onLevel?: (level: number) => void;
   onStatus: (status: SpeechStatus) => void;
+  /**
+   * The microphone the browser actually opened, once per session.
+   *
+   * For the adult panel, so it is visible which mic is really in use. The source
+   * never stores this. The caller may refresh a saved id from it, but only when
+   * the name matches the adult's choice: remembering whatever the browser happened
+   * to open would lock in a silent default.
+   */
+  onDevice?: (deviceId: string, label: string) => void;
   /** Diagnostic. Adult-facing, never shown to the child. */
   onError?: (message: string) => void;
+}
+
+/** Per-session tuning handed to `start`. */
+export interface SpeechStartOptions {
+  /**
+   * Level at which the child's voice counts as speech, in dBFS.
+   *
+   * Set by the adult in settings and passed down per session. The source keeps
+   * its own voice-activity floor a fixed margin below this, so the microphone
+   * can never decide he has stopped talking while the meter still says he is
+   * loud enough.
+   */
+  speechFloorDb?: number;
+  /**
+   * The microphone to open. Requested as `exact`, because browsers may treat
+   * `ideal` as a hint. If it has been unplugged, the default opens instead.
+   */
+  deviceId?: string;
+  /**
+   * That microphone's name. Device ids can change between reloads, so a stale id
+   * is recovered by finding the mic with this name.
+   */
+  deviceLabel?: string;
+  /**
+   * Whether the browser may raise and lower the mic volume by itself. Off keeps
+   * the level steady, so the meter and the speech floor mean the same thing on
+   * the first syllable as on the last. Omitted means off.
+   */
+  autoGainControl?: boolean;
 }
 
 /**
@@ -53,8 +91,23 @@ export interface SpeechCallbacks {
  * already stopped. Implementations own their own teardown.
  */
 export interface SpeechSource {
-  start: (lang: Lang, callbacks: SpeechCallbacks) => Promise<void>;
+  start: (
+    lang: Lang,
+    callbacks: SpeechCallbacks,
+    options?: SpeechStartOptions,
+  ) => Promise<void>;
   stop: () => void;
   /** True when the environment can support this source at all. */
   isAvailable: () => boolean;
+  /**
+   * Microphone loudness right now, 0 to 1, or 0 when not capturing.
+   *
+   * Pull, where `onLevel` is push, and it exists because the two answer
+   * different questions. `onLevel` fires whenever the implementation happens to
+   * hand audio on, which is far too coarse to draw a smooth meter from. This can
+   * be polled once per animation frame for a bar that tracks his voice fluidly.
+   *
+   * Optional: a source that cannot measure loudness simply omits it.
+   */
+  getLevel?: () => number;
 }

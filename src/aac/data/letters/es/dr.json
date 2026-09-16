@@ -1,0 +1,17 @@
+{
+  "id": "dr",
+  "label": "DR",
+  "graphemes": [
+    "dr"
+  ],
+  "words": [
+    { "word": "drama", "syllables": 2 },
+    { "word": "dragón", "syllables": 2 },
+    { "word": "madre", "syllables": 2 },
+    { "word": "padre", "syllables": 2 },
+    { "word": "piedra", "syllables": 2 },
+    { "word": "ladrón", "syllables": 2 },
+    { "word": "cuadro", "syllables": 2 },
+    { "word": "vidrio", "syllables": 2 }
+  ]
+}

@@ -11,5 +11,26 @@
   "don't": 5525,
   "five": 2631,
   "like": 37721,
-  "why": 36719
+  "why": 36719,
+
+  "_comment_export_2": "Exported 2026-09-16. 'dont' (no apostrophe) is a separate token from \"don't\": normalize() only strips edge punctuation, so a transcript without the apostrophe reaches resolve() as a different key. 'miss' -> 39426 was in this export too and NOT taken, same reason as always: see overrides.es.json.",
+  "dont": 5526,
+  "how": 10273,
+
+  "_comment_letter_cards": "Added 2026-09-16 with the English letter cards. Every id checked by eye. bestsearch picks the wrong sense for these: glasses -> drinking glass, plane -> woodworking plane, web -> web page, ship -> a travel map, kitten -> the same picture as cat, corn -> toasted corn snack, pot -> flowerpot, plant -> the act of planting, shoe -> a high heel, fish -> fish on a plate.",
+  "glasses": 3329,
+  "plane": 2264,
+  "web": 6286,
+  "ship": 21421,
+  "kitten": 34082,
+  "corn": 36287,
+  "pot": 9086,
+  "plant": 38613,
+  "shoe": 32923,
+  "fish": 2520,
+
+  "_comment_letter_cards_404": "bestsearch returns 404 for these, and search leads with the wrong thing: desk -> reception desk, ladder -> climbing out of a pool, pan -> electric fryer.",
+  "desk": 26071,
+  "ladder": 2743,
+  "pan": 2558
 }

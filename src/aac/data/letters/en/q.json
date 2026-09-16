@@ -1,0 +1,12 @@
+{
+  "_comment": "Q is always written qu, so the back shows QU.",
+  "id": "q",
+  "label": "Q",
+  "graphemes": [
+    "qu"
+  ],
+  "words": [
+    { "word": "queen", "syllables": 1, "position": "inicial" },
+    { "word": "question", "syllables": 2, "position": "inicial" }
+  ]
+}

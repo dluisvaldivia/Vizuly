@@ -1,0 +1,18 @@
+{
+  "id": "tr",
+  "label": "TR",
+  "graphemes": [
+    "tr"
+  ],
+  "words": [
+    { "word": "trigo", "syllables": 2 },
+    { "word": "trapo", "syllables": 2 },
+    { "word": "truco", "syllables": 2 },
+    { "word": "otro", "syllables": 2 },
+    { "word": "letra", "syllables": 2 },
+    { "word": "metro", "syllables": 2 },
+    { "word": "cuatro", "syllables": 2 },
+    { "word": "litro", "syllables": 2 },
+    { "word": "potro", "syllables": 2 }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "d",
+  "label": "D",
+  "graphemes": [
+    "d"
+  ],
+  "words": [
+    { "word": "dado", "syllables": 2, "position": "inicial" },
+    { "word": "dedo", "syllables": 2, "position": "inicial" },
+    { "word": "dama", "syllables": 2, "position": "inicial" },
+    { "word": "duda", "syllables": 2, "position": "inicial" },
+    { "word": "dime", "syllables": 2, "position": "inicial" },
+    { "word": "dona", "syllables": 2, "position": "inicial" },
+    { "word": "dulce", "syllables": 2, "position": "inicial" },
+    { "word": "dedal", "syllables": 2, "position": "inicial" },
+    { "word": "nada", "syllables": 2, "position": "media" },
+    { "word": "moda", "syllables": 2, "position": "media" },
+    { "word": "boda", "syllables": 2, "position": "media" },
+    { "word": "seda", "syllables": 2, "position": "media" },
+    { "word": "soda", "syllables": 2, "position": "media" },
+    { "word": "codo", "syllables": 2, "position": "media" },
+    { "word": "nudo", "syllables": 2, "position": "media" },
+    { "word": "rueda", "syllables": 2, "position": "media" },
+    { "word": "nido", "syllables": 2, "position": "media" },
+    { "word": "lodo", "syllables": 2, "position": "media" }
+  ]
+}

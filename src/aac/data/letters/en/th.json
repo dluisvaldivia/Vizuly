@@ -1,0 +1,16 @@
+{
+  "_comment": "Only the unvoiced th, as in thumb. No this or that.",
+  "id": "th",
+  "label": "TH",
+  "graphemes": [
+    "th"
+  ],
+  "words": [
+    { "word": "thumb", "syllables": 1, "position": "inicial" },
+    { "word": "three", "syllables": 1, "position": "inicial" },
+    { "word": "bath", "syllables": 1, "position": "media" },
+    { "word": "teeth", "syllables": 1, "position": "media" },
+    { "word": "mouth", "syllables": 1, "position": "media" },
+    { "word": "tooth", "syllables": 1, "position": "media" }
+  ]
+}

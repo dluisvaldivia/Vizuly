@@ -1,0 +1,29 @@
+{
+  "_comment": "Hard c only, as in cat. No city, and no ch words, which have their own deck. ck is listed first so duck shows CK.",
+  "id": "c",
+  "label": "C",
+  "graphemes": [
+    "ck",
+    "c"
+  ],
+  "words": [
+    { "word": "cat", "syllables": 1, "position": "inicial" },
+    { "word": "car", "syllables": 1, "position": "inicial" },
+    { "word": "cup", "syllables": 1, "position": "inicial" },
+    { "word": "cow", "syllables": 1, "position": "inicial" },
+    { "word": "cake", "syllables": 1, "position": "inicial" },
+    { "word": "coat", "syllables": 1, "position": "inicial" },
+    { "word": "corn", "syllables": 1, "position": "inicial" },
+    { "word": "duck", "syllables": 1, "position": "media" },
+    { "word": "sock", "syllables": 1, "position": "media" },
+    { "word": "carrot", "syllables": 2, "position": "inicial" },
+    { "word": "candle", "syllables": 2, "position": "inicial" },
+    { "word": "cookie", "syllables": 2, "position": "inicial" },
+    { "word": "rocket", "syllables": 2, "position": "media" },
+    { "word": "pocket", "syllables": 2, "position": "media" },
+    { "word": "jacket", "syllables": 2, "position": "media" },
+    { "word": "camera", "syllables": 3, "position": "inicial" },
+    { "word": "cucumber", "syllables": 3, "position": "inicial" },
+    { "word": "computer", "syllables": 3, "position": "inicial" }
+  ]
+}

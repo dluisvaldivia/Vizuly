@@ -1,0 +1,29 @@
+{
+  "_comment": "The soft r between vowels. These words are spoken whole, never split: an isolated syllable starting with a single r turns into the trill. See canSplitAloud.",
+  "id": "r-suave",
+  "label": "R suave",
+  "graphemes": [
+    "r"
+  ],
+  "words": [
+    { "word": "aro", "syllables": 2 },
+    { "word": "oro", "syllables": 2 },
+    { "word": "cara", "syllables": 2 },
+    { "word": "cera", "syllables": 2 },
+    { "word": "caro", "syllables": 2 },
+    { "word": "pera", "syllables": 2 },
+    { "word": "toro", "syllables": 2 },
+    { "word": "loro", "syllables": 2 },
+    { "word": "duro", "syllables": 2 },
+    { "word": "mora", "syllables": 2 },
+    { "word": "muro", "syllables": 2 },
+    { "word": "hora", "syllables": 2 },
+    { "word": "lira", "syllables": 2 },
+    { "word": "mira", "syllables": 2 },
+    { "word": "para", "syllables": 2 },
+    { "word": "tira", "syllables": 2 },
+    { "word": "vara", "syllables": 2 },
+    { "word": "pared", "syllables": 2 },
+    { "word": "careta", "syllables": 3 }
+  ]
+}

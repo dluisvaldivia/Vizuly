@@ -1,0 +1,13 @@
+{
+  "id": "dr",
+  "label": "DR",
+  "graphemes": [
+    "dr"
+  ],
+  "words": [
+    { "word": "drum", "syllables": 1, "position": "inicial" },
+    { "word": "dress", "syllables": 1, "position": "inicial" },
+    { "word": "drink", "syllables": 1, "position": "inicial" },
+    { "word": "dragon", "syllables": 2, "position": "inicial" }
+  ]
+}

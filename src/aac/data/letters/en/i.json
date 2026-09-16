@@ -1,0 +1,25 @@
+{
+  "_comment": "Short i only, as in pig. No kite.",
+  "id": "i",
+  "label": "I",
+  "graphemes": [
+    "i"
+  ],
+  "words": [
+    { "word": "ink", "syllables": 1, "position": "inicial" },
+    { "word": "pig", "syllables": 1, "position": "media" },
+    { "word": "fish", "syllables": 1, "position": "media" },
+    { "word": "lips", "syllables": 1, "position": "media" },
+    { "word": "pin", "syllables": 1, "position": "media" },
+    { "word": "six", "syllables": 1, "position": "media" },
+    { "word": "milk", "syllables": 1, "position": "media" },
+    { "word": "hill", "syllables": 1, "position": "media" },
+    { "word": "bib", "syllables": 1, "position": "media" },
+    { "word": "gift", "syllables": 1, "position": "media" },
+    { "word": "igloo", "syllables": 2, "position": "inicial" },
+    { "word": "insect", "syllables": 2, "position": "inicial" },
+    { "word": "kitten", "syllables": 2, "position": "media" },
+    { "word": "window", "syllables": 2, "position": "media" },
+    { "word": "chicken", "syllables": 2, "position": "media" }
+  ]
+}

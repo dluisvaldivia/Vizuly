@@ -1,0 +1,16 @@
+{
+  "id": "a",
+  "label": "A",
+  "graphemes": [
+    "a"
+  ],
+  "words": [
+    { "word": "ala", "syllables": 2 },
+    { "word": "ama", "syllables": 2 },
+    { "word": "ata", "syllables": 2 },
+    { "word": "año", "syllables": 2 },
+    { "word": "agua", "syllables": 2 },
+    { "word": "aula", "syllables": 2 },
+    { "word": "auto", "syllables": 2 }
+  ]
+}

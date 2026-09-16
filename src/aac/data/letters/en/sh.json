@@ -1,0 +1,18 @@
+{
+  "id": "sh",
+  "label": "SH",
+  "graphemes": [
+    "sh"
+  ],
+  "words": [
+    { "word": "ship", "syllables": 1, "position": "inicial" },
+    { "word": "shoe", "syllables": 1, "position": "inicial" },
+    { "word": "shell", "syllables": 1, "position": "inicial" },
+    { "word": "sheep", "syllables": 1, "position": "inicial" },
+    { "word": "shirt", "syllables": 1, "position": "inicial" },
+    { "word": "shark", "syllables": 1, "position": "inicial" },
+    { "word": "fish", "syllables": 1, "position": "media" },
+    { "word": "brush", "syllables": 1, "position": "media" },
+    { "word": "shower", "syllables": 2, "position": "inicial" }
+  ]
+}

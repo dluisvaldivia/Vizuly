@@ -1,0 +1,18 @@
+{
+  "_comment": "Only the s sound, as in sun. No s that sounds like z, as in is.",
+  "id": "s",
+  "label": "S",
+  "graphemes": [
+    "s"
+  ],
+  "words": [
+    { "word": "sun", "syllables": 1, "position": "inicial" },
+    { "word": "sock", "syllables": 1, "position": "inicial" },
+    { "word": "six", "syllables": 1, "position": "inicial" },
+    { "word": "seal", "syllables": 1, "position": "inicial" },
+    { "word": "soap", "syllables": 1, "position": "inicial" },
+    { "word": "bus", "syllables": 1, "position": "media" },
+    { "word": "seven", "syllables": 2, "position": "inicial" },
+    { "word": "salad", "syllables": 2, "position": "inicial" }
+  ]
+}

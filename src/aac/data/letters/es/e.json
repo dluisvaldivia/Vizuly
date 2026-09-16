@@ -1,0 +1,15 @@
+{
+  "id": "e",
+  "label": "E",
+  "graphemes": [
+    "e"
+  ],
+  "words": [
+    { "word": "eco", "syllables": 2 },
+    { "word": "ese", "syllables": 2 },
+    { "word": "era", "syllables": 2 },
+    { "word": "echa", "syllables": 2 },
+    { "word": "edad", "syllables": 2 },
+    { "word": "ella", "syllables": 2 }
+  ]
+}

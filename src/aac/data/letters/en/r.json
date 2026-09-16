@@ -1,0 +1,22 @@
+{
+  "_comment": "Mostly r at the start or between vowels, where it is heard clearly. No word-final r, which many accents drop.",
+  "id": "r",
+  "label": "R",
+  "graphemes": [
+    "r"
+  ],
+  "words": [
+    { "word": "red", "syllables": 1, "position": "inicial" },
+    { "word": "rug", "syllables": 1, "position": "inicial" },
+    { "word": "rain", "syllables": 1, "position": "inicial" },
+    { "word": "ring", "syllables": 1, "position": "inicial" },
+    { "word": "rat", "syllables": 1, "position": "inicial" },
+    { "word": "rock", "syllables": 1, "position": "inicial" },
+    { "word": "rabbit", "syllables": 2, "position": "inicial" },
+    { "word": "robot", "syllables": 2, "position": "inicial" },
+    { "word": "rocket", "syllables": 2, "position": "inicial" },
+    { "word": "carrot", "syllables": 2, "position": "media" },
+    { "word": "parrot", "syllables": 2, "position": "media" },
+    { "word": "zero", "syllables": 2, "position": "media" }
+  ]
+}

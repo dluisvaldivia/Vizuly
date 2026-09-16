@@ -1,0 +1,26 @@
+{
+  "id": "d",
+  "label": "D",
+  "graphemes": [
+    "d"
+  ],
+  "words": [
+    { "word": "dog", "syllables": 1, "position": "inicial" },
+    { "word": "duck", "syllables": 1, "position": "inicial" },
+    { "word": "doll", "syllables": 1, "position": "inicial" },
+    { "word": "door", "syllables": 1, "position": "inicial" },
+    { "word": "desk", "syllables": 1, "position": "inicial" },
+    { "word": "dad", "syllables": 1, "position": "inicial" },
+    { "word": "bed", "syllables": 1, "position": "media" },
+    { "word": "bird", "syllables": 1, "position": "media" },
+    { "word": "hand", "syllables": 1, "position": "media" },
+    { "word": "red", "syllables": 1, "position": "media" },
+    { "word": "doctor", "syllables": 2, "position": "inicial" },
+    { "word": "dinner", "syllables": 2, "position": "inicial" },
+    { "word": "donkey", "syllables": 2, "position": "inicial" },
+    { "word": "ladder", "syllables": 2, "position": "media" },
+    { "word": "window", "syllables": 2, "position": "media" },
+    { "word": "garden", "syllables": 2, "position": "media" },
+    { "word": "dinosaur", "syllables": 3, "position": "inicial" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "j",
+  "label": "J",
+  "graphemes": [
+    "j"
+  ],
+  "words": [
+    { "word": "jam", "syllables": 1, "position": "inicial" },
+    { "word": "jet", "syllables": 1, "position": "inicial" },
+    { "word": "juice", "syllables": 1, "position": "inicial" },
+    { "word": "jump", "syllables": 1, "position": "inicial" },
+    { "word": "jacket", "syllables": 2, "position": "inicial" },
+    { "word": "jellyfish", "syllables": 3, "position": "inicial" },
+    { "word": "pajamas", "syllables": 3, "position": "media" }
+  ]
+}

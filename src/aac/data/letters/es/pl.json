@@ -1,0 +1,17 @@
+{
+  "id": "pl",
+  "label": "PL",
+  "graphemes": [
+    "pl"
+  ],
+  "words": [
+    { "word": "plato", "syllables": 2 },
+    { "word": "playa", "syllables": 2 },
+    { "word": "pluma", "syllables": 2 },
+    { "word": "plaza", "syllables": 2 },
+    { "word": "plancha", "syllables": 2 },
+    { "word": "cumple", "syllables": 2 },
+    { "word": "soplo", "syllables": 2 },
+    { "word": "simple", "syllables": 2 }
+  ]
+}

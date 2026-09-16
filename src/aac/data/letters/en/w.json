@@ -1,0 +1,16 @@
+{
+  "id": "w",
+  "label": "W",
+  "graphemes": [
+    "w"
+  ],
+  "words": [
+    { "word": "web", "syllables": 1, "position": "inicial" },
+    { "word": "wig", "syllables": 1, "position": "inicial" },
+    { "word": "wall", "syllables": 1, "position": "inicial" },
+    { "word": "worm", "syllables": 1, "position": "inicial" },
+    { "word": "wing", "syllables": 1, "position": "inicial" },
+    { "word": "wolf", "syllables": 1, "position": "inicial" },
+    { "word": "window", "syllables": 2, "position": "inicial" }
+  ]
+}

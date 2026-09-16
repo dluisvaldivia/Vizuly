@@ -69,5 +69,21 @@
   "extraño": "extrañar",
   "extrañas": "extrañar",
   "extrañamos": "extrañar",
-  "extrañé": "extrañar"
+  "extrañé": "extrañar",
+
+  "_comment_cards": "Below: conjugations that only show up as letter-card vocabulary (src/aac/data/letters/), not spoken phrases. Same gap, same fix: bestsearch has the infinitive but not the inflected form.",
+
+  "ata": "atar",
+  "ama": "amar",
+  "amo": "amar",
+  "echa": "echar",
+  "dime": "decir",
+  "sigue": "seguir",
+  "pillo": "pillar",
+  "tira": "tirar",
+  "abre": "abrir",
+  "saca": "sacar",
+  "dona": "donar",
+  "soplo": "soplar",
+  "chupa": "chupar"
 }

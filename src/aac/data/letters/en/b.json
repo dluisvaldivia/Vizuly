@@ -1,0 +1,29 @@
+{
+  "id": "b",
+  "label": "B",
+  "graphemes": [
+    "b"
+  ],
+  "words": [
+    { "word": "ball", "syllables": 1, "position": "inicial" },
+    { "word": "bed", "syllables": 1, "position": "inicial" },
+    { "word": "bus", "syllables": 1, "position": "inicial" },
+    { "word": "bag", "syllables": 1, "position": "inicial" },
+    { "word": "boy", "syllables": 1, "position": "inicial" },
+    { "word": "bird", "syllables": 1, "position": "inicial" },
+    { "word": "book", "syllables": 1, "position": "inicial" },
+    { "word": "bear", "syllables": 1, "position": "inicial" },
+    { "word": "box", "syllables": 1, "position": "inicial" },
+    { "word": "tub", "syllables": 1, "position": "media" },
+    { "word": "web", "syllables": 1, "position": "media" },
+    { "word": "baby", "syllables": 2, "position": "inicial" },
+    { "word": "balloon", "syllables": 2, "position": "inicial" },
+    { "word": "butter", "syllables": 2, "position": "inicial" },
+    { "word": "bucket", "syllables": 2, "position": "inicial" },
+    { "word": "rabbit", "syllables": 2, "position": "media" },
+    { "word": "robot", "syllables": 2, "position": "media" },
+    { "word": "banana", "syllables": 3, "position": "inicial" },
+    { "word": "butterfly", "syllables": 3, "position": "inicial" },
+    { "word": "bicycle", "syllables": 3, "position": "inicial" }
+  ]
+}

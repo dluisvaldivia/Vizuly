@@ -1,0 +1,12 @@
+{
+  "id": "sp",
+  "label": "SP",
+  "graphemes": [
+    "sp"
+  ],
+  "words": [
+    { "word": "spoon", "syllables": 1, "position": "inicial" },
+    { "word": "sponge", "syllables": 1, "position": "inicial" },
+    { "word": "spider", "syllables": 2, "position": "inicial" }
+  ]
+}

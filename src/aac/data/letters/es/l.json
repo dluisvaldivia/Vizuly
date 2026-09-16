@@ -1,0 +1,31 @@
+{
+  "id": "l",
+  "label": "L",
+  "graphemes": [
+    "l"
+  ],
+  "words": [
+    { "word": "lupa", "syllables": 2, "position": "inicial" },
+    { "word": "lodo", "syllables": 2, "position": "inicial" },
+    { "word": "luna", "syllables": 2, "position": "inicial" },
+    { "word": "lima", "syllables": 2, "position": "inicial" },
+    { "word": "loma", "syllables": 2, "position": "inicial" },
+    { "word": "lata", "syllables": 2, "position": "inicial" },
+    { "word": "lobo", "syllables": 2, "position": "inicial" },
+    { "word": "lila", "syllables": 2, "position": "inicial" },
+    { "word": "lelo", "syllables": 2, "position": "inicial" },
+    { "word": "leche", "syllables": 2, "position": "inicial" },
+    { "word": "bola", "syllables": 2, "position": "media" },
+    { "word": "pelo", "syllables": 2, "position": "media" },
+    { "word": "pila", "syllables": 2, "position": "media" },
+    { "word": "pala", "syllables": 2, "position": "media" },
+    { "word": "ala", "syllables": 2, "position": "media" },
+    { "word": "hola", "syllables": 2, "position": "media" },
+    { "word": "vela", "syllables": 2, "position": "media" },
+    { "word": "cola", "syllables": 2, "position": "media" },
+    { "word": "mula", "syllables": 2, "position": "media" },
+    { "word": "tela", "syllables": 2, "position": "media" },
+    { "word": "sala", "syllables": 2, "position": "media" },
+    { "word": "malo", "syllables": 2, "position": "media" }
+  ]
+}

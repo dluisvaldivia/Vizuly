@@ -1,0 +1,25 @@
+{
+  "id": "f",
+  "label": "F",
+  "graphemes": [
+    "f"
+  ],
+  "words": [
+    { "word": "foca", "syllables": 2, "position": "inicial" },
+    { "word": "foto", "syllables": 2, "position": "inicial" },
+    { "word": "fila", "syllables": 2, "position": "inicial" },
+    { "word": "faro", "syllables": 2, "position": "inicial" },
+    { "word": "fino", "syllables": 2, "position": "inicial" },
+    { "word": "fama", "syllables": 2, "position": "inicial" },
+    { "word": "fuego", "syllables": 2, "position": "inicial" },
+    { "word": "fuerte", "syllables": 2, "position": "inicial" },
+    { "word": "fuente", "syllables": 2, "position": "inicial" },
+    { "word": "falda", "syllables": 2, "position": "inicial" },
+    { "word": "sofá", "syllables": 2, "position": "media" },
+    { "word": "café", "syllables": 2, "position": "media" },
+    { "word": "rifa", "syllables": 2, "position": "media" },
+    { "word": "jefa", "syllables": 2, "position": "media" },
+    { "word": "jefe", "syllables": 2, "position": "media" },
+    { "word": "bufón", "syllables": 2, "position": "media" }
+  ]
+}

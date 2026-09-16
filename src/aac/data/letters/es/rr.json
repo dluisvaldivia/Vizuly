@@ -1,0 +1,35 @@
+{
+  "_comment": "The trill: rr between vowels, or r at the start of a word.",
+  "id": "rr",
+  "label": "RR / R",
+  "graphemes": [
+    "rr",
+    "r"
+  ],
+  "words": [
+    { "word": "rana", "syllables": 2, "position": "inicial" },
+    { "word": "rama", "syllables": 2, "position": "inicial" },
+    { "word": "ramo", "syllables": 2, "position": "inicial" },
+    { "word": "rosa", "syllables": 2, "position": "inicial" },
+    { "word": "risa", "syllables": 2, "position": "inicial" },
+    { "word": "ropa", "syllables": 2, "position": "inicial" },
+    { "word": "rueda", "syllables": 2, "position": "inicial" },
+    { "word": "rizo", "syllables": 2, "position": "inicial" },
+    { "word": "ruso", "syllables": 2, "position": "inicial" },
+    { "word": "remo", "syllables": 2, "position": "inicial" },
+    { "word": "rico", "syllables": 2, "position": "inicial" },
+    { "word": "ratón", "syllables": 2, "position": "inicial" },
+    { "word": "perro", "syllables": 2, "position": "media" },
+    { "word": "carro", "syllables": 2, "position": "media" },
+    { "word": "torre", "syllables": 2, "position": "media" },
+    { "word": "gorra", "syllables": 2, "position": "media" },
+    { "word": "jarra", "syllables": 2, "position": "media" },
+    { "word": "barro", "syllables": 2, "position": "media" },
+    { "word": "cerro", "syllables": 2, "position": "media" },
+    { "word": "burro", "syllables": 2, "position": "media" },
+    { "word": "zorro", "syllables": 2, "position": "media" },
+    { "word": "guerra", "syllables": 2, "position": "media" },
+    { "word": "tierra", "syllables": 2, "position": "media" },
+    { "word": "arroz", "syllables": 2, "position": "media" }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "_comment": "Only the consonant y, as in yellow. No y as a vowel, as in fly.",
+  "id": "y",
+  "label": "Y",
+  "graphemes": [
+    "y"
+  ],
+  "words": [
+    { "word": "yawn", "syllables": 1, "position": "inicial" },
+    { "word": "yellow", "syllables": 2, "position": "inicial" },
+    { "word": "yogurt", "syllables": 2, "position": "inicial" },
+    { "word": "yo-yo", "syllables": 2, "position": "inicial" }
+  ]
+}

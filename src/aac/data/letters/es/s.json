@@ -1,0 +1,31 @@
+{
+  "id": "s",
+  "label": "S",
+  "graphemes": [
+    "s"
+  ],
+  "words": [
+    { "word": "sopa", "syllables": 2, "position": "inicial" },
+    { "word": "sapo", "syllables": 2, "position": "inicial" },
+    { "word": "saco", "syllables": 2, "position": "inicial" },
+    { "word": "sala", "syllables": 2, "position": "inicial" },
+    { "word": "seta", "syllables": 2, "position": "inicial" },
+    { "word": "sola", "syllables": 2, "position": "inicial" },
+    { "word": "suma", "syllables": 2, "position": "inicial" },
+    { "word": "silla", "syllables": 2, "position": "inicial" },
+    { "word": "siete", "syllables": 2, "position": "inicial" },
+    { "word": "sucio", "syllables": 2, "position": "inicial" },
+    { "word": "oso", "syllables": 2, "position": "media" },
+    { "word": "casa", "syllables": 2, "position": "media" },
+    { "word": "mesa", "syllables": 2, "position": "media" },
+    { "word": "misa", "syllables": 2, "position": "media" },
+    { "word": "masa", "syllables": 2, "position": "media" },
+    { "word": "peso", "syllables": 2, "position": "media" },
+    { "word": "paso", "syllables": 2, "position": "media" },
+    { "word": "rosa", "syllables": 2, "position": "media" },
+    { "word": "risa", "syllables": 2, "position": "media" },
+    { "word": "queso", "syllables": 2, "position": "media" },
+    { "word": "vaso", "syllables": 2, "position": "media" },
+    { "word": "beso", "syllables": 2, "position": "media" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "f",
+  "label": "F",
+  "graphemes": [
+    "f"
+  ],
+  "words": [
+    { "word": "fish", "syllables": 1, "position": "inicial" },
+    { "word": "fox", "syllables": 1, "position": "inicial" },
+    { "word": "fan", "syllables": 1, "position": "inicial" },
+    { "word": "foot", "syllables": 1, "position": "inicial" },
+    { "word": "fork", "syllables": 1, "position": "inicial" },
+    { "word": "leaf", "syllables": 1, "position": "media" },
+    { "word": "roof", "syllables": 1, "position": "media" },
+    { "word": "feather", "syllables": 2, "position": "inicial" },
+    { "word": "finger", "syllables": 2, "position": "inicial" },
+    { "word": "coffee", "syllables": 2, "position": "media" },
+    { "word": "muffin", "syllables": 2, "position": "media" },
+    { "word": "waffle", "syllables": 2, "position": "media" }
+  ]
+}

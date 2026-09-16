@@ -1,3 +1,6 @@
 {
-  "_comment": "Cómo se le dicta una palabra al sintetizador cuando la lee mal. La clave es la palabra tal como la escribe el niño; el valor es lo que se manda a la voz. Solo cambia el sonido: en pantalla sigue apareciendo la palabra de verdad. Mismo mecanismo que overrides.es.json para un pictograma equivocado: una entrada aquí, nunca un apaño general."
+  "_comment": "Cómo se le dicta una palabra al sintetizador cuando la lee mal. La clave es la palabra tal como la escribe el niño; el valor es lo que se manda a la voz. Solo cambia el sonido: en pantalla sigue apareciendo la palabra de verdad. Mismo mecanismo que overrides.es.json para un pictograma equivocado: una entrada aquí, nunca un apaño general.",
+
+  "_comment_ala": "Reportado: 'ala' se oía como 'ela'. 'hala' es una palabra real con la h muda, se pronuncia igual que 'ala' y no ha dado problemas. Cambio sin confirmar de oído: no hay audio en este entorno para comprobarlo. Si sigue mal, hay que oír el clip real y probar otra cosa.",
+  "ala": "hala"
 }

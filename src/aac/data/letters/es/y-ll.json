@@ -1,0 +1,30 @@
+{
+  "id": "y-ll",
+  "label": "Y / LL",
+  "graphemes": [
+    "ll",
+    "y"
+  ],
+  "words": [
+    { "word": "llave", "syllables": 2, "position": "inicial" },
+    { "word": "llama", "syllables": 2, "position": "inicial" },
+    { "word": "lleno", "syllables": 2, "position": "inicial" },
+    { "word": "lluvia", "syllables": 2, "position": "inicial" },
+    { "word": "yema", "syllables": 2, "position": "inicial" },
+    { "word": "yeso", "syllables": 2, "position": "inicial" },
+    { "word": "yate", "syllables": 2, "position": "inicial" },
+    { "word": "yoyo", "syllables": 2, "position": "inicial" },
+    { "word": "pollo", "syllables": 2, "position": "media" },
+    { "word": "bello", "syllables": 2, "position": "media" },
+    { "word": "silla", "syllables": 2, "position": "media" },
+    { "word": "calle", "syllables": 2, "position": "media" },
+    { "word": "ella", "syllables": 2, "position": "media" },
+    { "word": "mayo", "syllables": 2, "position": "media" },
+    { "word": "hoyo", "syllables": 2, "position": "media" },
+    { "word": "rayo", "syllables": 2, "position": "media" },
+    { "word": "joya", "syllables": 2, "position": "media" },
+    { "word": "sello", "syllables": 2, "position": "media" },
+    { "word": "gallo", "syllables": 2, "position": "media" },
+    { "word": "pillo", "syllables": 2, "position": "media" }
+  ]
+}

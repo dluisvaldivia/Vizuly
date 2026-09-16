@@ -1,0 +1,15 @@
+{
+  "id": "fl",
+  "label": "FL",
+  "graphemes": [
+    "fl"
+  ],
+  "words": [
+    { "word": "flecha", "syllables": 2 },
+    { "word": "flauta", "syllables": 2 },
+    { "word": "flota", "syllables": 2 },
+    { "word": "flaco", "syllables": 2 },
+    { "word": "flojo", "syllables": 2 },
+    { "word": "chiflar", "syllables": 2 }
+  ]
+}

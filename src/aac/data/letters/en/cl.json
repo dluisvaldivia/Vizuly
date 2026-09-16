@@ -1,0 +1,13 @@
+{
+  "id": "cl",
+  "label": "CL",
+  "graphemes": [
+    "cl"
+  ],
+  "words": [
+    { "word": "clock", "syllables": 1, "position": "inicial" },
+    { "word": "cloud", "syllables": 1, "position": "inicial" },
+    { "word": "clown", "syllables": 1, "position": "inicial" },
+    { "word": "claw", "syllables": 1, "position": "inicial" }
+  ]
+}

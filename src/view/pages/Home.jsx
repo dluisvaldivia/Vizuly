@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { useAac } from '../../aac/useAac.ts';
+import { useAac, listDecks } from '../../aac/useAac.ts';
 import { useSpeech } from '../../speech/useSpeech.ts';
 import { useVoice } from '../../speech/useVoice.ts';
 import { getInitialLang, setLang } from '../../controllers/languageController.js';
@@ -20,6 +20,19 @@ import {
   getInitialLiveVoice,
   setLiveVoice,
 } from '../../controllers/liveVoiceController.js';
+import {
+  getInitialMicSensitivity,
+  setMicSensitivity,
+} from '../../controllers/micSensitivityController.js';
+import {
+  getInitialMicDevice,
+  setMicDevice,
+} from '../../controllers/micDeviceController.js';
+import { getInitialMicGain, setMicGain } from '../../controllers/micGainController.js';
+import {
+  getInitialLevelReadout,
+  setLevelReadout,
+} from '../../controllers/levelReadoutController.js';
 import { useLongPress } from '../hooks/useLongPress.js';
 import PictogramStrip from '../components/PictogramStrip.jsx';
 import TextInput from '../components/TextInput.jsx';
@@ -29,6 +42,8 @@ import FixWordDialog from '../components/FixWordDialog.jsx';
 import Attribution from '../components/Attribution.jsx';
 import GameModeToggle from '../components/GameModeToggle.jsx';
 import GameMode from '../components/GameMode.jsx';
+import LetterCardsToggle from '../components/LetterCardsToggle.jsx';
+import LetterCards from '../components/LetterCards.jsx';
 import LanguageToggle from '../components/LanguageToggle.jsx';
 import VoiceNotice from '../components/VoiceNotice.jsx';
 import OutputModeToggle from '../components/OutputModeToggle.jsx';
@@ -48,7 +63,15 @@ export default function Home() {
   const [adultOpen, setAdultOpen] = useState(false);
   /** The word whose fix dialog is open, or null. Set by a long press. */
   const [fixTarget, setFixTarget] = useState(null);
-  const [gameModeOn, setGameModeOn] = useState(false);
+  /**
+   * Which game is open, if any: null, 'echo' or 'cards'. One value rather than
+   * a boolean per game, so two games can never be open at once.
+   */
+  const [activeGame, setActiveGame] = useState(null);
+  /** The letter card on screen, so the voice can prepare it. Cards mode only. */
+  const [cardWord, setCardWord] = useState(null);
+  const hasDecks = listDecks(lang).length > 0;
+  const toggleGame = useCallback((game) => setActiveGame((current) => (current === game ? null : game)), []);
   /**
    * Telegraphic speech output, or reading output with connectors.
    *
@@ -67,6 +90,39 @@ export default function Home() {
    * public site it would be a cap per visitor rather than a cap in total.
    */
   const [liveVoice, setLiveVoiceState] = useState(getInitialLiveVoice);
+  /**
+   * How loud he has to be, in dBFS. Drives the meter's line and, a fixed margin
+   * below it, the level at which the mic decides he has stopped talking.
+   */
+  const [micSensitivity, setMicSensitivityState] = useState(getInitialMicSensitivity);
+  /**
+   * Which microphone to open, chosen by an adult in settings. Without it Firefox
+   * opens the system default after a reload, which can be a silent input.
+   */
+  const [micDevice, setMicDeviceState] = useState(getInitialMicDevice);
+  /**
+   * The name of the mic that was really opened last, for the adult panel.
+   * Shown, never saved: see the note on onDevice in src/speech/types.ts.
+   */
+  const [openedMic, setOpenedMic] = useState('');
+  const handleDeviceOpened = useCallback((deviceId, label) => {
+    setOpenedMic(label);
+    // Same mic by name, new id: the browser rotated its ids. Refresh the saved
+    // one. Only ever for the mic the adult chose, never for whatever opened.
+    setMicDeviceState((current) =>
+      current.deviceId && current.label && current.label === label && current.deviceId !== deviceId
+        ? { deviceId, label }
+        : current,
+    );
+  }, []);
+  /**
+   * Whether the browser may turn the mic up and down by itself. Off by default:
+   * with it on, the meter jumps on his first word and then settles, which makes
+   * a quiet voice look loud enough.
+   */
+  const [micGain, setMicGainState] = useState(getInitialMicGain);
+  /** Whether the adult-facing dB number shows beside the meter. */
+  const [levelReadout, setLevelReadoutState] = useState(getInitialLevelReadout);
 
   const {
     words,
@@ -86,6 +142,12 @@ export default function Home() {
     setLang(lang);
   }, [lang]);
 
+  // The decks are Spanish. Switching to a language without any leaves cards
+  // mode rather than showing an empty picker.
+  useEffect(() => {
+    if (!hasDecks) setActiveGame((current) => (current === 'cards' ? null : current));
+  }, [hasDecks]);
+
   useEffect(() => {
     setOutputMode(outputMode);
   }, [outputMode]);
@@ -101,6 +163,22 @@ export default function Home() {
   useEffect(() => {
     setLiveVoice(liveVoice);
   }, [liveVoice]);
+
+  useEffect(() => {
+    setMicSensitivity(micSensitivity);
+  }, [micSensitivity]);
+
+  useEffect(() => {
+    setLevelReadout(levelReadout);
+  }, [levelReadout]);
+
+  useEffect(() => {
+    setMicDevice(micDevice);
+  }, [micDevice]);
+
+  useEffect(() => {
+    setMicGain(micGain);
+  }, [micGain]);
 
   /**
    * True while the app itself is talking.
@@ -122,13 +200,26 @@ export default function Home() {
     },
     [say],
   );
-  const speech = useSpeech(lang, handleTranscript);
+  const speech = useSpeech(lang, handleTranscript, {
+    speechFloorDb: micSensitivity,
+    deviceId: micDevice.deviceId,
+    deviceLabel: micDevice.label,
+    autoGainControl: micGain === 'on',
+    onDeviceChange: handleDeviceOpened,
+  });
 
+  const voiceWords = useMemo(
+    () => (activeGame === 'cards' ? (cardWord ? [cardWord] : []) : words),
+    [activeGame, cardWord, words],
+  );
   const voice = useVoice(lang, {
     syllables: syllableMode === 'on',
     live: liveVoice === 'on',
-    words,
+    // In cards mode the word to prepare is the card showing, not the strip.
+    words: voiceWords,
   });
+
+  const { stop: stopSpeech } = speech;
 
   /**
    * A tap on a pictogram: the word, then its syllables.
@@ -139,7 +230,7 @@ export default function Home() {
    */
   const handleSpeak = useCallback(
     (word, { onStart, onEnd } = {}) => {
-      speech.stop();
+      stopSpeech();
       speakingRef.current = true;
       voice.speak(word, {
         onStart,
@@ -149,7 +240,10 @@ export default function Home() {
         },
       });
     },
-    [speech, voice],
+    // Depends on the stable stop callback rather than the whole speech object:
+    // useSpeech returns a fresh object every render, so `[speech, voice]` handed
+    // every pictogram a new tap handler on every interim transcript.
+    [stopSpeech, voice],
   );
 
   const openAdult = useCallback(() => setAdultOpen(true), []);
@@ -221,7 +315,10 @@ export default function Home() {
         <div className="app__header-controls">
           {/* Plain tap, not gated behind the long-press gesture: unlike
               settings, a wrong tap into game mode does no harm. */}
-          <GameModeToggle active={gameModeOn} onToggle={() => setGameModeOn((v) => !v)} lang={lang} />
+          <GameModeToggle active={activeGame === 'echo'} onToggle={() => toggleGame('echo')} lang={lang} />
+          {hasDecks ? (
+            <LetterCardsToggle active={activeGame === 'cards'} onToggle={() => toggleGame('cards')} lang={lang} />
+          ) : null}
           {/* Same reasoning: this only changes how the strip looks, so it stays
               a plain visible button rather than hiding behind the gesture. */}
           <OutputModeToggle
@@ -234,7 +331,20 @@ export default function Home() {
       </header>
 
       <main className="app__main">
-        {gameModeOn ? (
+        {activeGame === 'cards' ? (
+          // Mounted only here, like GameMode, so leaving and coming back always
+          // starts again at the letter picker. Keyed on the language for the
+          // same reason: a deck id like "m" exists in both, and must not carry
+          // one language's filters into the other.
+          <LetterCards
+            key={lang}
+            lang={lang}
+            revision={corrections}
+            onFix={setFixTarget}
+            onSpeak={handleSpeak}
+            onCardChange={setCardWord}
+          />
+        ) : activeGame === 'echo' ? (
           // GameMode is only ever mounted here, so toggling off and back on
           // unmounts and remounts it, resetting its held/turn state fresh
           // every time without any extra bookkeeping.
@@ -245,6 +355,8 @@ export default function Home() {
             clear={clear}
             lang={lang}
             speech={speech}
+            speechFloorDb={micSensitivity}
+            showReadout={levelReadout === 'on'}
             onFix={setFixTarget}
           />
         ) : (
@@ -267,6 +379,10 @@ export default function Home() {
                   isListening={speech.isListening}
                   interim={speech.interim}
                   levelRef={speech.levelRef}
+                  getLevel={speech.getLevel}
+                  isActive={speech.isActive}
+                  speechFloorDb={micSensitivity}
+                  showReadout={levelReadout === 'on'}
                   lang={lang}
                   onToggle={speech.toggle}
                 />
@@ -298,6 +414,15 @@ export default function Home() {
         onSyllableModeChange={setSyllableModeState}
         liveVoice={liveVoice}
         onLiveVoiceChange={setLiveVoiceState}
+        micSensitivity={micSensitivity}
+        onMicSensitivityChange={setMicSensitivityState}
+        micDevice={micDevice}
+        onMicDeviceChange={setMicDeviceState}
+        openedMic={openedMic}
+        micGain={micGain}
+        onMicGainChange={setMicGainState}
+        levelReadout={levelReadout}
+        onLevelReadoutChange={setLevelReadoutState}
         voiceBudget={voice.budget}
       />
 

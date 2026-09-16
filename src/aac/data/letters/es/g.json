@@ -1,0 +1,27 @@
+{
+  "_comment": "The soft G sound: ga, go, gu, gue, gui.",
+  "id": "g",
+  "label": "G",
+  "graphemes": [
+    "g"
+  ],
+  "words": [
+    { "word": "gato", "syllables": 2, "position": "inicial" },
+    { "word": "gota", "syllables": 2, "position": "inicial" },
+    { "word": "goma", "syllables": 2, "position": "inicial" },
+    { "word": "gorro", "syllables": 2, "position": "inicial" },
+    { "word": "gorra", "syllables": 2, "position": "inicial" },
+    { "word": "ganso", "syllables": 2, "position": "inicial" },
+    { "word": "guiso", "syllables": 2, "position": "inicial" },
+    { "word": "guante", "syllables": 2, "position": "inicial" },
+    { "word": "gafas", "syllables": 2, "position": "inicial" },
+    { "word": "mago", "syllables": 2, "position": "media" },
+    { "word": "lago", "syllables": 2, "position": "media" },
+    { "word": "hago", "syllables": 2, "position": "media" },
+    { "word": "sigue", "syllables": 2, "position": "media" },
+    { "word": "agua", "syllables": 2, "position": "media" },
+    { "word": "vago", "syllables": 2, "position": "media" },
+    { "word": "riego", "syllables": 2, "position": "media" },
+    { "word": "juego", "syllables": 2, "position": "media" }
+  ]
+}

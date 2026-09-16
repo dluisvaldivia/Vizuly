@@ -1,0 +1,11 @@
+{
+  "id": "fr",
+  "label": "FR",
+  "graphemes": [
+    "fr"
+  ],
+  "words": [
+    { "word": "frog", "syllables": 1, "position": "inicial" },
+    { "word": "fruit", "syllables": 1, "position": "inicial" }
+  ]
+}

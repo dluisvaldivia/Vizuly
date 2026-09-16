@@ -1,0 +1,27 @@
+{
+  "id": "ch",
+  "label": "CH",
+  "graphemes": [
+    "ch"
+  ],
+  "words": [
+    { "word": "chino", "syllables": 2, "position": "inicial" },
+    { "word": "chico", "syllables": 2, "position": "inicial" },
+    { "word": "chica", "syllables": 2, "position": "inicial" },
+    { "word": "chapa", "syllables": 2, "position": "inicial" },
+    { "word": "chupa", "syllables": 2, "position": "inicial" },
+    { "word": "chiste", "syllables": 2, "position": "inicial" },
+    { "word": "chicle", "syllables": 2, "position": "inicial" },
+    { "word": "chaqueta", "syllables": 3, "position": "inicial" },
+    { "word": "leche", "syllables": 2, "position": "media" },
+    { "word": "ducha", "syllables": 2, "position": "media" },
+    { "word": "coche", "syllables": 2, "position": "media" },
+    { "word": "techo", "syllables": 2, "position": "media" },
+    { "word": "mucho", "syllables": 2, "position": "media" },
+    { "word": "lucha", "syllables": 2, "position": "media" },
+    { "word": "hacha", "syllables": 2, "position": "media" },
+    { "word": "bicho", "syllables": 2, "position": "media" },
+    { "word": "noche", "syllables": 2, "position": "media" },
+    { "word": "ancho", "syllables": 2, "position": "media" }
+  ]
+}

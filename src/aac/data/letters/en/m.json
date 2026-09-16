@@ -1,0 +1,24 @@
+{
+  "id": "m",
+  "label": "M",
+  "graphemes": [
+    "m"
+  ],
+  "words": [
+    { "word": "man", "syllables": 1, "position": "inicial" },
+    { "word": "map", "syllables": 1, "position": "inicial" },
+    { "word": "milk", "syllables": 1, "position": "inicial" },
+    { "word": "moon", "syllables": 1, "position": "inicial" },
+    { "word": "mop", "syllables": 1, "position": "inicial" },
+    { "word": "mouse", "syllables": 1, "position": "inicial" },
+    { "word": "arm", "syllables": 1, "position": "media" },
+    { "word": "jam", "syllables": 1, "position": "media" },
+    { "word": "ham", "syllables": 1, "position": "media" },
+    { "word": "monkey", "syllables": 2, "position": "inicial" },
+    { "word": "mitten", "syllables": 2, "position": "inicial" },
+    { "word": "hammer", "syllables": 2, "position": "media" },
+    { "word": "lemon", "syllables": 2, "position": "media" },
+    { "word": "tomato", "syllables": 3, "position": "media" },
+    { "word": "camera", "syllables": 3, "position": "media" }
+  ]
+}

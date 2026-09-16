@@ -1,0 +1,14 @@
+{
+  "id": "cr",
+  "label": "CR",
+  "graphemes": [
+    "cr"
+  ],
+  "words": [
+    { "word": "crema", "syllables": 2 },
+    { "word": "cromo", "syllables": 2 },
+    { "word": "crudo", "syllables": 2 },
+    { "word": "cráter", "syllables": 2 },
+    { "word": "micro", "syllables": 2 }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "n",
+  "label": "N",
+  "graphemes": [
+    "n"
+  ],
+  "words": [
+    { "word": "nest", "syllables": 1, "position": "inicial" },
+    { "word": "net", "syllables": 1, "position": "inicial" },
+    { "word": "nose", "syllables": 1, "position": "inicial" },
+    { "word": "nine", "syllables": 1, "position": "inicial" },
+    { "word": "pen", "syllables": 1, "position": "media" },
+    { "word": "sun", "syllables": 1, "position": "media" },
+    { "word": "van", "syllables": 1, "position": "media" },
+    { "word": "hen", "syllables": 1, "position": "media" },
+    { "word": "ten", "syllables": 1, "position": "media" },
+    { "word": "fan", "syllables": 1, "position": "media" },
+    { "word": "needle", "syllables": 2, "position": "inicial" },
+    { "word": "panda", "syllables": 2, "position": "media" },
+    { "word": "banana", "syllables": 3, "position": "media" }
+  ]
+}

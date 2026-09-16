@@ -1,0 +1,29 @@
+{
+  "id": "n",
+  "label": "N",
+  "graphemes": [
+    "n"
+  ],
+  "words": [
+    { "word": "nena", "syllables": 2, "position": "inicial" },
+    { "word": "nene", "syllables": 2, "position": "inicial" },
+    { "word": "nido", "syllables": 2, "position": "inicial" },
+    { "word": "nube", "syllables": 2, "position": "inicial" },
+    { "word": "nudo", "syllables": 2, "position": "inicial" },
+    { "word": "nota", "syllables": 2, "position": "inicial" },
+    { "word": "nave", "syllables": 2, "position": "inicial" },
+    { "word": "nuca", "syllables": 2, "position": "inicial" },
+    { "word": "nariz", "syllables": 2, "position": "inicial" },
+    { "word": "nieve", "syllables": 2, "position": "inicial" },
+    { "word": "luna", "syllables": 2, "position": "media" },
+    { "word": "mano", "syllables": 2, "position": "media" },
+    { "word": "mono", "syllables": 2, "position": "media" },
+    { "word": "pino", "syllables": 2, "position": "media" },
+    { "word": "pena", "syllables": 2, "position": "media" },
+    { "word": "cana", "syllables": 2, "position": "media" },
+    { "word": "cono", "syllables": 2, "position": "media" },
+    { "word": "tuna", "syllables": 2, "position": "media" },
+    { "word": "cuna", "syllables": 2, "position": "media" },
+    { "word": "bono", "syllables": 2, "position": "media" }
+  ]
+}

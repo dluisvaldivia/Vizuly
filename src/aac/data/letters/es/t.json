@@ -1,0 +1,30 @@
+{
+  "_comment": "atún was listed as initial, but its t is in the middle.",
+  "id": "t",
+  "label": "T",
+  "graphemes": [
+    "t"
+  ],
+  "words": [
+    { "word": "taza", "syllables": 2, "position": "inicial" },
+    { "word": "tela", "syllables": 2, "position": "inicial" },
+    { "word": "tila", "syllables": 2, "position": "inicial" },
+    { "word": "topo", "syllables": 2, "position": "inicial" },
+    { "word": "tuna", "syllables": 2, "position": "inicial" },
+    { "word": "tapa", "syllables": 2, "position": "inicial" },
+    { "word": "tina", "syllables": 2, "position": "inicial" },
+    { "word": "toro", "syllables": 2, "position": "inicial" },
+    { "word": "techo", "syllables": 2, "position": "inicial" },
+    { "word": "atún", "syllables": 2, "position": "media" },
+    { "word": "pato", "syllables": 2, "position": "media" },
+    { "word": "gato", "syllables": 2, "position": "media" },
+    { "word": "moto", "syllables": 2, "position": "media" },
+    { "word": "foto", "syllables": 2, "position": "media" },
+    { "word": "lata", "syllables": 2, "position": "media" },
+    { "word": "nata", "syllables": 2, "position": "media" },
+    { "word": "bota", "syllables": 2, "position": "media" },
+    { "word": "mata", "syllables": 2, "position": "media" },
+    { "word": "pito", "syllables": 2, "position": "media" },
+    { "word": "lote", "syllables": 2, "position": "media" }
+  ]
+}

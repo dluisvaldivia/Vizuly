@@ -1,0 +1,25 @@
+{
+  "_comment": "Short o only, as in dog. No robot.",
+  "id": "o",
+  "label": "O",
+  "graphemes": [
+    "o"
+  ],
+  "words": [
+    { "word": "ox", "syllables": 1, "position": "inicial" },
+    { "word": "dog", "syllables": 1, "position": "media" },
+    { "word": "box", "syllables": 1, "position": "media" },
+    { "word": "fox", "syllables": 1, "position": "media" },
+    { "word": "sock", "syllables": 1, "position": "media" },
+    { "word": "pot", "syllables": 1, "position": "media" },
+    { "word": "mop", "syllables": 1, "position": "media" },
+    { "word": "doll", "syllables": 1, "position": "media" },
+    { "word": "otter", "syllables": 2, "position": "inicial" },
+    { "word": "doctor", "syllables": 2, "position": "media" },
+    { "word": "bottle", "syllables": 2, "position": "media" },
+    { "word": "pocket", "syllables": 2, "position": "media" },
+    { "word": "rocket", "syllables": 2, "position": "media" },
+    { "word": "octopus", "syllables": 3, "position": "inicial" },
+    { "word": "hospital", "syllables": 3, "position": "media" }
+  ]
+}

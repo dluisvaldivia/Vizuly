@@ -1,0 +1,15 @@
+{
+  "_comment": "Only the ks sound, as in box, so every x is later in the word. No xylophone.",
+  "id": "x",
+  "label": "X",
+  "graphemes": [
+    "x"
+  ],
+  "words": [
+    { "word": "box", "syllables": 1, "position": "media" },
+    { "word": "fox", "syllables": 1, "position": "media" },
+    { "word": "six", "syllables": 1, "position": "media" },
+    { "word": "ox", "syllables": 1, "position": "media" },
+    { "word": "taxi", "syllables": 2, "position": "media" }
+  ]
+}

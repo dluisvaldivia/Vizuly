@@ -1,0 +1,14 @@
+{
+  "id": "z",
+  "label": "Z",
+  "graphemes": [
+    "z"
+  ],
+  "words": [
+    { "word": "zoo", "syllables": 1, "position": "inicial" },
+    { "word": "zip", "syllables": 1, "position": "inicial" },
+    { "word": "zero", "syllables": 2, "position": "inicial" },
+    { "word": "zebra", "syllables": 2, "position": "inicial" },
+    { "word": "lizard", "syllables": 2, "position": "media" }
+  ]
+}

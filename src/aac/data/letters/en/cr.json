@@ -1,0 +1,12 @@
+{
+  "id": "cr",
+  "label": "CR",
+  "graphemes": [
+    "cr"
+  ],
+  "words": [
+    { "word": "crab", "syllables": 1, "position": "inicial" },
+    { "word": "crown", "syllables": 1, "position": "inicial" },
+    { "word": "crocodile", "syllables": 3, "position": "inicial" }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ch",
+  "label": "CH",
+  "graphemes": [
+    "ch"
+  ],
+  "words": [
+    { "word": "chair", "syllables": 1, "position": "inicial" },
+    { "word": "cheese", "syllables": 1, "position": "inicial" },
+    { "word": "chick", "syllables": 1, "position": "inicial" },
+    { "word": "chin", "syllables": 1, "position": "inicial" },
+    { "word": "bench", "syllables": 1, "position": "media" },
+    { "word": "lunch", "syllables": 1, "position": "media" },
+    { "word": "chicken", "syllables": 2, "position": "inicial" },
+    { "word": "cherry", "syllables": 2, "position": "inicial" },
+    { "word": "kitchen", "syllables": 2, "position": "media" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "v",
+  "label": "V",
+  "graphemes": [
+    "v"
+  ],
+  "words": [
+    { "word": "van", "syllables": 1, "position": "inicial" },
+    { "word": "vase", "syllables": 1, "position": "inicial" },
+    { "word": "five", "syllables": 1, "position": "media" },
+    { "word": "seven", "syllables": 2, "position": "media" },
+    { "word": "oven", "syllables": 2, "position": "media" },
+    { "word": "river", "syllables": 2, "position": "media" },
+    { "word": "violin", "syllables": 3, "position": "inicial" }
+  ]
+}

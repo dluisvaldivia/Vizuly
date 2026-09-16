@@ -20,7 +20,11 @@ Every rule below follows from those two facts.
   is exactly what he will do. The per-word fix dialog uses the same gesture on a pictogram.
   A plain tap on a pictogram says the word out loud, first whole and then
   syllable by syllable in Spanish, and does nothing else: it opens nothing and
-  changes nothing, so there is still nowhere a tap can take him. In game mode
+  changes nothing, so there is still nowhere a tap can take him. Letter cards
+  are the one place a tap does something else: it turns the card over, silently,
+  and a speak button appears beside a turned card only. A long press on a card
+  still opens the fix dialog. The letter picker is plain and ungated, like the
+  game toggle, because choosing a letter loses nothing. In game mode
   the strips are silent, because there the strip is the turn itself.
   Anything reachable by the gesture must be undoable from the adult panel,
   because he will eventually get in. The language toggle is the one

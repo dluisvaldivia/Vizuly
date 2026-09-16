@@ -1,0 +1,26 @@
+{
+  "id": "p",
+  "label": "P",
+  "graphemes": [
+    "p"
+  ],
+  "words": [
+    { "word": "pig", "syllables": 1, "position": "inicial" },
+    { "word": "pen", "syllables": 1, "position": "inicial" },
+    { "word": "pan", "syllables": 1, "position": "inicial" },
+    { "word": "pot", "syllables": 1, "position": "inicial" },
+    { "word": "pie", "syllables": 1, "position": "inicial" },
+    { "word": "pear", "syllables": 1, "position": "inicial" },
+    { "word": "cup", "syllables": 1, "position": "media" },
+    { "word": "map", "syllables": 1, "position": "media" },
+    { "word": "mop", "syllables": 1, "position": "media" },
+    { "word": "pizza", "syllables": 2, "position": "inicial" },
+    { "word": "pencil", "syllables": 2, "position": "inicial" },
+    { "word": "panda", "syllables": 2, "position": "inicial" },
+    { "word": "pillow", "syllables": 2, "position": "inicial" },
+    { "word": "apple", "syllables": 2, "position": "media" },
+    { "word": "paper", "syllables": 2, "position": "inicial" },
+    { "word": "potato", "syllables": 3, "position": "inicial" },
+    { "word": "puppet", "syllables": 2, "position": "inicial" }
+  ]
+}

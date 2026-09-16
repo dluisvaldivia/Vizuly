@@ -1,0 +1,23 @@
+{
+  "id": "l",
+  "label": "L",
+  "graphemes": [
+    "l"
+  ],
+  "words": [
+    { "word": "leg", "syllables": 1, "position": "inicial" },
+    { "word": "lamp", "syllables": 1, "position": "inicial" },
+    { "word": "leaf", "syllables": 1, "position": "inicial" },
+    { "word": "ball", "syllables": 1, "position": "media" },
+    { "word": "bell", "syllables": 1, "position": "media" },
+    { "word": "doll", "syllables": 1, "position": "media" },
+    { "word": "owl", "syllables": 1, "position": "media" },
+    { "word": "lion", "syllables": 2, "position": "inicial" },
+    { "word": "lemon", "syllables": 2, "position": "inicial" },
+    { "word": "ladder", "syllables": 2, "position": "inicial" },
+    { "word": "balloon", "syllables": 2, "position": "media" },
+    { "word": "pillow", "syllables": 2, "position": "media" },
+    { "word": "yellow", "syllables": 2, "position": "media" },
+    { "word": "ladybug", "syllables": 3, "position": "inicial" }
+  ]
+}

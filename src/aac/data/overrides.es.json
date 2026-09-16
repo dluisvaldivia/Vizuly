@@ -11,5 +11,47 @@
   "quién": 13358,
 
   "_comment_viene": "A conjugation gap, not a wrong symbol: bestsearch/viene 404s because ARASAAC does not conjugate, so the child saw a placeholder. Deliberately NOT added to lemmas.es.json as viene -> venir, which would send resolve() looking for 'venir' and leave this override orphaned.",
-  "viene": 32669
+  "viene": 32669,
+
+  "_comment_export_2": "Exported 2026-09-16, verified live before landing here.",
+  "años": 7072,
+  "aula": 33072,
+  "bloque": 8308,
+  "cola": 5967,
+  "doble": 32392,
+  "drama": 11319,
+  "llamar": 6552,
+  "masa": 38442,
+  "mula": 2291,
+  "roble": 37131,
+  "tener": 32761,
+  "vivo": 11605,
+
+  "_comment_extranar_2": "This export also re-pinned extrañar -> 39426 on the device, the same id already rejected for English 'miss' above. Not taken here for the same reason: 39426 is a different drawing of the same affective sense, and the point of pinning extrañar -> 36909 was one symbol for one meaning in both languages. The device will keep showing 39426 until that pin is undone in the adult panel; do not re-import it from a future export either.",
+
+  "_comment_letters": "Below: letter-card vocabulary (src/aac/data/letters/) where bestsearch and search both miss or land on the wrong meaning, verified live. A synonym or related concept, never a ranking change.",
+
+  "cana": 8059,
+  "loma": 38728,
+  "era": 39843,
+  "gruta": 2729,
+  "logro": 11599,
+  "simple": 4645,
+  "cumple": 3087,
+  "peso": 2659,
+  "capa": 36003,
+  "pesa": 6176,
+  "tila": 38795,
+  "tina": 35353,
+  "mata": 3143,
+  "dama": 5559,
+  "lodo": 5908,
+  "pena": 2606,
+  "leña": 7819,
+  "reja": 22162,
+  "hoyo": 6036,
+  "cerro": 2909,
+  "chiflar": 7249,
+  "truco": 10157,
+  "potro": 2294
 }
