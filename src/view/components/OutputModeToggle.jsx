@@ -12,12 +12,14 @@
 export default function OutputModeToggle({ active, onToggle, lang }) {
   const labels = {
     es: {
-      on: 'Mostrar palabras de enlace',
-      off: 'Ocultar palabras de enlace',
+      // The visible caption comes first, so the name contains the label
+      // (WCAG 2.5.3) and the action follows.
+      on: 'Lectura: mostrar palabras de enlace',
+      off: 'Lectura: ocultar palabras de enlace',
     },
     en: {
-      on: 'Show linking words',
-      off: 'Hide linking words',
+      on: 'Reading: show linking words',
+      off: 'Reading: hide linking words',
     },
   }[lang];
 
@@ -38,6 +40,7 @@ export default function OutputModeToggle({ active, onToggle, lang }) {
         <rect x="10.5" y="10.5" width="3" height="3" rx="0.75" fill="currentColor" />
         <rect x="16" y="7" width="7" height="10" rx="1.5" fill="none" stroke="currentColor" strokeWidth="2" />
       </svg>
+      <span className="header-toggle__caption">{{ es: 'Lectura', en: 'Reading' }[lang]}</span>
     </button>
   );
 }

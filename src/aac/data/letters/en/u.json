@@ -19,6 +19,14 @@
     { "word": "muffin", "syllables": 2, "position": "media" },
     { "word": "puppet", "syllables": 2, "position": "media" },
     { "word": "umbrella", "syllables": 3, "position": "inicial" },
-    { "word": "butterfly", "syllables": 3, "position": "media" }
+    { "word": "butterfly", "syllables": 3, "position": "media" },
+    { "word": "uncle", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "mushroom", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pumpkin", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "thunder", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "hamburger", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "underwear", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "underpants", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "sunflower", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

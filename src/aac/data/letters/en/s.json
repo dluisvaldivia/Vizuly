@@ -13,6 +13,25 @@
     { "word": "soap", "syllables": 1, "position": "inicial" },
     { "word": "bus", "syllables": 1, "position": "media" },
     { "word": "seven", "syllables": 2, "position": "inicial" },
-    { "word": "salad", "syllables": 2, "position": "inicial" }
+    { "word": "salad", "syllables": 2, "position": "inicial" },
+    { "word": "sandwich", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "sofa", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "sister", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "soccer", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "sausage", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "castle", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "saddle", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "whistle", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "basket", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "insect", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "rooster", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "sunflower", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "submarine", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "saxophone", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "dinosaur", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "sandcastle", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "basketball", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "seventeen", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "mosquito", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

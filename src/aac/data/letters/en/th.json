@@ -11,6 +11,16 @@
     { "word": "bath", "syllables": 1, "position": "media" },
     { "word": "teeth", "syllables": 1, "position": "media" },
     { "word": "mouth", "syllables": 1, "position": "media" },
-    { "word": "tooth", "syllables": 1, "position": "media" }
+    { "word": "tooth", "syllables": 1, "position": "media" },
+    { "word": "thunder", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "thimble", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "thermos", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "thirteen", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "bathtub", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "toothbrush", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "toothpaste", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "birthday", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "panther", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "theater", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

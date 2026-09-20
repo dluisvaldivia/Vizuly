@@ -10,6 +10,12 @@
     { "word": "oro", "syllables": 2 },
     { "word": "ocho", "syllables": 2 },
     { "word": "hoja", "syllables": 2 },
-    { "word": "ola", "syllables": 2 }
+    { "word": "ola", "syllables": 2 },
+    { "word": "oveja", "syllables": 3, "age": 6 },
+    { "word": "oruga", "syllables": 3, "age": 6 },
+    { "word": "orquesta", "syllables": 3, "age": 6 },
+    { "word": "ordenador", "syllables": 4, "age": 9 },
+    { "word": "ornitorrinco", "syllables": 5, "age": 9 },
+    { "word": "orangután", "syllables": 4, "age": 9 }
   ]
 }

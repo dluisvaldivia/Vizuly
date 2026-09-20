@@ -106,14 +106,14 @@ export function useSpeech(
   const levelRef = useRef(0);
 
   /**
-   * Everything he has said since the mic was turned on, joined back together.
+   * Everything the child has said since the mic was turned on, joined back together.
    *
    * Deepgram finalises a slow talker one word at a time: "hola... me... llamo...
-   * Noah" arrives as four separate final transcripts. `onFinal` is handed the
-   * whole phrase each time, not the latest fragment, so the strip grows as he
+   * ..." arrives as four separate final transcripts. `onFinal` is handed the
+   * whole phrase each time, not the latest fragment, so the strip grows as they
    * speaks instead of being overwritten down to the last word. Cleared when the
    * mic is turned on, not when it is turned off: stopping flushes one last
-   * fragment that still needs to join the phrase he already built.
+   * fragment that still needs to join the phrase they already built.
    */
   const phraseRef = useRef('');
 
@@ -166,7 +166,7 @@ export function useSpeech(
     setInterim('');
     levelRef.current = 0;
     // phraseRef is deliberately not cleared here. Stopping still triggers a
-    // CloseStream flush, and that final fragment must append to the phrase he
+    // CloseStream flush, and that final fragment must append to the phrase they
     // already built, not replace it. The next mic-on clears it.
   }, []);
 

@@ -24,6 +24,21 @@
     { "word": "robot", "syllables": 2, "position": "media" },
     { "word": "banana", "syllables": 3, "position": "inicial" },
     { "word": "butterfly", "syllables": 3, "position": "inicial" },
-    { "word": "bicycle", "syllables": 3, "position": "inicial" }
+    { "word": "bicycle", "syllables": 3, "position": "inicial" },
+    { "word": "button", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "bottle", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "bubble", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "beetle", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "bathtub", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "cabin", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "rainbow", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "zebra", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "cowboy", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "basketball", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "hamburger", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "blueberry", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "strawberry", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "umbrella", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "ladybug", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

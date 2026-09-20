@@ -21,6 +21,20 @@
     { "word": "ladder", "syllables": 2, "position": "media" },
     { "word": "window", "syllables": 2, "position": "media" },
     { "word": "garden", "syllables": 2, "position": "media" },
-    { "word": "dinosaur", "syllables": 3, "position": "inicial" }
+    { "word": "dinosaur", "syllables": 3, "position": "inicial" },
+    { "word": "daisy", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "donut", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "dolphin", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "dentist", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "candle", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "sandwich", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "spider", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pudding", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "detective", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "dominoes", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "medicine", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "tornado", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "radio", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "crocodile", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

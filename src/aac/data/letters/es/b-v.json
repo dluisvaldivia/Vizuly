@@ -28,6 +28,23 @@
     { "word": "sabe", "syllables": 2, "position": "media" },
     { "word": "llave", "syllables": 2, "position": "media" },
     { "word": "nieve", "syllables": 2, "position": "media" },
-    { "word": "sabio", "syllables": 2, "position": "media" }
+    { "word": "sabio", "syllables": 2, "position": "media" },
+    { "word": "bufanda", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "bombero", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "ballena", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "botella", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "caballo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "ventana", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "vestido", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "cebolla", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "abuelo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "biblioteca", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "bicicleta", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "nevera", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "berenjena", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "ventilador", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "bailarina", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "calabaza", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "abanico", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

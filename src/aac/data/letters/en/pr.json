@@ -7,6 +7,8 @@
   "words": [
     { "word": "prince", "syllables": 1, "position": "inicial" },
     { "word": "present", "syllables": 2, "position": "inicial" },
-    { "word": "pretzel", "syllables": 2, "position": "inicial" }
+    { "word": "pretzel", "syllables": 2, "position": "inicial" },
+    { "word": "princess", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "printer", "syllables": 2, "position": "inicial", "age": 6 }
   ]
 }

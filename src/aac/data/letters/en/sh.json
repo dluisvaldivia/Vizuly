@@ -13,6 +13,17 @@
     { "word": "shark", "syllables": 1, "position": "inicial" },
     { "word": "fish", "syllables": 1, "position": "media" },
     { "word": "brush", "syllables": 1, "position": "media" },
-    { "word": "shower", "syllables": 2, "position": "inicial" }
+    { "word": "shower", "syllables": 2, "position": "inicial" },
+    { "word": "shampoo", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "shoulder", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "shadow", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "shepherd", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "toothbrush", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "eyelash", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "mushroom", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "starfish", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "sharpener", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "jellyfish", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "dishwasher", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

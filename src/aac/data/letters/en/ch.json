@@ -13,6 +13,15 @@
     { "word": "lunch", "syllables": 1, "position": "media" },
     { "word": "chicken", "syllables": 2, "position": "inicial" },
     { "word": "cherry", "syllables": 2, "position": "inicial" },
-    { "word": "kitchen", "syllables": 2, "position": "media" }
+    { "word": "kitchen", "syllables": 2, "position": "media" },
+    { "word": "chimney", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "peaches", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "children", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "checkers", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "sandwich", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "teacher", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "ketchup", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "artichoke", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "sandwiches", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

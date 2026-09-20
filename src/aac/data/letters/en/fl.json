@@ -7,6 +7,8 @@
   "words": [
     { "word": "flag", "syllables": 1, "position": "inicial" },
     { "word": "fly", "syllables": 1, "position": "inicial" },
-    { "word": "flower", "syllables": 2, "position": "inicial" }
+    { "word": "flower", "syllables": 2, "position": "inicial" },
+    { "word": "flashlight", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "flamingo", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

@@ -7,6 +7,12 @@
   "words": [
     { "word": "star", "syllables": 1, "position": "inicial" },
     { "word": "stamp", "syllables": 1, "position": "inicial" },
-    { "word": "strawberry", "syllables": 3, "position": "inicial" }
+    { "word": "strawberry", "syllables": 3, "position": "inicial" },
+    { "word": "sticker", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "starfish", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "stomach", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "stapler", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "student", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "stethoscope", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

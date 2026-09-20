@@ -20,6 +20,15 @@
     { "word": "insect", "syllables": 2, "position": "inicial" },
     { "word": "kitten", "syllables": 2, "position": "media" },
     { "word": "window", "syllables": 2, "position": "media" },
-    { "word": "chicken", "syllables": 2, "position": "media" }
+    { "word": "chicken", "syllables": 2, "position": "media" },
+    { "word": "mitten", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pillow", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "dinner", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "picnic", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "iguana", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "injection", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "chimpanzee", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "dinosaur", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "gorilla", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

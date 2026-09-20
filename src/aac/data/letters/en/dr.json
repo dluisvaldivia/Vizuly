@@ -8,6 +8,8 @@
     { "word": "drum", "syllables": 1, "position": "inicial" },
     { "word": "dress", "syllables": 1, "position": "inicial" },
     { "word": "drink", "syllables": 1, "position": "inicial" },
-    { "word": "dragon", "syllables": 2, "position": "inicial" }
+    { "word": "dragon", "syllables": 2, "position": "inicial" },
+    { "word": "driver", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "dragonfly", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

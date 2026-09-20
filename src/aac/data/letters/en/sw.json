@@ -6,6 +6,11 @@
   ],
   "words": [
     { "word": "swing", "syllables": 1, "position": "inicial" },
-    { "word": "swan", "syllables": 1, "position": "inicial" }
+    { "word": "swan", "syllables": 1, "position": "inicial" },
+    { "word": "swimsuit", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "sweater", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "swimmer", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "sweatshirt", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "swordfish", "syllables": 2, "position": "inicial", "age": 6 }
   ]
 }

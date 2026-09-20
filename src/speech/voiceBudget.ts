@@ -8,7 +8,7 @@
  * The counter is per browser, and the site is public, so the real ceiling is
  * this number times however many people visit. That is why it is small rather
  * than generous: a child practising three phrases a day needs about a dozen new
- * words on his busiest day, and only ever pays for each word once.
+ * words on the busiest day, and only ever pays for each word once.
  */
 
 const STORAGE_KEY = 'vizuly.voiceBudget.v1';
@@ -17,7 +17,7 @@ const STORAGE_KEY = 'vizuly.voiceBudget.v1';
  * Roughly a busy day of new words for one child, with room to spare.
  *
  * Set with recording-on-appearance in mind: a word that shows up in the strip
- * is recorded even if he never taps it, so the budget drains per word seen
+ * is recorded even if the child never taps it, so the budget drains per word seen
  * rather than per word tapped. Words are paid for once each, ever, so this only
  * ever binds on a day of genuinely new vocabulary.
  */

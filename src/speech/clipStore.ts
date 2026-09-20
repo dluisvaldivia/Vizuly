@@ -10,7 +10,7 @@
  *
  * Every function resolves rather than rejects. Storage can be denied, full, or
  * missing entirely (private windows, old browsers), and none of that is a
- * reason for the child to lose the word he just tapped.
+ * reason for the child to lose the word they just tapped.
  */
 
 const DB_NAME = 'vizuly-voices';
@@ -87,7 +87,7 @@ export async function putClip(key: string, blob: Blob): Promise<void> {
  * Wipes the downloaded audio.
  *
  * Reached from "forget saved pictograms" in the adult panel, because an adult
- * reads that button as "forget what you have saved", and audio he did not ask
+ * reads that button as "forget what you have saved", and audio they did not ask
  * for is part of that. The pre-generated clips are untouched: they are part of
  * the app, not something it saved.
  */

@@ -18,6 +18,21 @@
     { "word": "balloon", "syllables": 2, "position": "media" },
     { "word": "pillow", "syllables": 2, "position": "media" },
     { "word": "yellow", "syllables": 2, "position": "media" },
-    { "word": "ladybug", "syllables": 3, "position": "inicial" }
+    { "word": "ladybug", "syllables": 3, "position": "inicial" },
+    { "word": "lizard", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "lobster", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "lettuce", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "llama", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "salad", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "melon", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pilot", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "toilet", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "lollipop", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "lumberjack", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "lemonade", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "umbrella", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "elephant", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "gorilla", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "volcano", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

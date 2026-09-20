@@ -16,6 +16,21 @@
     { "word": "finger", "syllables": 2, "position": "inicial" },
     { "word": "coffee", "syllables": 2, "position": "media" },
     { "word": "muffin", "syllables": 2, "position": "media" },
-    { "word": "waffle", "syllables": 2, "position": "media" }
+    { "word": "waffle", "syllables": 2, "position": "media" },
+    { "word": "father", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "forest", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "farmer", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "fairy", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "fossil", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "sofa", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "football", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "giraffe", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "fisherman", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "buffalo", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "factory", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "furniture", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "sunflower", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "waterfall", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "butterfly", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

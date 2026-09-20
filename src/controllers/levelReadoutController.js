@@ -2,7 +2,7 @@
  * Persisted switch for the microphone level readout.
  *
  * The readout is the calibration aid: a live dB number beside the meter that an
- * adult reads off while the child talks, so the sensitivity can be set to his
+ * adult reads off while the child talks, so the sensitivity can be set to the
  * real voice instead of to a guess. It is on by default because the app is being
  * calibrated now, and it can be switched off once that is done: the UI rules ask
  * for very little text on the child's screen, and a number that has served its

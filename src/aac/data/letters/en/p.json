@@ -21,6 +21,27 @@
     { "word": "apple", "syllables": 2, "position": "media" },
     { "word": "paper", "syllables": 2, "position": "inicial" },
     { "word": "potato", "syllables": 3, "position": "inicial" },
-    { "word": "puppet", "syllables": 2, "position": "inicial" }
+    { "word": "puppet", "syllables": 2, "position": "inicial" },
+    { "word": "pumpkin", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "penguin", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "peanut", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "parrot", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "pepper", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "puzzle", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "hippo", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pirate", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "teapot", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "spider", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pelican", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "cupcake", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pineapple", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "laptop", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "piano", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "popsicle", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "computer", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "octopus", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "hospital", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "grasshopper", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "trampoline", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

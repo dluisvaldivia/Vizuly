@@ -25,6 +25,22 @@
     { "word": "roja", "syllables": 2, "position": "media" },
     { "word": "mojo", "syllables": 2, "position": "media" },
     { "word": "viejo", "syllables": 2, "position": "media" },
-    { "word": "dibujo", "syllables": 3, "position": "media" }
+    { "word": "dibujo", "syllables": 3, "position": "media" },
+    { "word": "jirafa", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "juguete", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "jeringa", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "jinete", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "girasol", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "gigante", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "gemelos", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "espejo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "naranja", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "pájaro", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "cangrejo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "lenteja", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "berenjena", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "jardinero", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "gelatina", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "escarabajo", "syllables": 5, "position": "media", "age": 9 }
   ]
 }

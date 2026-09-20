@@ -13,6 +13,15 @@
     { "word": "metro", "syllables": 2 },
     { "word": "cuatro", "syllables": 2 },
     { "word": "litro", "syllables": 2 },
-    { "word": "potro", "syllables": 2 }
+    { "word": "potro", "syllables": 2 },
+    { "word": "trompeta", "syllables": 3, "age": 6 },
+    { "word": "estrella", "syllables": 3, "age": 6 },
+    { "word": "trineo", "syllables": 3, "age": 6 },
+    { "word": "trofeo", "syllables": 3, "age": 6 },
+    { "word": "maestro", "syllables": 3, "age": 6 },
+    { "word": "triciclo", "syllables": 3, "age": 6 },
+    { "word": "triángulo", "syllables": 3, "age": 9 },
+    { "word": "extraterrestre", "syllables": 5, "age": 9 },
+    { "word": "trapecista", "syllables": 4, "age": 9 }
   ]
 }

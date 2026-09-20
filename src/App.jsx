@@ -11,7 +11,7 @@ function App() {
   useEffect(() => { setTheme(getInitialTheme()) }, []);
 
   // No global ThemeToggle: it sat on top of the child's screen with nothing
-  // stopping him pressing it. Theme now lives in the adult panel, behind the
+  // stopping the child pressing it. Theme now lives in the adult panel, behind the
   // long press on the title.
   return (
     <Router>

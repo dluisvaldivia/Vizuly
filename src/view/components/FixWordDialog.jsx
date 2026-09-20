@@ -11,7 +11,7 @@ import { pictogramImageUrl, searchCandidates } from '../../aac/useAac.ts';
  *
  * It answers the three things that actually go wrong in use:
  *
- *   wrong symbol   "noah" resolves to the biblical ark. Pick the right one.
+ *   wrong symbol   a first name resolves to an unrelated symbol. Pick the right one.
  *   no symbol      the placeholder. Search a different word and pick from that.
  *   wrong word     English "my" resolving to "mine", where Spanish strips "mi".
  *                  Ignore it and it is treated as a function word from now on.

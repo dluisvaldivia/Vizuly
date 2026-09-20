@@ -15,6 +15,14 @@
     { "word": "hammer", "syllables": 2, "position": "inicial" },
     { "word": "helmet", "syllables": 2, "position": "inicial" },
     { "word": "honey", "syllables": 2, "position": "inicial" },
-    { "word": "hamburger", "syllables": 3, "position": "inicial" }
+    { "word": "hamburger", "syllables": 3, "position": "inicial" },
+    { "word": "hippo", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "hamster", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "hotdog", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "hedgehog", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "hanger", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "honeycomb", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "hospital", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "hurricane", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

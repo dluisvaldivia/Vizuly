@@ -129,12 +129,12 @@ export function getLexicon(lang: Lang): Lexicon {
  *   1. The shipped stopword list.
  *   2. Words an adult marked "ignore" in the app, which is how a gap in the
  *      shipped list gets closed without a code change. English "my" is one:
- *      Spanish already strips "mi", so "my name is Noah" was resolving a
+ *      Spanish already strips "mi", so "my name is ..." was resolving a
  *      possessive to the "mine" pictogram while the Spanish phrase did not.
  *
  * PROTECTED_WORDS wins over both. An adult cannot make "no" or "sí" disappear
  * by tapping the wrong button, because a child who cannot be heard saying "no"
- * has lost something the app exists to give him.
+ * has lost something the app exists to give them.
  */
 export function isStopword(word: string, lang: Lang): boolean {
   if (isProtected(word, lang)) return false;

@@ -59,7 +59,7 @@ signal that reading mode stayed additive.
 
 Reading mode exists because the child works with pictographed easy-reading sheets on paper,
 where connectors DO appear as schematic symbols. It is not a relaxation of rule 2. Speech
-mode is still the default and still the one he talks with.
+mode is still the default and still the one the child talks with.
 
 ### The connector table is closed, and that is deliberate
 
@@ -128,7 +128,7 @@ Two invariants:
   how an adult recovers from bad API answers, so wiping their hand-made fixes with it would
   make one fix undo all the others.
 - **`PROTECTED_WORDS` beats `ignore`.** A mistaken tap must not be able to make the child
-  unhearable when he says "no".
+  unhearable when they say "no".
 
 `exportCorrections()` renders all three kinds, both languages, as JSON for the adult panel.
 localStorage is unreadable from outside that browser, so this text is the only way a

@@ -32,6 +32,7 @@ export default function GameModeToggle({ active, onToggle, lang }) {
         <circle cx="9" cy="10" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
         <circle cx="16" cy="15" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
       </svg>
+      <span className="header-toggle__caption">{{ es: 'Juego', en: 'Game' }[lang]}</span>
     </button>
   );
 }

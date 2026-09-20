@@ -28,43 +28,49 @@ export default function GameMode({
   speechFloorDb,
   showReadout,
   onFix,
+  // The active child's name, from the adult panel. Empty means an unnamed child.
+  childName = '',
 }) {
   const [turn, setTurn] = useState('parent');
   const [held, setHeld] = useState(null); // null | { words }
   const [celebrating, setCelebrating] = useState(false);
 
+  const childHint = {
+    es: childName ? `Turno de ${childName}` : 'Turno del niño',
+    en: childName ? `${childName}'s turn` : "Child's turn",
+  }[lang];
   const labels = {
     es: {
       parentHint: 'Tu turno',
-      noahHint: 'Turno de Noah',
-      hold: 'Guardar: turno de Noah',
+      childHint,
+      hold: `Guardar: ${childHint.charAt(0).toLowerCase()}${childHint.slice(1)}`,
       reset: 'Nueva frase',
       heldRegion: 'Frase guardada',
       liveRegionParent: 'Tu turno, pictogramas',
-      liveRegionNoah: 'Turno de Noah, pictogramas',
+      liveRegionChild: `${childHint}, pictogramas`,
       celebrationAnnounce: 'Coinciden',
     },
     en: {
       parentHint: 'Your turn',
-      noahHint: "Noah's turn",
-      hold: "Hold: Noah's turn",
+      childHint,
+      hold: `Hold: ${childHint}`,
       reset: 'New phrase',
       heldRegion: 'Held phrase',
       liveRegionParent: 'Your turn, pictograms',
-      liveRegionNoah: "Noah's turn, pictograms",
+      liveRegionChild: `${childHint}, pictograms`,
       celebrationAnnounce: 'They match',
     },
   }[lang];
 
   const heldIds = held ? pictogramIdSet(held.words) : new Set();
   const liveIds = pictogramIdSet(words);
-  const sharedIds = turn === 'noah' ? intersectingIds(heldIds, liveIds) : new Set();
+  const sharedIds = turn === 'child' ? intersectingIds(heldIds, liveIds) : new Set();
 
-  // Watches for a full match while Noah is attempting a held phrase. Fires
+  // Watches for a full match while the child is attempting a held phrase. Fires
   // once per newly-completed match, not on every render: the effect only
   // acts when `words` itself changes.
   useEffect(() => {
-    if (turn !== 'noah' || !held) return;
+    if (turn !== 'child' || !held) return;
     if (isFullSetMatch(heldIds, liveIds)) {
       setCelebrating(true);
       vibrateCelebrate();
@@ -78,7 +84,7 @@ export default function GameMode({
   function handleHold() {
     setHeld({ words });
     clear();
-    setTurn('noah');
+    setTurn('child');
   }
 
   function handleReset() {
@@ -97,7 +103,7 @@ export default function GameMode({
         </section>
       ) : null}
 
-      <p className="game-mode__hint">{turn === 'parent' ? labels.parentHint : labels.noahHint}</p>
+      <p className="game-mode__hint">{turn === 'parent' ? labels.parentHint : labels.childHint}</p>
 
       <PictogramStrip
         words={words}

@@ -253,7 +253,7 @@ function samplePage() {
   p { max-width: 40rem; color: #444; }
 </style></head><body>
 <h1>Elige la voz</h1>
-<p>Las dos son masculinas y de español de España. Cada clip dice exactamente lo que oirá él al tocar ese pictograma.</p>
+<p>Las dos son masculinas y de español de España. Cada clip dice exactamente lo que se oirá al tocar ese pictograma.</p>
 <p><strong>cabeza</strong> y <strong>mamá</strong> se separan en sílabas. <strong>quiero</strong> no: es una de las dieciséis palabras donde una sílaba suelta cambiaría de sonido, así que se dice entera y bien. <strong>perro</strong> sí se separa, porque ahí la vibrante fuerte es la correcta.</p>
 <table>${rows}</table>
 <p>Cuando elijas: <code>npm run voices -- --voice=aura-2-&lt;nombre&gt;-es</code></p>

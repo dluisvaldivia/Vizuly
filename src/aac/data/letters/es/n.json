@@ -24,6 +24,17 @@
     { "word": "cono", "syllables": 2, "position": "media" },
     { "word": "tuna", "syllables": 2, "position": "media" },
     { "word": "cuna", "syllables": 2, "position": "media" },
-    { "word": "bono", "syllables": 2, "position": "media" }
+    { "word": "bono", "syllables": 2, "position": "media" },
+    { "word": "naranja", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "nevera", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "conejo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "manzana", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "ventana", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "número", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "mandarina", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "dinosaurio", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "neumático", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "nectarina", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "ornitorrinco", "syllables": 5, "position": "media", "age": 9 }
   ]
 }

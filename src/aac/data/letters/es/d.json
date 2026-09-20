@@ -22,6 +22,17 @@
     { "word": "nudo", "syllables": 2, "position": "media" },
     { "word": "rueda", "syllables": 2, "position": "media" },
     { "word": "nido", "syllables": 2, "position": "media" },
-    { "word": "lodo", "syllables": 2, "position": "media" }
+    { "word": "lodo", "syllables": 2, "position": "media" },
+    { "word": "dinero", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "domingo", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "delantal", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "medusa", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "candado", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "cuaderno", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "dinosaurio", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "ordenador", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "dormitorio", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "calendario", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "escondite", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

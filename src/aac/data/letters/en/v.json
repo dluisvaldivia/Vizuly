@@ -11,6 +11,19 @@
     { "word": "seven", "syllables": 2, "position": "media" },
     { "word": "oven", "syllables": 2, "position": "media" },
     { "word": "river", "syllables": 2, "position": "media" },
-    { "word": "violin", "syllables": 3, "position": "inicial" }
+    { "word": "violin", "syllables": 3, "position": "inicial" },
+    { "word": "vulture", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "valley", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "village", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "vampire", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "olive", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "beaver", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "volcano", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "silver", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "vinegar", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "violet", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "caravan", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "envelope", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "lavender", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

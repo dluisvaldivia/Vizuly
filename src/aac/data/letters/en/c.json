@@ -24,6 +24,21 @@
     { "word": "jacket", "syllables": 2, "position": "media" },
     { "word": "camera", "syllables": 3, "position": "inicial" },
     { "word": "cucumber", "syllables": 3, "position": "inicial" },
-    { "word": "computer", "syllables": 3, "position": "inicial" }
+    { "word": "computer", "syllables": 3, "position": "inicial" },
+    { "word": "cactus", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "cabbage", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "camel", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "candy", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "castle", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "cowboy", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "bacon", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "picnic", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "coconut", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "cardigan", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "carnival", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "pelican", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "octopus", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "broccoli", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "unicorn", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

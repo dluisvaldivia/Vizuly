@@ -30,6 +30,7 @@ export default function LetterCardsToggle({ active, onToggle, lang }) {
         <rect x="4" y="2.5" width="16" height="19" rx="2.5" fill="none" stroke="currentColor" strokeWidth="2" />
         <path d="M8.5 17 12 7l3.5 10M9.8 13.5h4.4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
+      <span className="header-toggle__caption">{{ es: 'Letras', en: 'Letters' }[lang]}</span>
     </button>
   );
 }

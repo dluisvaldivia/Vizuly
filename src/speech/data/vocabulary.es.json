@@ -1,5 +1,5 @@
 {
-  "_comment": "Palabras que npm run voices convierte en audio Aura-2. Una palabra por entrada, nunca dos (el toque resuelve palabras sueltas). Español de España. Añade las que él use de verdad y vuelve a lanzar el script: solo se generan las nuevas.",
+  "_comment": "Palabras que npm run voices convierte en audio Aura-2. Una palabra por entrada, nunca dos (el toque resuelve palabras sueltas). Español de España. Añade las que se usen de verdad y vuelve a lanzar el script: solo se generan las nuevas.",
 
   "esenciales": [
     "sí", "no", "más", "menos", "hola", "adiós", "gracias", "vale",

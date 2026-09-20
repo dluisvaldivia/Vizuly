@@ -1,7 +1,7 @@
 // Child-facing layout.
 //
-// Large targets throughout: assume imprecise motor control. Minimal text: he
-// does not read. See .claude/rules/UI-ACCESSIBILITY.md.
+// Large targets throughout: assume imprecise motor control. Minimal text: the
+// child does not read. See .claude/rules/UI-ACCESSIBILITY.md.
 
 $target-min: 3rem; // Never smaller than this for anything tappable.
 
@@ -88,6 +88,9 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   object-fit: contain;
   background: var(--picto-bg, #fff);
   border-radius: 0.75rem;
+  // A card on the page rather than a picture floating on it.
+  border: 2px solid var(--surface-border);
+  box-shadow: var(--shadow);
 }
 
 .pictogram-strip__placeholder {
@@ -110,6 +113,19 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
 .pictogram-strip__empty {
   color: var(--text-muted);
   margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.pictogram-strip__empty-art {
+  width: 9rem;
+  height: auto;
+  opacity: 0.8;
 }
 
 // Reading mode: a connector joins two words, it is not one of the words.
@@ -226,8 +242,10 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   min-height: $target-min;
   font-size: 1.25rem;
   padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   border: 2px solid var(--input-border, #767676);
+  background: var(--bg-color);
+  color: var(--text-color);
 }
 
 .text-input__submit,
@@ -237,8 +255,30 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   min-width: $target-min;
   padding: 0.5rem 1.25rem;
   font-size: 1.1rem;
-  border-radius: 0.5rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  border: 2px solid var(--surface-border);
+  background: var(--surface);
+  color: var(--text-color);
+  box-shadow: var(--shadow);
   cursor: pointer;
+}
+
+// The one primary action on each screen wears the accent.
+.text-input__submit,
+.game-mode__hold-btn,
+.letter-cards__speak {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+}
+
+.text-input__submit:disabled {
+  background: var(--surface);
+  color: var(--text-muted);
+  border-color: var(--surface-border);
+  box-shadow: none;
+  cursor: default;
 }
 
 // Focus must always be visible, in both themes.
@@ -303,8 +343,11 @@ $meter-width: clamp(1.5rem, 7vw, 2.25rem);
   min-width: clamp(6rem, 30vw, 10rem);
   min-height: clamp(6rem, 30vw, 10rem);
   border-radius: 50%;
-  border: 4px solid var(--mic-border, #595959);
-  background: var(--mic-bg, #f0f0f0);
+  // Resting: the accent, so the primary control reads as the thing to press.
+  // Connecting, listening and error each recolour the ring below.
+  border: 4px solid var(--accent);
+  background: var(--accent-soft);
+  box-shadow: var(--shadow);
   color: var(--text-color);
   font-size: 1.15rem;
   cursor: pointer;
@@ -345,13 +388,19 @@ $meter-width: clamp(1.5rem, 7vw, 2.25rem);
 
 .mic__touch-icon {
   // Above the wave, centred in the circle. Idle only: it says "tap here"
-  // without a word he cannot read.
+  // without a word the child cannot read.
   position: relative;
   z-index: 1;
-  width: 40%;
-  height: 40%;
+  width: 55%;
+  height: 55%;
   object-fit: contain;
   pointer-events: none;
+}
+
+// At rest the primary control is solid accent, so the white hand on it reads
+// at a glance. Every active state goes back to the soft face with its own ring.
+.mic__button--idle {
+  background: var(--accent);
 }
 
 .mic__button--connecting {
@@ -363,7 +412,7 @@ $meter-width: clamp(1.5rem, 7vw, 2.25rem);
 .mic__button--listening {
   border-color: var(--mic-live, #1a7f37);
   // Motion as a third channel alongside colour, so the child can tell at a
-  // glance that the app is hearing him.
+  // glance that the app is hearing them.
   animation: mic-pulse 1.4s ease-in-out infinite;
 }
 
@@ -445,10 +494,10 @@ $meter-width: clamp(1.5rem, 7vw, 2.25rem);
   transform-origin: top;
   transform: scaleY(1);
   // No transition on purpose. A transition here is lag, and this bar has to feel
-  // attached to his voice. The movement is written frame by frame from JS.
+  // attached to the voice. The movement is written frame by frame from JS.
 }
 
-// Where his voice starts counting as speech. A position cue, not a colour cue:
+// Where the voice starts counting as speech. A position cue, not a colour cue:
 // this is what makes "loud enough" readable without relying on the ramp.
 .mic-meter__threshold {
   position: absolute;
@@ -459,7 +508,7 @@ $meter-width: clamp(1.5rem, 7vw, 2.25rem);
 }
 
 // The calibration number. Adult-facing, temporary by design, switched off in
-// settings once the sensitivity has been set against his real voice. Its own
+// settings once the sensitivity has been set against the real voice. Its own
 // line under the row rather than inside the bar, which is far too narrow for it.
 // Tabular figures so the digits do not jitter as the value changes.
 .mic__readout {
@@ -517,73 +566,65 @@ $meter-width: clamp(1.5rem, 7vw, 2.25rem);
   }
 }
 
-// Game mode
+// Header buttons: game, letters, reading, language.
+//
+// One rule for all four so they can never drift apart. An icon over a short
+// caption: the caption is for the adult and for a child who is starting to
+// read, and the icon is what the child learns to aim at. Rounded, raised, plain.
 
-.game-mode-toggle {
-  flex-shrink: 0;
-  width: $target-min;
-  height: $target-min;
-  min-width: $target-min;
-  min-height: $target-min;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--turn-toggle-bg);
-  border: 2px solid var(--turn-toggle-border);
-  color: var(--text-color);
-  cursor: pointer;
-
-  &.is-active {
-    background: var(--turn-toggle-active-bg);
-    border-color: var(--turn-toggle-active-border);
-  }
-}
-
-// Same box as the game-mode toggle, same theme variables, no new ones.
-.output-mode-toggle {
-  flex-shrink: 0;
-  width: $target-min;
-  height: $target-min;
-  min-width: $target-min;
-  min-height: $target-min;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--turn-toggle-bg);
-  border: 2px solid var(--turn-toggle-border);
-  color: var(--text-color);
-  cursor: pointer;
-
-  &.is-active {
-    background: var(--turn-toggle-active-bg);
-    border-color: var(--turn-toggle-active-border);
-  }
-}
-
+.game-mode-toggle,
+.output-mode-toggle,
 .language-toggle {
   flex-shrink: 0;
-  width: $target-min;
-  height: $target-min;
-  min-width: $target-min;
-  min-height: $target-min;
-  padding: 0;
-  border-radius: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  background: var(--turn-toggle-bg);
-  border: 2px solid var(--turn-toggle-border);
+  gap: 0.2rem;
+  min-width: 3.5rem;
+  min-height: $target-min;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.75rem;
+  background: var(--surface);
+  border: 2px solid var(--surface-border);
+  box-shadow: var(--shadow);
+  color: var(--text-color);
   cursor: pointer;
+
+  // Colour plus a visible mark: the caption goes bold and the border thickens.
+  &.is-active {
+    background: var(--turn-toggle-active-bg);
+    border-color: var(--turn-toggle-active-border);
+
+    .header-toggle__caption {
+      font-weight: 800;
+    }
+  }
+}
+
+.header-toggle__caption {
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .language-toggle__flag {
-  width: 100%;
-  height: 100%;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
   object-fit: cover;
   pointer-events: none;
+}
+
+@media (max-width: 30rem) {
+  .app__header {
+    gap: 0.5rem;
+  }
+
+  .app__header-controls {
+    gap: 0.4rem;
+  }
 }
 
 .game-mode {
@@ -612,8 +653,19 @@ $meter-width: clamp(1.5rem, 7vw, 2.25rem);
   min-width: $target-min;
   padding: 0.5rem 1.25rem;
   font-size: 1.1rem;
-  border-radius: 0.5rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  border: 2px solid var(--surface-border);
+  background: var(--surface);
+  color: var(--text-color);
+  box-shadow: var(--shadow);
   cursor: pointer;
+}
+
+.game-mode__hold-btn {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
 }
 
 // Full-viewport, translucent, and pointer-events: none, so it never blocks a
@@ -639,7 +691,7 @@ $meter-width: clamp(1.5rem, 7vw, 2.25rem);
 //
 // The paper cards on screen. One card as big as the viewport allows, with the
 // speak button beside it on the right. Everything tappable is well above
-// $target-min: the arrows and the card are what his hands will be on.
+// $target-min: the arrows and the card are what the child's hands will be on.
 
 $card-side: 4.5rem;
 
@@ -664,7 +716,7 @@ $card-side: 4.5rem;
   width: 100%;
   max-width: 48rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
   gap: 0.75rem;
 }
 
@@ -675,20 +727,23 @@ $card-side: 4.5rem;
   font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.1;
-  border-radius: 0.75rem;
-  background: var(--turn-toggle-bg);
-  border: 2px solid var(--turn-toggle-border);
+  border-radius: 1rem;
+  background: var(--surface);
+  border: 2px solid var(--surface-border);
+  box-shadow: var(--shadow);
   color: var(--text-color);
   cursor: pointer;
 }
 
 .letter-cards__tile--medium {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   white-space: nowrap;
 }
 
 .letter-cards__tile--long {
-  font-size: 1.05rem;
+  font-size: 1rem;
+  line-height: 1.15;
+  padding: 0.5rem 0.25rem;
 }
 
 .letter-cards__bar {
@@ -707,9 +762,10 @@ $card-side: 4.5rem;
   min-height: $target-min;
   padding: 0.25rem 1rem 0.25rem 0.5rem;
   font-size: 1rem;
-  border-radius: 0.5rem;
-  background: var(--turn-toggle-bg);
-  border: 2px solid var(--turn-toggle-border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  border: 2px solid var(--surface-border);
+  box-shadow: var(--shadow);
   color: var(--text-color);
   cursor: pointer;
 }
@@ -784,9 +840,10 @@ $card-side: 4.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--turn-toggle-bg);
-  border: 3px solid var(--turn-toggle-border);
-  color: var(--text-color);
+  background: var(--accent);
+  border: 3px solid var(--accent);
+  color: var(--accent-text);
+  box-shadow: var(--shadow);
   cursor: pointer;
 
   &.is-speaking {
@@ -814,6 +871,47 @@ $card-side: 4.5rem;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   border-radius: 1.25rem;
+  // Horizontal drags reach the swipe handlers; the page still scrolls vertically.
+  touch-action: pan-y;
+  position: relative;
+  // The spring back after a release. While the finger is down there is no
+  // transition, so the card sits under it without lag.
+  transition: transform 0.25s ease;
+
+  &.is-dragging {
+    transition: none;
+  }
+}
+
+// The swipe hints, one per side. Neutral shapes on the app's established
+// tokens: a tick for "I know this one", a circling arrow for "again". No red
+// and no cross anywhere, because a word that comes round again is not a fail.
+.letter-card__hint {
+  position: absolute;
+  top: 50%;
+  width: 4rem;
+  height: 4rem;
+  margin-top: -2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  border: 3px solid var(--turn-toggle-border);
+  background: var(--turn-toggle-bg);
+  color: var(--text-color);
+}
+
+.letter-card__hint--known {
+  right: 1rem;
+  border-color: var(--turn-toggle-active-border);
+  background: var(--turn-toggle-active-bg);
+}
+
+.letter-card__hint--again {
+  left: 1rem;
 }
 
 .letter-card__inner {
@@ -842,6 +940,7 @@ $card-side: 4.5rem;
   border: 3px solid var(--card-border);
   background: var(--picto-bg);
   color: var(--card-text);
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
@@ -965,8 +1064,9 @@ $card-side: 4.5rem;
 }
 
 .adult-panel__group {
-  border: 1px solid var(--input-border, #767676);
-  border-radius: 0.5rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 0.75rem;
+  background: var(--surface);
   padding: 0.75rem;
   margin: 0;
 
@@ -1078,7 +1178,7 @@ button.app__title {
   // A bare wrapper: the pictogram is the control, so the button must add no
   // visible chrome of its own. A tap says the word and a long press opens the
   // fix dialog, and neither needs a border to invite it: the pictogram itself
-  // is the thing he wants to touch, and the ring while speaking is the answer.
+  // is the thing the child wants to touch, and the ring while speaking is the answer.
   padding: 0;
   border: none;
   background: none;
@@ -1312,6 +1412,34 @@ button.app__title {
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 2px solid var(--input-border, #767676);
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+// Adult panel: the children list and the add row.
+.adult-panel__child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.adult-panel__child-age {
+  color: var(--text-muted);
+}
+
+.adult-panel__child-add {
+  margin: 0.75rem 0;
+}
+
+.adult-panel__text {
+  width: 100%;
+  min-height: $target-min;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--input-border);
   background: var(--bg-color);
   color: var(--text-color);
 }

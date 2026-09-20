@@ -26,6 +26,23 @@
     { "word": "risa", "syllables": 2, "position": "media" },
     { "word": "queso", "syllables": 2, "position": "media" },
     { "word": "vaso", "syllables": 2, "position": "media" },
-    { "word": "beso", "syllables": 2, "position": "media" }
+    { "word": "beso", "syllables": 2, "position": "media" },
+    { "word": "sandía", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "sombrero", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "semilla", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "sirena", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "salchicha", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "pescado", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "tesoro", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "castillo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "asiento", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "tostada", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "submarino", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "supermercado", "syllables": 5, "position": "inicial", "age": 9 },
+    { "word": "salvavidas", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "sacapuntas", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "aspiradora", "syllables": 5, "position": "media", "age": 9 },
+    { "word": "escalera", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "ensalada", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

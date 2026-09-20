@@ -12,6 +12,9 @@
     { "word": "niebla", "syllables": 2 },
     { "word": "pueblo", "syllables": 2 },
     { "word": "doble", "syllables": 2 },
-    { "word": "roble", "syllables": 2 }
+    { "word": "roble", "syllables": 2 },
+    { "word": "ombligo", "syllables": 3, "age": 6 },
+    { "word": "tablero", "syllables": 3, "age": 6 },
+    { "word": "biblioteca", "syllables": 4, "age": 9 }
   ]
 }

@@ -18,7 +18,9 @@ Do not build these:
 - Embeddings or vector search
 - Any generative image fallback
 - Sign language
-- User accounts, progress tracking, scoring, timers, streaks
+- User accounts, progress tracking, scoring, timers, streaks. Child profiles and swipe
+  ratings are not this: they are local, unsynced, never shown to the child, and only reorder
+  letter cards. An adult can clear them.
 
 Do not add spaCy or compromise.js. For a closed child vocabulary a curated map beats a full
 NLP library, and it is debuggable by a human at 11pm when a symbol is wrong.
@@ -78,11 +80,11 @@ as automation reaches. These need a human:
 - **A real microphone.** The Deepgram path was verified end to end by feeding real Spanish
   speech (generated via Deepgram TTS) through the app's own `createDeepgramSource`, with the
   browser audio APIs stubbed. It transcribed correctly. What is untested is `getUserMedia`
-  against actual hardware, and how well nova-2 handles this particular child's articulation.
-- **The child himself.** Pictogram choices that look right to an adult may not read to him.
+  against actual hardware, and how well nova-2 handles a particular child's articulation.
+- **The child.** Pictogram choices that look right to an adult may not read to a child.
   Wrong symbols get an entry in `src/aac/data/overrides.*.json`, never a ranking change.
 - **A real tablet.** Touch targets pass the 44px WCAG minimum in a 412px viewport, but
-  "large enough for his hands" is a judgement only you can make.
+  "large enough for a child's hands" is a judgement only you can make.
 - **WAVE.** The audit was done with axe-core (0 violations across 5 states, both themes)
   plus manual keyboard checks. CLAUDE.md specifies WAVE; run it against the deployed URL to
   close that out formally.

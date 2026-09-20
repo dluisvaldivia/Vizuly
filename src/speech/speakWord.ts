@@ -7,8 +7,8 @@
  * Same independence the typed path has from the speech path.
  *
  * The sequence is the whole word, then its syllables: "cabeza, ca-be-za". The
- * whole word comes first because that is the word he is learning; the syllables
- * follow because that is how it is broken down for him on paper.
+ * whole word comes first because that is the word the child is learning; the syllables
+ * follow because that is how it is broken down for them on paper.
  *
  * Never throws. A device with no voices simply stays silent, because a child
  * facing an error message is worse than a child facing quiet.
@@ -47,7 +47,7 @@ export function canSpeak(): boolean {
  * Speaks `word`, then its syllables when there is more than one.
  *
  * Cancels anything already speaking, so tapping three pictograms in a row says
- * the last one he touched rather than queueing all three.
+ * the last one they touched rather than queueing all three.
  *
  * Every utterance is queued synchronously inside the caller's tap handler, and
  * never chained off `onend` or a timer: iOS Safari only allows speech that

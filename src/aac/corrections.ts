@@ -9,7 +9,7 @@
  * Three kinds, because real use produces three different problems:
  *
  *   pin     the word resolved to the wrong symbol, here is the right one.
- *           "noah" -> the biblical ark, when it is the child's own name.
+ *           a child's first name -> an unrelated symbol that shares the spelling.
  *   ignore  the word is a function word this language's stopword list missed.
  *           English "my" resolving to the "mine" pictogram, where Spanish
  *           already strips "mi".

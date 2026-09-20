@@ -9,6 +9,9 @@
     { "word": "glotón", "syllables": 2 },
     { "word": "iglú", "syllables": 2 },
     { "word": "regla", "syllables": 2 },
-    { "word": "siglo", "syllables": 2 }
+    { "word": "siglo", "syllables": 2 },
+    { "word": "iglesia", "syllables": 3, "age": 6 },
+    { "word": "jeroglífico", "syllables": 5, "age": 9 },
+    { "word": "gladiolo", "syllables": 3, "age": 9 }
   ]
 }

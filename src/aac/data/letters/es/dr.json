@@ -12,6 +12,15 @@
     { "word": "piedra", "syllables": 2 },
     { "word": "ladrón", "syllables": 2 },
     { "word": "cuadro", "syllables": 2 },
-    { "word": "vidrio", "syllables": 2 }
+    { "word": "vidrio", "syllables": 2 },
+    { "word": "ladrillo", "syllables": 3, "age": 6 },
+    { "word": "cuadrado", "syllables": 3, "age": 6 },
+    { "word": "almendra", "syllables": 3, "age": 6 },
+    { "word": "cilindro", "syllables": 3, "age": 6 },
+    { "word": "ajedrez", "syllables": 3, "age": 6 },
+    { "word": "golondrina", "syllables": 4, "age": 9 },
+    { "word": "cocodrilo", "syllables": 4, "age": 9 },
+    { "word": "dromedario", "syllables": 4, "age": 9 },
+    { "word": "cuadrícula", "syllables": 4, "age": 9 }
   ]
 }

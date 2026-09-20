@@ -41,6 +41,15 @@ export interface UseVoiceOptions {
   live: boolean;
   /** The words on screen, so their stored clips can be readied. */
   words: ResolvedWord[];
+  /**
+   * Words likely to be tapped soon, such as the rest of an open letter deck.
+   *
+   * Only what is already free is readied for these: a clip saved on this
+   * device, or one shipped with the app. Never a live recording, which costs
+   * budget and belongs to the word actually on screen. Nothing is fetched for
+   * any deck that is not open.
+   */
+  prefetch?: ResolvedWord[];
 }
 
 export interface UseVoiceResult {
@@ -62,7 +71,9 @@ export interface UseVoiceResult {
 /** How long the adult has to read the notice before it leaves on its own. */
 const NOTICE_MS = 5000;
 
-export function useVoice(lang: Lang, { syllables, live, words }: UseVoiceOptions): UseVoiceResult {
+const NONE: ResolvedWord[] = [];
+
+export function useVoice(lang: Lang, { syllables, live, words, prefetch = NONE }: UseVoiceOptions): UseVoiceResult {
   const [notice, setNotice] = useState<VoiceNotice | null>(null);
   const [used, setUsed] = useState(0);
 
@@ -99,7 +110,7 @@ export function useVoice(lang: Lang, { syllables, live, words }: UseVoiceOptions
     [],
   );
 
-  // Everything for the words on screen, readied before he touches anything.
+  // Everything for the words on screen, readied before the child touches anything.
   //
   // Two jobs, in order: read what this device already has out of IndexedDB, and
   // record whatever is still missing. Recording here rather than on the tap is
@@ -109,21 +120,33 @@ export function useVoice(lang: Lang, { syllables, live, words }: UseVoiceOptions
   // The effect keys off the words themselves rather than the array, which is
   // rebuilt on every resolve.
   const wordKeys = useMemo(() => words.map((word) => word.token.normalized).join('|'), [words]);
+  const prefetchKeys = useMemo(() => prefetch.map((word) => word.token.normalized).join('|'), [prefetch]);
   const wordsRef = useRef(wordKeys);
   wordsRef.current = wordKeys;
+  const prefetchRef = useRef(prefetchKeys);
+  prefetchRef.current = prefetchKeys;
+
+  // The language is part of every in-memory key. The strip is not emptied on a
+  // language switch, so without it "no" would replay its Spanish clip under
+  // the English voice.
+  const keyFor = useCallback((word: string, mode: string) => `${lang}.${word}.${mode}`, [lang]);
 
   useEffect(() => {
     let cancelled = false;
 
     const load = async () => {
       const onScreen = wordsRef.current.split('|').filter(Boolean);
+      const ahead = prefetchRef.current.split('|').filter(Boolean);
       const wanted = new Set<string>();
 
-      for (const word of onScreen) {
+      // The words on screen first, then the deck behind them, one at a time,
+      // so readying the deck never delays the card the child is looking at.
+      const queue = [...onScreen.map((word) => ({ word, free: false })), ...ahead.map((word) => ({ word, free: true }))];
+      for (const { word, free } of queue) {
         if (cancelled) return;
 
         const mode = clipModeFor(word, lang, syllables);
-        const key = `${word}.${mode}`;
+        const key = keyFor(word, mode);
         wanted.add(key);
         if (memoryClips.current.has(key)) continue;
 
@@ -134,11 +157,20 @@ export function useVoice(lang: Lang, { syllables, live, words }: UseVoiceOptions
           continue;
         }
 
-        // Shipped with the app: nothing to record, and nothing to hold in
-        // memory either, since the browser caches the file itself.
-        if (staticClipUrl(word, lang, mode)) continue;
+        const shipped = staticClipUrl(word, lang, mode);
+        if (shipped) {
+          // On screen: nothing to do, the browser fetches the file at play
+          // time and caches it. Ahead: fetch that one file now, so the first
+          // tap on the card plays without a round trip. One file, this deck.
+          if (!free) continue;
+          const blob = await fetch(shipped).then((res) => (res.ok ? res.blob() : null)).catch(() => null);
+          if (cancelled) return;
+          if (blob) memoryClips.current.set(key, URL.createObjectURL(blob));
+          continue;
+        }
 
-        if (!live || !canSpend()) continue;
+        // Only the words on screen may cost anything.
+        if (free || !live || !canSpend()) continue;
         // One attempt per word per session. Without this, a failed recording
         // would be retried on every resolve and eat the day's budget.
         if (attempted.current.has(key)) continue;
@@ -163,7 +195,7 @@ export function useVoice(lang: Lang, { syllables, live, words }: UseVoiceOptions
     return () => {
       cancelled = true;
     };
-  }, [wordKeys, lang, syllables, live]);
+  }, [wordKeys, prefetchKeys, lang, syllables, live, keyFor]);
 
   const speak = useCallback(
     (word: ResolvedWord, hooks: { onStart?: () => void; onEnd?: () => void } = {}) => {
@@ -174,7 +206,7 @@ export function useVoice(lang: Lang, { syllables, live, words }: UseVoiceOptions
       const browserVoice = () =>
         speakWord(spoken, normalized, lang, { ...hooks, syllables });
 
-      const stored = memoryClips.current.get(`${normalized}.${mode}`);
+      const stored = memoryClips.current.get(keyFor(normalized, mode));
       if (stored) {
         playClip(stored, { ...hooks, onFail: browserVoice });
         return;
@@ -202,7 +234,7 @@ export function useVoice(lang: Lang, { syllables, live, words }: UseVoiceOptions
 
       // Usually the strip already started this, and the tap simply arrived
       // first. Only record here if nothing has tried yet this session.
-      const key = `${normalized}.${mode}`;
+      const key = keyFor(normalized, mode);
       show('recording', spoken);
       if (attempted.current.has(key)) return;
       attempted.current.add(key);
@@ -214,7 +246,7 @@ export function useVoice(lang: Lang, { syllables, live, words }: UseVoiceOptions
         memoryClips.current.set(key, URL.createObjectURL(blob));
       });
     },
-    [lang, syllables, live, show],
+    [lang, syllables, live, show, keyFor],
   );
 
   const forgetClips = useCallback(() => {

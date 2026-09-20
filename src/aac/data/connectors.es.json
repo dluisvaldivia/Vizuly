@@ -18,7 +18,7 @@
     "que": 11351
   },
 
-  "_comment_articles": "8476 (el/la) and 8477 (los/las) are the CLEAN article pictograms. Do NOT use 6481 or 7029 here: those are pronoun symbols that carry 'sí' among their keywords, and showing the child a 'yes' symbol when he said 'el' is exactly the wrong-symbol failure rule 4 forbids.",
+  "_comment_articles": "8476 (el/la) and 8477 (los/las) are the CLEAN article pictograms. Do NOT use 6481 or 7029 here: those are pronoun symbols that carry 'sí' among their keywords, and showing the child a 'yes' symbol when they said 'el' is exactly the wrong-symbol failure rule 4 forbids.",
 
   "articles": {
     "el": 8476,
@@ -30,7 +30,7 @@
     "al": 11709
   },
 
-  "_comment_clitics": "The least precise tier, and opt-in for that reason. ARASAAC has no dedicated clitic symbols, so these borrow pronoun pictograms: 'me' and 'mi' show the YO symbol, 'te' and 'tu' show TÚ, and 'se'/'le' share 6481. Semantically loose but visually consistent. Safe for 'sí': bestsearch/sí returns 5584, a different pictogram, so enabling this tier does not change what he sees when he says yes.",
+  "_comment_clitics": "The least precise tier, and opt-in for that reason. ARASAAC has no dedicated clitic symbols, so these borrow pronoun pictograms: 'me' and 'mi' show the YO symbol, 'te' and 'tu' show TÚ, and 'se'/'le' share 6481. Semantically loose but visually consistent. Safe for 'sí': bestsearch/sí returns 5584, a different pictogram, so enabling this tier does not change what the child sees when saying yes.",
 
   "clitics": {
     "me": 6632,

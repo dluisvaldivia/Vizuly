@@ -25,6 +25,20 @@
     { "word": "bota", "syllables": 2, "position": "media" },
     { "word": "mata", "syllables": 2, "position": "media" },
     { "word": "pito", "syllables": 2, "position": "media" },
-    { "word": "lote", "syllables": 2, "position": "media" }
+    { "word": "lote", "syllables": 2, "position": "media" },
+    { "word": "tijeras", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "tortuga", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "tostada", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "tetera", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "patata", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "tobillo", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "tenedor", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "guitarra", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "montaña", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "teléfono", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "termómetro", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "helicóptero", "syllables": 5, "position": "media", "age": 9 },
+    { "word": "televisión", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "telescopio", "syllables": 4, "position": "inicial", "age": 9 }
   ]
 }

@@ -26,6 +26,21 @@
     { "word": "mula", "syllables": 2, "position": "media" },
     { "word": "tela", "syllables": 2, "position": "media" },
     { "word": "sala", "syllables": 2, "position": "media" },
-    { "word": "malo", "syllables": 2, "position": "media" }
+    { "word": "malo", "syllables": 2, "position": "media" },
+    { "word": "libreta", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "lechuga", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "lagarto", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "linterna", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "pelota", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "helado", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "maleta", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "paleta", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "chaleco", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "lavadora", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "bailarina", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "calabaza", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "laberinto", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "limonada", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "chocolate", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

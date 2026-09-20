@@ -1,13 +1,14 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { listDecks, cardWords, cardLetter, useWordCards } from '../../aac/useAac.ts';
+import { listDecks, cardWords, cardLetter, orderByScore, useWordCards } from '../../aac/useAac.ts';
 import LetterCard from './LetterCard.jsx';
 
 /**
- * Where a deck opens. Spanish starts at two syllables, where he is now. English
- * starts at one, because its first words are one syllable (cat, dog, sun).
+ * Where a deck opens, by age band. Spanish starts at two syllables, where most
+ * children start, and grows a syllable per band. English starts at one, because
+ * its first words are one syllable (cat, dog, sun).
  */
-const DEFAULT_SYLLABLES = { es: 2, en: 1 };
+const DEFAULT_SYLLABLES = { es: { 3: 2, 6: 3, 9: 4 }, en: { 3: 1, 6: 2, 9: 3 } };
 
 /**
  * Letter cards, the family's paper cards on screen.
@@ -17,18 +18,26 @@ const DEFAULT_SYLLABLES = { es: 2, en: 1 };
  * only once it is turned does a button appear beside it to say the word.
  *
  * No score, no end, no wrong answer: the arrows wrap around, and the only state
- * is which card is showing and which way up it is.
+ * is which card is showing and which way up it is. A swipe rates the card and
+ * moves on; the rating only decides how soon the word comes round again.
+ *
+ * `age` is the active child's band and `scores` their ratings so far.
  */
-export default function LetterCards({ lang, revision, onFix, onSpeak, onCardChange }) {
+export default function LetterCards({ lang, age, scores, onRate, revision, onFix, onSpeak, onCardChange, onDeckChange }) {
   const decks = listDecks(lang);
   const [deckId, setDeckId] = useState(null);
-  const [syllables, setSyllables] = useState(DEFAULT_SYLLABLES[lang]);
+  const [syllables, setSyllables] = useState(DEFAULT_SYLLABLES[lang][age]);
   const [position, setPosition] = useState(undefined);
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [speaking, setSpeaking] = useState(false);
+  /** What the last swipe meant, for the live region. Cleared on the next card. */
+  const [lastAction, setLastAction] = useState('');
 
   const deck = decks.find((d) => d.id === deckId) ?? null;
+  // The words this child is old enough for. Everything below filters this,
+  // never the raw deck, so a chip never leads to an empty list.
+  const forAge = useMemo(() => (deck ? cardWords(deck, { age }) : []), [deck, age]);
 
   const labels = {
     es: {
@@ -47,6 +56,8 @@ export default function LetterCards({ lang, revision, onFix, onSpeak, onCardChan
       empty: 'No hay cartas con este filtro',
       of: 'de',
       deck: 'Letra',
+      known: 'La sé',
+      again: 'Otra vez',
     },
     en: {
       pick: 'Choose a letter',
@@ -65,20 +76,30 @@ export default function LetterCards({ lang, revision, onFix, onSpeak, onCardChan
       empty: 'No cards with this filter',
       of: 'of',
       deck: 'Letter',
+      known: 'Got it',
+      again: 'Again',
     },
   }[lang];
 
   const syllableOptions = useMemo(
-    () => (deck ? [...new Set(deck.words.map((w) => w.syllables))].sort((a, b) => a - b) : []),
-    [deck],
+    () => [...new Set(forAge.map((w) => w.syllables))].sort((a, b) => a - b),
+    [forAge],
   );
   // Only worth a filter when the deck has both: an English blend deck is all
   // "at the start", and one of the chips would always show an empty deck.
-  const hasPositions = deck ? new Set(deck.words.map((w) => w.position).filter(Boolean)).size > 1 : false;
+  const hasPositions = new Set(forAge.map((w) => w.position).filter(Boolean)).size > 1;
 
+  // The ratings are read through a ref on purpose: the order is drawn once when
+  // the deck or a filter changes and then stays put, so a swipe never reshuffles
+  // the cards under the child and the arrows stay predictable.
+  const scoresRef = useRef(scores);
+  scoresRef.current = scores;
   const entries = useMemo(
-    () => (deck ? cardWords(deck, { syllables, position }) : []),
-    [deck, syllables, position],
+    () =>
+      deck
+        ? orderByScore(cardWords(deck, { syllables, position, age }), (w) => scoresRef.current[`${lang}.${w.word}`] ?? 0)
+        : [],
+    [deck, syllables, position, age, lang],
   );
   const { cards } = useWordCards(
     entries.map((e) => e.word),
@@ -99,11 +120,19 @@ export default function LetterCards({ lang, revision, onFix, onSpeak, onCardChan
   }, [card, onCardChange]);
   useEffect(() => () => onCardChange(null), [onCardChange]);
 
+  // The rest of the open deck, so the voice can ready what is already free
+  // for it in the background. Only this deck, only while it is open.
+  useEffect(() => {
+    onDeckChange(cards);
+  }, [cards, onDeckChange]);
+  useEffect(() => () => onDeckChange(null), [onDeckChange]);
+
   function chooseDeck(id) {
     const chosen = decks.find((d) => d.id === id);
-    const counts = new Set(chosen.words.map((w) => w.syllables));
+    const counts = new Set(cardWords(chosen, { age }).map((w) => w.syllables));
+    const preferred = DEFAULT_SYLLABLES[lang][age];
     setDeckId(id);
-    setSyllables(counts.has(DEFAULT_SYLLABLES[lang]) ? DEFAULT_SYLLABLES[lang] : undefined);
+    setSyllables(counts.has(preferred) ? preferred : undefined);
     setPosition(undefined);
     setIndex(0);
     setFlipped(false);
@@ -113,6 +142,15 @@ export default function LetterCards({ lang, revision, onFix, onSpeak, onCardChan
     if (entries.length === 0) return;
     setIndex((safeIndex + step + entries.length) % entries.length);
     setFlipped(false);
+    setLastAction('');
+  }
+
+  /** A swipe: record it for this child, say what it meant, move on. */
+  function rate(delta) {
+    if (!entry) return;
+    onRate(entry.word, delta);
+    go(1);
+    setLastAction(delta > 0 ? labels.known : labels.again);
   }
 
   function filter(setter, value) {
@@ -211,6 +249,7 @@ export default function LetterCards({ lang, revision, onFix, onSpeak, onCardChan
               flipped={flipped}
               onFlip={() => setFlipped((f) => !f)}
               onFix={onFix}
+              onSwipe={rate}
               lang={lang}
             />
             <span className="letter-cards__side">
@@ -233,7 +272,7 @@ export default function LetterCards({ lang, revision, onFix, onSpeak, onCardChan
           </div>
 
           <p className="visually-hidden" aria-live="polite">
-            {flipped ? [letter, entry.word].filter(Boolean).join(', ') : ''}
+            {[lastAction, flipped ? [letter, entry.word].filter(Boolean).join(', ') : ''].filter(Boolean).join('. ')}
           </p>
 
           <div className="letter-cards__nav">

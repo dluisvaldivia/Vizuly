@@ -36,7 +36,7 @@ describe.each(LANGS)('connector table invariants (%s)', (lang) => {
   });
 
   /**
-   * PROTECTED_WORDS is what keeps the child hearable when he says "no" or "sí".
+   * PROTECTED_WORDS is what keeps the child hearable when they say "no" or "sí".
    * A protected word in this table could never actually be reached, because
    * isStopword returns false for it first, so it would be a silently dead entry
    * that looks meaningful. Fail loudly instead.

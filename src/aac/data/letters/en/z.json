@@ -9,6 +9,11 @@
     { "word": "zip", "syllables": 1, "position": "inicial" },
     { "word": "zero", "syllables": 2, "position": "inicial" },
     { "word": "zebra", "syllables": 2, "position": "inicial" },
-    { "word": "lizard", "syllables": 2, "position": "media" }
+    { "word": "lizard", "syllables": 2, "position": "media" },
+    { "word": "zipper", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "puzzle", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pizza", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "magazine", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "razor", "syllables": 2, "position": "media", "age": 6 }
   ]
 }

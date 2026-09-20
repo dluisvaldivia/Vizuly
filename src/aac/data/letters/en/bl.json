@@ -7,6 +7,8 @@
   "words": [
     { "word": "black", "syllables": 1, "position": "inicial" },
     { "word": "blue", "syllables": 1, "position": "inicial" },
-    { "word": "blanket", "syllables": 2, "position": "inicial" }
+    { "word": "blanket", "syllables": 2, "position": "inicial" },
+    { "word": "blender", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "blueberry", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

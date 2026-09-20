@@ -6,6 +6,8 @@
   ],
   "words": [
     { "word": "frog", "syllables": 1, "position": "inicial" },
-    { "word": "fruit", "syllables": 1, "position": "inicial" }
+    { "word": "fruit", "syllables": 1, "position": "inicial" },
+    { "word": "freckles", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "frisbee", "syllables": 2, "position": "inicial", "age": 6 }
   ]
 }

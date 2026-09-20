@@ -11,6 +11,15 @@
     { "word": "prisa", "syllables": 2 },
     { "word": "premio", "syllables": 2 },
     { "word": "compra", "syllables": 2 },
-    { "word": "propio", "syllables": 2 }
+    { "word": "propio", "syllables": 2 },
+    { "word": "princesa", "syllables": 3, "age": 6 },
+    { "word": "profesor", "syllables": 3, "age": 6 },
+    { "word": "príncipe", "syllables": 3, "age": 6 },
+    { "word": "sorpresa", "syllables": 3, "age": 6 },
+    { "word": "primavera", "syllables": 4, "age": 9 },
+    { "word": "profesora", "syllables": 4, "age": 9 },
+    { "word": "presidente", "syllables": 4, "age": 9 },
+    { "word": "impresora", "syllables": 4, "age": 9 },
+    { "word": "prismáticos", "syllables": 4, "age": 9 }
   ]
 }

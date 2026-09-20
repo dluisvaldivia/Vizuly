@@ -8,6 +8,10 @@
     { "word": "clock", "syllables": 1, "position": "inicial" },
     { "word": "cloud", "syllables": 1, "position": "inicial" },
     { "word": "clown", "syllables": 1, "position": "inicial" },
-    { "word": "claw", "syllables": 1, "position": "inicial" }
+    { "word": "claw", "syllables": 1, "position": "inicial" },
+    { "word": "clover", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "closet", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "classroom", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "clarinet", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

@@ -9,7 +9,7 @@ import { useEffect, useRef } from 'react';
  * spawning at the rim and shrinking to the middle read as "it is taking what I
  * say", where outward rings would read as the button emitting something.
  *
- * Why canvas and not CSS: the amplitude has to follow his actual voice frame by
+ * Why canvas and not CSS: the amplitude has to follow the actual voice frame by
  * frame. Driving that through React state would re-render the pictogram strip
  * on every audio frame; driving it through CSS variables would still cross the
  * React boundary. This reads the level ref inside its own animation frame and
@@ -74,7 +74,7 @@ export default function MicWave({ levelRef, active }) {
 
       const target = active ? Math.min(1, levelRef.current * 2.2) : 0;
 
-      // Rise fast, fall slow. Fast attack so the wave answers the instant he
+      // Rise fast, fall slow. Fast attack so the wave answers the instant the child
       // makes a sound, which is the entire point of the indicator; slow release
       // so it does not collapse to nothing in the gaps between syllables.
       const current = smoothedRef.current;
@@ -98,7 +98,7 @@ export default function MicWave({ levelRef, active }) {
       }
 
       // A resting breath so the button never looks dead while listening, plus
-      // his voice on top of it.
+      // the voice on top of it.
       const amplitude = (active ? 0.18 : 0) + level * 0.82;
 
       const RING_COUNT = 4;

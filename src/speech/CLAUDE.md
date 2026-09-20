@@ -30,8 +30,8 @@ voice and half in another.
 
 Recording starts when the word **appears in the strip**, not when it is tapped. Aura takes
 between 0.8 and 2 seconds to answer, measured, which is far too long to leave a child waiting
-after a tap. A strip sits on screen longer than that before he reaches it, so the first tap
-usually already has the recording. If he beats it, the browser voice speaks immediately and
+after a tap. A strip sits on screen longer than that before the child reaches it, so the first tap
+usually already has the recording. If the tap beats it, the browser voice speaks immediately and
 the recording is ready for the next tap. He never waits for the network.
 
 One attempt per word per session, tracked in `attempted`. Without that, a recording that fails
@@ -107,11 +107,11 @@ of the plain browser voice.
 
 ## The mic stops itself after 2.5 s of silence
 
-He does not press stop. Once he has started talking, `AUTO_STOP_SILENCE_MS` of frames
+The child does not press stop. Once they have started talking, `AUTO_STOP_SILENCE_MS` of frames
 below `VOICE_LEVEL_THRESHOLD` closes the session through the same `CloseStream` flush a
-button press uses, so his last words still land. The timer is armed only by a frame that
-carries his voice, so it stays dormant until he speaks, and a pause between words shorter
-than the window just resets it. Tuned against him directly: he speaks one word at a time
+button press uses, so the last words still land. The timer is armed only by a frame that
+carries the voice, so it stays dormant until the child speaks, and a pause between words shorter
+than the window just resets it. Tuned against a real child: they speak one word at a time
 with long gaps, which is why the window is longer than an adult would need.
 
 This is separate from Deepgram's `endpointing` / `utterance_end_ms`, which decide where one
@@ -130,20 +130,20 @@ percent of the bar. Both are fixed by measuring `rmsLevel` and reporting `toDbfs
 `peakLevel` stays exactly as it was, for `onLevel` and the wave inside the button. That one
 *wants* to jump on a single shouted syllable. Do not merge the two.
 
-There is one tunable, the **speech floor** in dBFS: the level at which his voice counts.
+There is one tunable, the **speech floor** in dBFS: the level at which the voice counts.
 It is the adult panel's sensitivity slider, persisted by `micSensitivityController.js`, and
 it is handed to `start()` per session. Two things read it:
 
 - the meter turns green exactly there, and
 - the auto-stop's voice-activity floor sits `AUTO_STOP_MARGIN_DB` **below** it.
 
-That ordering is load bearing. It is what makes it impossible for the microphone to decide he
-has stopped talking while the bar is still telling him he is loud enough.
+That ordering is load bearing. It is what makes it impossible for the microphone to decide the child
+has stopped talking while the bar is still telling them they are loud enough.
 
 Reference points, for when these need re-tuning: room tone with noise suppression sits near
 -50 dBFS, soft speech near -33, an ordinary speaking voice near -24. The defaults are informed
 starting points, not measurements. The dB readout beside the meter exists to replace them with
-his real numbers, and can be switched off once that is done.
+the real numbers, and can be switched off once that is done.
 
 ## Automatic gain control is an adult switch, off by default
 
@@ -158,7 +158,7 @@ every `getUserMedia` call including the fallbacks. It comes from `micGainControl
 through `useSpeech` to `start()`, and is read at `start()` like the floor and the device.
 
 Off by default so the level holds still for calibration. On stays available because the
-boost may be what gets a very soft word of his through to Deepgram, and only his real voice
+boost may be what gets a very soft word through to Deepgram, and only the real voice
 can settle that. **A speech floor measured with one setting is not valid for the other.**
 
 ## Firefox opens the default mic when permission is remembered

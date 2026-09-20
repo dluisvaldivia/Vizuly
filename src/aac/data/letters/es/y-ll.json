@@ -25,6 +25,20 @@
     { "word": "joya", "syllables": 2, "position": "media" },
     { "word": "sello", "syllables": 2, "position": "media" },
     { "word": "gallo", "syllables": 2, "position": "media" },
-    { "word": "pillo", "syllables": 2, "position": "media" }
+    { "word": "pillo", "syllables": 2, "position": "media" },
+    { "word": "llavero", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "bombilla", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "cuchillo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "camello", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "castillo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "gallina", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "tortilla", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "desayuno", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "payaso", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "mayonesa", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "bocadillo", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "mantequilla", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "caballito", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "zapatilla", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

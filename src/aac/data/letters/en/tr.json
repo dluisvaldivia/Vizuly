@@ -9,6 +9,12 @@
     { "word": "train", "syllables": 1, "position": "inicial" },
     { "word": "truck", "syllables": 1, "position": "inicial" },
     { "word": "tractor", "syllables": 2, "position": "inicial" },
-    { "word": "triangle", "syllables": 3, "position": "inicial" }
+    { "word": "triangle", "syllables": 3, "position": "inicial" },
+    { "word": "trumpet", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "trophy", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "trousers", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "trolley", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "trampoline", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "tricycle", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

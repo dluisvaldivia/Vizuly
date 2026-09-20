@@ -196,7 +196,7 @@ describe('session lifecycle', () => {
 
   it('still delivers the flushed final of the session being stopped', async () => {
     // The other half of the same rule: CloseStream exists precisely so the last
-    // thing he said arrives after he pressed stop.
+    // thing said arrives after stop was pressed.
     const source = createDeepgramSource('key');
 
     const callbacks = makeCallbacks();
@@ -379,7 +379,7 @@ describe('microphone choice', () => {
     expect(getUserMedia.mock.calls[0][0].audio).not.toHaveProperty('deviceId');
   });
 
-  // Left out, browsers switch gain control on, and the meter jumps on his first
+  // Left out, browsers switch gain control on, and the meter jumps on the first
   // word. So it is always sent, and off unless the adult asked for it.
   it('turns automatic gain control off unless asked', async () => {
     const source = createDeepgramSource('key');

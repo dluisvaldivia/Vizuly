@@ -23,8 +23,8 @@ export type { Lang, OutputMode, ReadingTier, ResolvedWord } from './types';
 export type { Correction, CorrectionEntry } from './corrections';
 export { pictogramImageUrl, searchCandidates } from './arasaac';
 export { exportCorrections } from './corrections';
-export { listDecks, cardWords, cardLetter } from './letterDecks';
-export type { LetterDeck, DeckWord, CardPosition } from './letterDecks';
+export { listDecks, cardWords, cardLetter, orderByScore } from './letterDecks';
+export type { LetterDeck, DeckWord, CardPosition, AgeBand } from './letterDecks';
 export { useWordCards } from './useWordCards';
 
 export interface UseAacResult {
@@ -91,7 +91,7 @@ export function useAac(lang: Lang, options: UseAacOptions = {}): UseAacResult {
   /**
    * Guards against a slow earlier request overwriting a newer strip. The child
    * may say something new before the previous lookup finishes, and the last
-   * thing he said is always the thing to show.
+   * thing the child said is always the thing to show.
    */
   const requestRef = useRef(0);
   const abortRef = useRef<AbortController | null>(null);

@@ -2,16 +2,16 @@
  * Persisted switch for the browser's automatic gain control on the microphone.
  *
  * With it on, the browser turns the mic up while the room is quiet and back down
- * once he speaks. The first word therefore arrives much louder than he said it,
- * and the meter shoots up before settling to his real level, which makes a quiet
- * voice look loud enough when it is not. With it off, the meter shows his real
+ * once the child speaks. The first word therefore arrives much louder than it was said,
+ * and the meter shoots up before settling to the real level, which makes a quiet
+ * voice look loud enough when it is not. With it off, the meter shows the real
  * level from the first syllable and the sensitivity means the same thing every
  * time.
  *
  * Off by default because the app is being calibrated now, and calibration needs
  * a level that holds still. On is kept as a choice because the boost may be what
- * gets a very soft word of his through to Deepgram, and that can only be judged
- * against his actual voice. A sensitivity set with one of these is not valid for
+ * gets a very soft word through to Deepgram, and that can only be judged
+ * against the actual voice. A sensitivity set with one of these is not valid for
  * the other.
  *
  * Same localStorage pattern as levelReadoutController.js.

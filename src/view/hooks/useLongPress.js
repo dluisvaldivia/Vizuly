@@ -4,7 +4,7 @@ import { useCallback, useRef } from 'react';
  * A deliberate long press, for adult-only controls.
  *
  * The child must not be able to reach settings by exploring, and exploring is
- * exactly what he will do. A long press is hard to trigger by accident but easy
+ * exactly what children do. A long press is hard to trigger by accident but easy
  * for an adult who knows it is there.
  *
  * Keyboard users get the same affordance through onKeyDown, since a long press
@@ -16,17 +16,13 @@ import { useCallback, useRef } from 'react';
  * Keeping both in the same handler makes that structural instead of a rule
  * every caller has to remember.
  */
-export function useLongPress(onLongPress, { durationMs = 1200, onTap } = {}) {
+export function useLongPress(onLongPress, { durationMs = 1200, onTap, moveThresholdPx = 8 } = {}) {
   const timer = useRef(null);
   const triggered = useRef(false);
-
-  const start = useCallback(() => {
-    triggered.current = false;
-    timer.current = setTimeout(() => {
-      triggered.current = true;
-      onLongPress();
-    }, durationMs);
-  }, [onLongPress, durationMs]);
+  // Where the press started and whether it has moved past the threshold. A
+  // drag is neither a deliberate long press nor a tap, so both are suppressed.
+  const origin = useRef(null);
+  const moved = useRef(false);
 
   const cancel = useCallback(() => {
     if (timer.current !== null) {
@@ -35,14 +31,40 @@ export function useLongPress(onLongPress, { durationMs = 1200, onTap } = {}) {
     }
   }, []);
 
+  const start = useCallback(
+    (event) => {
+      triggered.current = false;
+      moved.current = false;
+      origin.current = { x: event.clientX, y: event.clientY };
+      cancel();
+      timer.current = setTimeout(() => {
+        triggered.current = true;
+        onLongPress();
+      }, durationMs);
+    },
+    [onLongPress, durationMs, cancel],
+  );
+
+  const onPointerMove = useCallback(
+    (event) => {
+      if (moved.current || !origin.current) return;
+      if (Math.hypot(event.clientX - origin.current.x, event.clientY - origin.current.y) > moveThresholdPx) {
+        moved.current = true;
+        cancel();
+      }
+    },
+    [moveThresholdPx, cancel],
+  );
+
   // Suppress the click that follows a completed long press, so the control does
   // not also fire its ordinary action. Anything left is a genuine short tap.
   const onClick = useCallback(
     (event) => {
-      if (triggered.current) {
+      if (triggered.current || moved.current) {
         event.preventDefault();
         event.stopPropagation();
         triggered.current = false;
+        moved.current = false;
         return;
       }
       onTap?.();
@@ -52,6 +74,7 @@ export function useLongPress(onLongPress, { durationMs = 1200, onTap } = {}) {
 
   return {
     onPointerDown: start,
+    onPointerMove,
     onPointerUp: cancel,
     onPointerLeave: cancel,
     onPointerCancel: cancel,

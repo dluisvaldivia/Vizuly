@@ -30,6 +30,25 @@
     { "word": "poco", "syllables": 2, "position": "media" },
     { "word": "moco", "syllables": 2, "position": "media" },
     { "word": "pico", "syllables": 2, "position": "media" },
-    { "word": "saca", "syllables": 2, "position": "media" }
+    { "word": "saca", "syllables": 2, "position": "media" },
+    { "word": "cocina", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "camisa", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "conejo", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "camino", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "caballo", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "cometa", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "cabeza", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "mochila", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "escoba", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "calabaza", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "cocodrilo", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "pescado", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "calendario", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "cucaracha", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "bicicleta", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "caracol", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "camaleón", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "helicóptero", "syllables": 5, "position": "media", "age": 9 },
+    { "word": "murciélago", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

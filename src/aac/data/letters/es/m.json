@@ -25,6 +25,22 @@
     { "word": "rama", "syllables": 2, "position": "media" },
     { "word": "ramo", "syllables": 2, "position": "media" },
     { "word": "amo", "syllables": 2, "position": "media" },
-    { "word": "tomate", "syllables": 3, "position": "media" }
+    { "word": "tomate", "syllables": 3, "position": "media" },
+    { "word": "maleta", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "manzana", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "muñeca", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "medusa", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "montaña", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "camisa", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "cometa", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "camino", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "murciélago", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "mandarina", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "mariposa", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "mermelada", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "melocotón", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "semáforo", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "camaleón", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "termómetro", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

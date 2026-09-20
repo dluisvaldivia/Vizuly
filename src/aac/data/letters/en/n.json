@@ -17,6 +17,20 @@
     { "word": "fan", "syllables": 1, "position": "media" },
     { "word": "needle", "syllables": 2, "position": "inicial" },
     { "word": "panda", "syllables": 2, "position": "media" },
-    { "word": "banana", "syllables": 3, "position": "media" }
+    { "word": "banana", "syllables": 3, "position": "media" },
+    { "word": "necklace", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "candy", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "number", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "tennis", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "peanut", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "donkey", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "window", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "dinosaur", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "newspaper", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "nectarine", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "cinnamon", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "kangaroo", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "unicorn", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "pineapple", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

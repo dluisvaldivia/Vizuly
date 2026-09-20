@@ -34,9 +34,9 @@ export interface SpeechCallbacks {
   /**
    * Microphone loudness, 0 to 1, emitted continuously while capturing.
    *
-   * Exists so the child can see the app reacting to his voice in real time,
+   * Exists so the child can see the app reacting to their voice in real time,
    * rather than waiting for a transcript. Deliberately a raw level and not a
-   * word: it responds to any sound he makes, including ones Deepgram will
+   * word: it responds to any sound the child makes, including ones Deepgram will
    * never turn into text. Optional because a source may not produce audio
    * levels at all.
    */
@@ -62,7 +62,7 @@ export interface SpeechStartOptions {
    *
    * Set by the adult in settings and passed down per session. The source keeps
    * its own voice-activity floor a fixed margin below this, so the microphone
-   * can never decide he has stopped talking while the meter still says he is
+   * can never decide the child has stopped talking while the meter still says they are
    * loud enough.
    */
   speechFloorDb?: number;
@@ -105,7 +105,7 @@ export interface SpeechSource {
    * Pull, where `onLevel` is push, and it exists because the two answer
    * different questions. `onLevel` fires whenever the implementation happens to
    * hand audio on, which is far too coarse to draw a smooth meter from. This can
-   * be polled once per animation frame for a bar that tracks his voice fluidly.
+   * be polled once per animation frame for a bar that tracks the voice fluidly.
    *
    * Optional: a source that cannot measure loudness simply omits it.
    */

@@ -18,6 +18,26 @@
     { "word": "kitten", "syllables": 2, "position": "media" },
     { "word": "button", "syllables": 2, "position": "media" },
     { "word": "tomato", "syllables": 3, "position": "inicial" },
-    { "word": "telephone", "syllables": 3, "position": "inicial" }
+    { "word": "telephone", "syllables": 3, "position": "inicial" },
+    { "word": "teapot", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "taxi", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "toothbrush", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "turkey", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "toaster", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "tunnel", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "mitten", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "water", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "guitar", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "bottle", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "letter", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "butter", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "tornado", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "carrot", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "tambourine", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "computer", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "telescope", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "potato", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "butterfly", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "waterfall", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

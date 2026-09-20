@@ -22,6 +22,17 @@
     { "word": "pocket", "syllables": 2, "position": "media" },
     { "word": "donkey", "syllables": 2, "position": "media" },
     { "word": "kangaroo", "syllables": 3, "position": "inicial" },
-    { "word": "koala", "syllables": 3, "position": "inicial" }
+    { "word": "koala", "syllables": 3, "position": "inicial" },
+    { "word": "kettle", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "ketchup", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "kiwi", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "pumpkin", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "cookie", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "necklace", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "chicken", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "bucket", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "sticker", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "kilogram", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "lumberjack", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

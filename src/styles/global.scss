@@ -2,7 +2,40 @@
 @import "./themes";
 @import "./aac";
 
+// The reset. Only what the app relied on, nothing more.
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, p, ul, ol, fieldset {
+    margin-top: 0;
+}
+
+fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+button, input, select, textarea {
+    margin: 0;
+    font: inherit;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
 body {
+    margin: 0;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    // System fonts only: a rounded face where the platform has one, no download.
+    font-family: ui-rounded, "SF Pro Rounded", "Nunito", "Varela Round", "Segoe UI", Roboto, system-ui, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background 0.3s, color 0.3s;

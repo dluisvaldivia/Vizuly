@@ -20,6 +20,17 @@
     { "word": "pocket", "syllables": 2, "position": "media" },
     { "word": "rocket", "syllables": 2, "position": "media" },
     { "word": "octopus", "syllables": 3, "position": "inicial" },
-    { "word": "hospital", "syllables": 3, "position": "media" }
+    { "word": "hospital", "syllables": 3, "position": "media" },
+    { "word": "olive", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "ostrich", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "office", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "hockey", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "lobster", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "dolphin", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "coffee", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "lollipop", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "broccoli", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "crocodile", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "dominoes", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

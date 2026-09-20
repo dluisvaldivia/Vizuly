@@ -10,8 +10,10 @@ import englishFlag from '../../assets/english.png';
  */
 export default function LanguageToggle({ lang, onChange }) {
   const labels = {
-    es: { switchTo: 'Switch to English', current: 'Español' },
-    en: { switchTo: 'Cambiar a español', current: 'English' },
+    // The name is in the language being switched TO, on purpose: it is the
+    // one the adult who needs it can read. The caption is in the current one.
+    es: { switchTo: 'Idioma: switch to English', caption: 'Idioma' },
+    en: { switchTo: 'Language: cambiar a español', caption: 'Language' },
   }[lang];
 
   const next = lang === 'es' ? 'en' : 'es';
@@ -26,6 +28,7 @@ export default function LanguageToggle({ lang, onChange }) {
       title={labels.switchTo}
     >
       <img src={icon} alt="" className="language-toggle__flag" draggable="false" />
+      <span className="header-toggle__caption">{labels.caption}</span>
     </button>
   );
 }

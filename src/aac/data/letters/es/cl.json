@@ -11,6 +11,12 @@
     { "word": "tecla", "syllables": 2 },
     { "word": "chicle", "syllables": 2 },
     { "word": "ciclo", "syllables": 2 },
-    { "word": "ancla", "syllables": 2 }
+    { "word": "ancla", "syllables": 2 },
+    { "word": "teclado", "syllables": 3, "age": 6 },
+    { "word": "eclipse", "syllables": 3, "age": 6 },
+    { "word": "clínica", "syllables": 3, "age": 6 },
+    { "word": "chancleta", "syllables": 3, "age": 6 },
+    { "word": "bicicleta", "syllables": 4, "age": 9 },
+    { "word": "clarinete", "syllables": 4, "age": 9 }
   ]
 }

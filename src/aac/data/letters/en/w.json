@@ -11,6 +11,15 @@
     { "word": "worm", "syllables": 1, "position": "inicial" },
     { "word": "wing", "syllables": 1, "position": "inicial" },
     { "word": "wolf", "syllables": 1, "position": "inicial" },
-    { "word": "window", "syllables": 2, "position": "inicial" }
+    { "word": "window", "syllables": 2, "position": "inicial" },
+    { "word": "water", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "walrus", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "wallet", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "walnut", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "wizard", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "winter", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "waterfall", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "wheelbarrow", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "wallaby", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

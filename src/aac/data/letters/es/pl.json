@@ -12,6 +12,14 @@
     { "word": "plancha", "syllables": 2 },
     { "word": "cumple", "syllables": 2 },
     { "word": "soplo", "syllables": 2 },
-    { "word": "simple", "syllables": 2 }
+    { "word": "simple", "syllables": 2 },
+    { "word": "planeta", "syllables": 3, "age": 6 },
+    { "word": "plátano", "syllables": 3, "age": 6 },
+    { "word": "plumero", "syllables": 3, "age": 6 },
+    { "word": "diploma", "syllables": 3, "age": 6 },
+    { "word": "cumpleaños", "syllables": 4, "age": 9 },
+    { "word": "platillo", "syllables": 3, "age": 6 },
+    { "word": "plastilina", "syllables": 4, "age": 9 },
+    { "word": "planetario", "syllables": 4, "age": 9 }
   ]
 }

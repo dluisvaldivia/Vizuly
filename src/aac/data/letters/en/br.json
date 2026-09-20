@@ -10,6 +10,9 @@
     { "word": "bridge", "syllables": 1, "position": "inicial" },
     { "word": "broom", "syllables": 1, "position": "inicial" },
     { "word": "brother", "syllables": 2, "position": "inicial" },
-    { "word": "broccoli", "syllables": 3, "position": "inicial" }
+    { "word": "broccoli", "syllables": 3, "position": "inicial" },
+    { "word": "bracelet", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "brownie", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "breakfast", "syllables": 2, "position": "inicial", "age": 6 }
   ]
 }

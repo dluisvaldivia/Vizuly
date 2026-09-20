@@ -8,6 +8,10 @@
     { "word": "plate", "syllables": 1, "position": "inicial" },
     { "word": "plane", "syllables": 1, "position": "inicial" },
     { "word": "plant", "syllables": 1, "position": "inicial" },
-    { "word": "plum", "syllables": 1, "position": "inicial" }
+    { "word": "plum", "syllables": 1, "position": "inicial" },
+    { "word": "planet", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "plumber", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "playground", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "platypus", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

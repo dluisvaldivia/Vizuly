@@ -18,6 +18,18 @@
     { "word": "guitar", "syllables": 2, "position": "inicial" },
     { "word": "tiger", "syllables": 2, "position": "media" },
     { "word": "dragon", "syllables": 2, "position": "media" },
-    { "word": "gorilla", "syllables": 3, "position": "inicial" }
+    { "word": "gorilla", "syllables": 3, "position": "inicial" },
+    { "word": "goblin", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "garlic", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "sugar", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "finger", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "penguin", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "gardener", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "yogurt", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "gasoline", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "kangaroo", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "spaghetti", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "hamburger", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "magazine", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

@@ -11,6 +11,9 @@
     { "word": "jump", "syllables": 1, "position": "inicial" },
     { "word": "jacket", "syllables": 2, "position": "inicial" },
     { "word": "jellyfish", "syllables": 3, "position": "inicial" },
-    { "word": "pajamas", "syllables": 3, "position": "media" }
+    { "word": "pajamas", "syllables": 3, "position": "media" },
+    { "word": "banjo", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "jungle", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "juggler", "syllables": 2, "position": "inicial", "age": 6 }
   ]
 }

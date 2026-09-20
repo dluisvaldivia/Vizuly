@@ -6,6 +6,7 @@ import {
   MIN_SENSITIVITY_DB,
 } from '../../controllers/micSensitivityController.js';
 import { getInitialTheme, setTheme } from '../../controllers/themeController.js';
+import { BANDS, newChildId } from '../../controllers/childrenController.js';
 import { listMicrophones } from '../../speech/useSpeech.ts';
 
 /**
@@ -38,7 +39,27 @@ export default function AdultPanel({
   onMicGainChange,
   levelReadout,
   onLevelReadoutChange,
+  profiles,
+  onProfilesChange,
+  onClearRatings,
 }) {
+  const [newName, setNewName] = useState('');
+  const [newAge, setNewAge] = useState(BANDS[0]);
+
+  function addChild() {
+    const name = newName.trim();
+    if (!name) return;
+    const child = { id: newChildId(), name, age: newAge };
+    onProfilesChange({ active: child.id, children: [...profiles.children, child] });
+    setNewName('');
+  }
+
+  function removeChild(id) {
+    onProfilesChange({
+      active: profiles.active === id ? null : profiles.active,
+      children: profiles.children.filter((c) => c.id !== id),
+    });
+  }
   const closeRef = useRef(null);
   const [showJson, setShowJson] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -138,6 +159,17 @@ export default function AdultPanel({
       levelReadoutOff: 'No',
       levelReadoutHelp:
         'Muestra el volumen en dB junto a la barra mientras el micrófono está abierto, para ajustar el valor de arriba con su voz real. Quítalo cuando ya esté ajustado.',
+      children: 'Niños',
+      childrenHelp: 'El nombre sale en el modo juego y la edad elige qué cartas de letras aparecen.',
+      noChildren: 'Sin niños: cartas de 3 a 5 años y turno sin nombre.',
+      childName: 'Nombre',
+      childAge: 'Edad',
+      add: 'Añadir',
+      remove: 'Quitar',
+      removeName: (n) => `Quitar a ${n}`,
+      bands: { 3: '3 a 5 años', 6: '6 a 8 años', 9: '9 a 11 años' },
+      clearRatings: 'Borrar valoraciones de este niño',
+      clearRatingsHelp: 'Las cartas vuelven a salir en orden aleatorio.',
       voice: 'Voz',
       voiceHelp: 'Qué se oye al tocar un pictograma.',
       syllablesOn: 'Palabra y sílabas ("cabeza, ca-be-za")',
@@ -191,7 +223,7 @@ export default function AdultPanel({
       micDeviceOpened: (label) => `Last opened: ${label}.`,
       micSensitivity: 'Minimum speaking volume',
       micSensitivityHelp:
-        'How loud his voice has to be to count. The bar beside the button turns green at this point. Further left is more sensitive: it picks up a quieter voice, and more of the room with it.',
+        'How loud the voice has to be to count. The bar beside the button turns green at this point. Further left is more sensitive: it picks up a quieter voice, and more of the room with it.',
       micSensitivityValue: (db) => `${db} dB`,
       micMoreSensitive: 'More sensitive',
       micLessSensitive: 'Less sensitive',
@@ -199,12 +231,23 @@ export default function AdultPanel({
       micGainOn: 'Yes',
       micGainOff: 'No',
       micGainHelp:
-        'With it on, the browser turns the mic up while the room is quiet, so the first word comes in louder than it was said and the bar jumps before dropping to his real level. With it off, the bar shows his real level from the start. If a very soft voice stops being recognised, try turning it on. Set the minimum speaking volume again after changing this. Applies the next time the mic is opened.',
+        'With it on, the browser turns the mic up while the room is quiet, so the first word comes in louder than it was said and the bar jumps before dropping to the real level. With it off, the bar shows the real level from the start. If a very soft voice stops being recognised, try turning it on. Set the minimum speaking volume again after changing this. Applies the next time the mic is opened.',
       levelReadout: 'Show the number',
       levelReadoutOn: 'Yes',
       levelReadoutOff: 'No',
       levelReadoutHelp:
-        'Shows the level in dB beside the bar while the mic is open, so the value above can be set against his real voice. Turn it off once it is set.',
+        'Shows the level in dB beside the bar while the mic is open, so the value above can be set against the real voice. Turn it off once it is set.',
+      children: 'Children',
+      childrenHelp: 'The name shows in game mode and the age picks which letter cards appear.',
+      noChildren: 'No children: cards for ages 3 to 5 and an unnamed turn.',
+      childName: 'Name',
+      childAge: 'Age',
+      add: 'Add',
+      remove: 'Remove',
+      removeName: (n) => `Remove ${n}`,
+      bands: { 3: 'Ages 3 to 5', 6: 'Ages 6 to 8', 9: 'Ages 9 to 11' },
+      clearRatings: 'Clear ratings for this child',
+      clearRatingsHelp: 'Cards go back to random order.',
       voice: 'Voice',
       voiceHelp: 'What a tap on a pictogram says.',
       syllablesOn: 'Word and syllables ("cabeza, ca-be-za")',
@@ -277,6 +320,81 @@ export default function AdultPanel({
           </button>
         </fieldset>
 
+        {/* Children. One active at a time: the name for game mode, the age
+            band for the letter cards. Adult-only, like everything here. */}
+        <fieldset className="adult-panel__group">
+          <legend>{labels.children}</legend>
+          <p className="adult-panel__help">{labels.childrenHelp}</p>
+
+          {profiles.children.length === 0 ? (
+            <p className="adult-panel__help">{labels.noChildren}</p>
+          ) : (
+            profiles.children.map((child) => (
+              <div key={child.id} className="adult-panel__child">
+                <label className="adult-panel__radio">
+                  <input
+                    type="radio"
+                    name="active-child"
+                    value={child.id}
+                    checked={profiles.active === child.id}
+                    onChange={() => onProfilesChange({ ...profiles, active: child.id })}
+                  />
+                  <span>
+                    {child.name} <span className="adult-panel__child-age">({labels.bands[child.age]})</span>
+                  </span>
+                </label>
+                <button type="button" onClick={() => removeChild(child.id)} aria-label={labels.removeName(child.name)}>
+                  {labels.remove}
+                </button>
+              </div>
+            ))
+          )}
+
+          <div className="adult-panel__child-add">
+            <label className="adult-panel__slider-label" htmlFor="child-name">
+              {labels.childName}
+            </label>
+            <input
+              id="child-name"
+              type="text"
+              className="adult-panel__text"
+              maxLength={24}
+              autoComplete="off"
+              value={newName}
+              onChange={(event) => setNewName(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  event.preventDefault();
+                  addChild();
+                }
+              }}
+            />
+            <label className="adult-panel__slider-label" htmlFor="child-age">
+              {labels.childAge}
+            </label>
+            <select
+              id="child-age"
+              className="adult-panel__select"
+              value={newAge}
+              onChange={(event) => setNewAge(Number(event.target.value))}
+            >
+              {BANDS.map((band) => (
+                <option key={band} value={band}>
+                  {labels.bands[band]}
+                </option>
+              ))}
+            </select>
+            <button type="button" onClick={addChild} disabled={!newName.trim()}>
+              {labels.add}
+            </button>
+          </div>
+
+          <button type="button" onClick={onClearRatings}>
+            {labels.clearRatings}
+          </button>
+          <p className="adult-panel__help">{labels.clearRatingsHelp}</p>
+        </fieldset>
+
         {/* Reading tier. Lives here rather than in the header because it is a
             calibration an adult sets once, not something to flip back and
             forth. The mode itself is a header button. */}
@@ -307,7 +425,7 @@ export default function AdultPanel({
           ) : null}
         </fieldset>
 
-        {/* Microphone sensitivity. A calibration made once against his actual
+        {/* Microphone sensitivity. A calibration made once against the actual
             voice, which is exactly what belongs behind the gesture. The readout
             switch sits with it because the readout exists to set this value. */}
         <fieldset className="adult-panel__group">
@@ -414,7 +532,7 @@ export default function AdultPanel({
         </fieldset>
 
         {/* Voice. Same reasoning as the reading tier: a calibration an adult
-            makes for how he is working now, not a control to flip back and
+            makes for how the child is working now, not a control to flip back and
             forth, so it lives behind the gesture rather than in the header. */}
         <fieldset className="adult-panel__group">
           <legend>{labels.voice}</legend>

@@ -1,8 +1,8 @@
 /**
  * A short note to the adult when the browser voice stands in for the recorded one.
  *
- * For the adult, never for the child: he does not read, and this is not a
- * failure of his. It says which word is missing, because that is what an adult
+ * For the adult, never for the child: the child does not read, and this is
+ * not a failure of theirs. It says which word is missing, because that is what an adult
  * needs in order to add it to the list.
  *
  * It leaves on its own after a few seconds and has no dismiss button, so there

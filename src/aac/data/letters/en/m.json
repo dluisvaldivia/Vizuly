@@ -19,6 +19,25 @@
     { "word": "hammer", "syllables": 2, "position": "media" },
     { "word": "lemon", "syllables": 2, "position": "media" },
     { "word": "tomato", "syllables": 3, "position": "media" },
-    { "word": "camera", "syllables": 3, "position": "media" }
+    { "word": "camera", "syllables": 3, "position": "media" },
+    { "word": "mango", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "mirror", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "magnet", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "mushroom", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "monster", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "mailbox", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "salmon", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "camel", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "hamster", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pumpkin", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "medicine", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "summer", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "mosquito", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "magazine", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "hamburger", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "microphone", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "chimpanzee", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "cinnamon", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "submarine", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

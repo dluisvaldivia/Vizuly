@@ -1,5 +1,5 @@
 {
-  "_comment": "Inflected form -> base form. ARASAAC bestsearch already handles plurals (cats -> cat), so this map only covers verb forms it misses. Keys must be lowercased. Only add forms this child actually uses.",
+  "_comment": "Inflected form -> base form. ARASAAC bestsearch already handles plurals (cats -> cat), so this map only covers verb forms it misses. Keys must be lowercased. Only add forms children actually use.",
 
   "wants": "want",
   "wanted": "want",

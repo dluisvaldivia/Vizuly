@@ -45,14 +45,14 @@ const KEEPALIVE_MS = 8000;
 const FLUSH_GRACE_MS = 1500;
 
 /**
- * Silence, once he has started talking, that ends the whole session on its own.
+ * Silence, once the child has started talking, that ends the whole session on its own.
  *
- * He does not press stop: he says a word or a short sentence and waits for the
+ * The child does not press stop: they say a word or a short sentence and waits for the
  * pictograms. Deepgram's endpointing below decides where one utterance ends;
  * this decides when the turn is over and the microphone should close itself.
  *
- * 2500 ms because he speaks a word at a time with long gaps ("hola... me...
- * llamo... Noah"), measured with him directly. A shorter window cuts him off
+ * 2500 ms because a child speaks a word at a time with long gaps ("hola... me...
+ * llamo..."), measured against a real child. A shorter window cuts them off
  * between words. Any pause shorter than this only resets the timer.
  */
 const AUTO_STOP_SILENCE_MS = 2500;
@@ -71,10 +71,10 @@ const AUTO_STOP_SILENCE_MS = 2500;
  */
 
 /**
- * Default level at which his voice counts as speech worth acting on.
+ * Default level at which the voice counts as speech worth acting on.
  *
  * An informed starting point, not a measurement. The adult panel's sensitivity
- * setting overrides it, and the on-screen readout exists to replace it with his
+ * setting overrides it, and the on-screen readout exists to replace it with the
  * real numbers. Room tone with noise suppression sits near -50 dBFS, soft speech
  * near -33, an ordinary speaking voice near -24.
  */
@@ -86,7 +86,7 @@ export const DEFAULT_SPEECH_FLOOR_DB = -30;
  * The two thresholds share one measurement on purpose. The meter turns green at
  * the speech floor; the mic only gives up this far below it. That ordering is
  * what makes it impossible for the mic to close itself while the meter is
- * telling him he is loud enough.
+ * telling the child they are loud enough.
  */
 const AUTO_STOP_MARGIN_DB = 10;
 
@@ -95,7 +95,7 @@ const SILENCE_DB = -100;
 
 /**
  * Window the meter tap measures over. 1024 samples at 16 kHz is 64 ms: long
- * enough for a steady RMS reading, short enough that the bar still follows him.
+ * enough for a steady RMS reading, short enough that the bar still follows the voice.
  */
 const METER_FFT_SIZE = 1024;
 
@@ -127,8 +127,8 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
   let meterSamples: Float32Array<ArrayBuffer> | null = null;
 
   /**
-   * Pending auto-stop. Rearmed on every frame that carries his voice, so it
-   * only fires after AUTO_STOP_SILENCE_MS of genuine silence. Null until he
+   * Pending auto-stop. Rearmed on every frame that carries the voice, so it
+   * only fires after AUTO_STOP_SILENCE_MS of genuine silence. Null until the child
    * has said something, and cleared by teardown().
    */
   let autoStopTimer: ReturnType<typeof setTimeout> | null = null;
@@ -153,11 +153,11 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
    * generation it belongs to and does nothing if it is no longer current.
    *
    * Bumped in start() only. A stop() deliberately does NOT bump it, because the
-   * CloseStream flush still has to deliver the words he just said.
+   * CloseStream flush still has to deliver the words just said.
    */
   let generation = 0;
 
-  /** Level at which his voice counts as speech, in dBFS. Set per session. */
+  /** Level at which the voice counts as speech, in dBFS. Set per session. */
   let speechFloorDb = DEFAULT_SPEECH_FLOOR_DB;
 
   /** True when not capturing. Gates audio capture and status updates. */
@@ -168,7 +168,7 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
    * stopped and waiting for the final flush.
    *
    * These are deliberately separate: stop() must halt the microphone at once,
-   * but the CloseStream flush still needs to deliver the last thing he said.
+   * but the CloseStream flush still needs to deliver the last thing said.
    * Gating transcripts on `stopped` alone would throw that away.
    */
   let abandoned = true;
@@ -223,7 +223,7 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
     try {
       // Flush whatever the child said last. Without CloseStream, Deepgram holds
       // the trailing utterance and never emits its final transcript, so the last
-      // thing he said before pressing stop is silently lost. Verified against
+      // thing said before pressing stop is silently lost. Verified against
       // the live API.
       closing.sendCloseStream({ type: 'CloseStream' });
 
@@ -345,10 +345,10 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
 
       ws.on('message', (message) => {
         // Gated on `abandoned`, not `stopped`, so the final transcript flushed
-        // by CloseStream still reaches the child after he presses stop. Gated on
-        // the generation as well, so a transcript flushed by a session he has
+        // by CloseStream still reaches the child after they press stop. Gated on
+        // the generation as well, so a transcript flushed by a session the child has
         // already moved on from is dropped rather than glued onto the front of
-        // the phrase he is building now.
+        // the phrase being built now.
         if (gen !== generation || abandoned) return;
 
         const data = message as DeepgramTranscriptMessage;
@@ -461,14 +461,14 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
       // RMS: the wave should jump on a single shouted syllable.
       callbacks.onLevel?.(peakLevel(input));
 
-      // Auto-stop endpointing. A chunk with his voice in it pushes the stop
+      // Auto-stop endpointing. A chunk with the voice in it pushes the stop
       // deadline out; AUTO_STOP_SILENCE_MS without one closes the mic. Armed
-      // only from a voice chunk, so it stays dormant until he speaks, and a gap
+      // only from a voice chunk, so it stays dormant until the child speaks, and a gap
       // between words shorter than the window just resets it.
       //
       // Measured in RMS dB, the same as the meter, and a fixed margin below the
       // level the meter calls "loud enough", so the mic can never give up while
-      // the bar is still telling him he is doing fine.
+      // the bar is still telling the child they are doing fine.
       if (toDbfs(rmsLevel(input)) >= speechFloorDb - AUTO_STOP_MARGIN_DB) {
         armAutoStop(gen);
       }
@@ -482,7 +482,7 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
 
     source.connect(node);
     // ScriptProcessorNode only fires while connected to a destination. The gain
-    // is zero so the child never hears himself echoed back.
+    // is zero so the child never hears their own voice echoed back.
     const mute = context.createGain();
     mute.gain.value = 0;
     node.connect(mute);
@@ -505,7 +505,7 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
   }
 
   /**
-   * (Re)start the silence countdown. Called for every chunk of his voice.
+   * (Re)start the silence countdown. Called for every chunk of the voice.
    *
    * Carries the generation so a countdown armed by one session cannot close the
    * microphone on the next one, even though teardown() also clears it.
@@ -516,10 +516,10 @@ export function createDeepgramSource(apiKey: string): SpeechSource {
   }
 
   /**
-   * End the session because he has stopped talking.
+   * End the session because the child has stopped talking.
    *
    * Same shape as stop(): halt the mic now, keep `abandoned` false so the
-   * CloseStream flush still delivers his last words. The one extra step is
+   * CloseStream flush still delivers the last words. The one extra step is
    * moving the UI back to idle: a button press routes that through useSpeech,
    * but a stop the source decides on its own has to announce it.
    */
@@ -615,8 +615,8 @@ export function toDbfs(amplitude: number): number {
 /**
  * `autoGainControl` is not here because it is the adult's choice, and it is
  * always sent explicitly: left out, Chrome and Firefox both switch it on. With it
- * on, the browser turns a quiet room up, so his first word arrives far louder
- * than he said it and the meter jumps before settling to his real level.
+ * on, the browser turns a quiet room up, so the first word arrives far louder
+ * than it was said and the meter jumps before settling to the real level.
  */
 const MIC_CONSTRAINTS = {
   channelCount: 1,

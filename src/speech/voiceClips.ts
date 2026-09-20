@@ -78,24 +78,58 @@ export interface PlayOptions {
 }
 
 /**
+ * The clip playing right now, if any.
+ *
+ * Held for two reasons. A new tap stops the old clip instead of playing over
+ * it, and settles it, so the caller's onEnd runs and its "speaking" state is
+ * released. And a referenced element cannot be garbage collected mid-play,
+ * which some Safari versions have done to an unreferenced Audio.
+ */
+let current: { audio: HTMLAudioElement; finish: (ok: boolean) => void } | null = null;
+
+/**
+ * How long a clip may take to start before the browser voice steps in.
+ *
+ * ponytail: a shipped clip on a cold cache over a slow network can trip this
+ * once. The browser voice speaks, the file lands in the browser cache anyway,
+ * and the next tap plays it. Raise it only if that happens in daily use.
+ */
+const STALL_MS = 400;
+
+/**
  * Plays a clip.
  *
  * Must be called synchronously from the tap handler, with no await in front of
  * it: iOS Safari only allows audio that starts from a user gesture.
  */
 export function playClip(url: string, { onStart, onEnd, onFail }: PlayOptions = {}): void {
+  // One voice at a time. The previous clip counts as finished, not failed:
+  // nothing went wrong with it, the child simply tapped again.
+  if (current) {
+    current.audio.pause();
+    current.finish(true);
+  }
+
   try {
     const audio = new Audio(url);
 
     let settled = false;
+    const watchdog = setTimeout(() => finish(false), STALL_MS);
     const finish = (ok: boolean) => {
       if (settled) return;
       settled = true;
+      clearTimeout(watchdog);
+      if (current?.audio === audio) current = null;
+      if (!ok) audio.pause();
       if (ok) onEnd?.();
       else onFail?.();
     };
+    current = { audio, finish };
 
-    audio.onplaying = () => onStart?.();
+    audio.onplaying = () => {
+      clearTimeout(watchdog);
+      onStart?.();
+    };
     audio.onended = () => finish(true);
     audio.onerror = () => finish(false);
     // play() rejects on a missing file or a blocked autoplay policy.

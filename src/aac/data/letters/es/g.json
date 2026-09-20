@@ -22,6 +22,20 @@
     { "word": "agua", "syllables": 2, "position": "media" },
     { "word": "vago", "syllables": 2, "position": "media" },
     { "word": "riego", "syllables": 2, "position": "media" },
-    { "word": "juego", "syllables": 2, "position": "media" }
+    { "word": "juego", "syllables": 2, "position": "media" },
+    { "word": "galleta", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "gusano", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "gallina", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "gorila", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "amigo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "guitarra", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "regalo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "hormiga", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "manguera", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "canguro", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "golondrina", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "gasolina", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "hamburguesa", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "lagartija", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

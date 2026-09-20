@@ -30,6 +30,22 @@
     { "word": "zorro", "syllables": 2, "position": "media" },
     { "word": "guerra", "syllables": 2, "position": "media" },
     { "word": "tierra", "syllables": 2, "position": "media" },
-    { "word": "arroz", "syllables": 2, "position": "media" }
+    { "word": "arroz", "syllables": 2, "position": "media" },
+    { "word": "regalo", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "rebaño", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "raqueta", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "rodilla", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "carrera", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "guitarra", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "cachorro", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "carroza", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "correa", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "relámpago", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "regadera", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "rascacielos", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "rinoceronte", "syllables": 5, "position": "inicial", "age": 9 },
+    { "word": "carretera", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "herramienta", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "cerradura", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

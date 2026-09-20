@@ -12,7 +12,7 @@ import { useLongPress } from '../hooks/useLongPress.js';
  *
  * Each pictogram is also the entry point to the fix dialog, behind a long
  * press. A short tap says the word out loud, when `onSpeak` is given. Tapping
- * still takes him nowhere, which was always the point: it opens nothing,
+ * still takes the child nowhere, which was always the point: it opens nothing,
  * changes nothing and cannot be got wrong. Without `onSpeak` a tap does
  * nothing at all, which is how game mode keeps its strips silent.
  */
@@ -59,7 +59,16 @@ export default function PictogramStrip({
       aria-busy={isResolving}
     >
       {empty ? (
-        <p className="pictogram-strip__empty">{labels.empty}</p>
+        // Three empty frames where the pictograms will go. The picture is for
+        // the child, the sentence under it for the adult.
+        <div className="pictogram-strip__empty">
+          <svg className="pictogram-strip__empty-art" viewBox="0 0 96 32" aria-hidden="true" focusable="false">
+            <rect x="2" y="2" width="28" height="28" rx="6" fill="none" stroke="currentColor" strokeWidth="2.5" />
+            <rect x="34" y="2" width="28" height="28" rx="6" fill="none" stroke="currentColor" strokeWidth="2.5" strokeDasharray="4 4" />
+            <rect x="66" y="2" width="28" height="28" rx="6" fill="none" stroke="currentColor" strokeWidth="2.5" strokeDasharray="4 4" />
+          </svg>
+          <p>{labels.empty}</p>
+        </div>
       ) : (
         <ol className="pictogram-strip__list">
           {words.map((word, index) => (

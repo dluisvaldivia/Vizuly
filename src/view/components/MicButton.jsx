@@ -8,7 +8,7 @@ import touchIcon from '../../assets/touchicon.png';
  * The microphone control and its listening indicator.
  *
  * The indicator is deliberately more than a colour change: an inward sound
- * wave driven by his actual voice, plus an animated pulse ring while
+ * wave driven by the actual voice, plus an animated pulse ring while
  * listening. Colour alone fails WCAG 1.4.1, so the one state that needs text
  * to be understood, connecting, gets it inside the circle, and the one state
  * that is a genuine problem, no connection, gets a visible alert. Idle and
@@ -16,7 +16,7 @@ import touchIcon from '../../assets/touchicon.png';
  * nothing to read, and nothing wrong to report.
  *
  * The wave answers a question the state word cannot: not "is the mic on" but
- * "is it hearing *me*, right now". It reacts to any sound he makes, including
+ * "is it hearing *me*, right now". It reacts to any sound the child makes, including
  * ones that never become a transcript.
  */
 export default function MicButton({
@@ -59,7 +59,7 @@ export default function MicButton({
     <div className="mic">
       {/* The meter sits to the right of the button. The empty counterweight on
           the left keeps the button itself dead centre, because it is the target
-          he aims at and it must not move just because something was added
+          the child aims at and it must not move just because something was added
           beside it. */}
       <div className="mic__row">
         <span className="mic__row-spacer" aria-hidden="true" />
@@ -96,7 +96,7 @@ export default function MicButton({
       </div>
 
       {/* Adult-facing calibration number, for setting the sensitivity against
-          his real voice. Switched off in settings once that is done: the child's
+          the real voice. Switched off in settings once that is done: the child's
           screen should not carry a number forever. */}
       {showReadout && isListening ? (
         <p ref={readoutRef} className="mic__readout" aria-hidden="true" />

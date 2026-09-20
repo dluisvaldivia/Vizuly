@@ -33,6 +33,17 @@ import {
   getInitialLevelReadout,
   setLevelReadout,
 } from '../../controllers/levelReadoutController.js';
+import {
+  getInitialChildren,
+  setChildren,
+  activeChild,
+} from '../../controllers/childrenController.js';
+import {
+  getInitialRatings,
+  setRatings,
+  rateWord,
+  clearChildRatings,
+} from '../../controllers/ratingsController.js';
 import { useLongPress } from '../hooks/useLongPress.js';
 import PictogramStrip from '../components/PictogramStrip.jsx';
 import TextInput from '../components/TextInput.jsx';
@@ -58,8 +69,35 @@ import OutputModeToggle from '../components/OutputModeToggle.jsx';
  * Adult controls live behind a long press on the title. There is no visible
  * settings button, because the child would find it.
  */
+/** Stable empty score map, so an unrated child does not rebuild the deck order. */
+const NO_SCORES = {};
+/** Stable empty list, so a closed deck does not restart the voice's loading. */
+const NO_WORDS = [];
+
 export default function Home() {
   const [lang, setLangState] = useState(getInitialLang);
+  /**
+   * Child profiles. Named `profiles` rather than `children`, which is React's
+   * own prop name. The active child gives game mode its name and the letter
+   * cards their age band; with none saved, both fall back to the youngest band
+   * and an unnamed turn.
+   */
+  const [profiles, setProfilesState] = useState(getInitialChildren);
+  const child = activeChild(profiles);
+  const childName = child?.name ?? '';
+  const ageBand = child?.age ?? 3;
+  const childId = child?.id ?? 'default';
+  /** Swipe ratings for every child, keyed by child id. */
+  const [ratings, setRatingsState] = useState(getInitialRatings);
+  const scores = ratings[childId] ?? NO_SCORES;
+  const onRate = useCallback(
+    (word, delta) => setRatingsState((state) => rateWord(state, childId, lang, word, delta)),
+    [childId, lang],
+  );
+  const onClearRatings = useCallback(
+    () => setRatingsState((state) => clearChildRatings(state, childId)),
+    [childId],
+  );
   const [adultOpen, setAdultOpen] = useState(false);
   /** The word whose fix dialog is open, or null. Set by a long press. */
   const [fixTarget, setFixTarget] = useState(null);
@@ -70,13 +108,15 @@ export default function Home() {
   const [activeGame, setActiveGame] = useState(null);
   /** The letter card on screen, so the voice can prepare it. Cards mode only. */
   const [cardWord, setCardWord] = useState(null);
+  /** The open letter deck, resolved, so the voice can ready its clips. */
+  const [deckCards, setDeckCards] = useState(null);
   const hasDecks = listDecks(lang).length > 0;
   const toggleGame = useCallback((game) => setActiveGame((current) => (current === game ? null : game)), []);
   /**
    * Telegraphic speech output, or reading output with connectors.
    *
    * Persisted, unlike game mode: this is how the child's strip should look by
-   * default, not a place he visits and leaves.
+   * default, not a place the child visits and leaves.
    */
   const [outputMode, setOutputModeState] = useState(getInitialOutputMode);
   /** How many function words reading mode shows. Set by an adult in settings. */
@@ -91,8 +131,8 @@ export default function Home() {
    */
   const [liveVoice, setLiveVoiceState] = useState(getInitialLiveVoice);
   /**
-   * How loud he has to be, in dBFS. Drives the meter's line and, a fixed margin
-   * below it, the level at which the mic decides he has stopped talking.
+   * How loud the child has to be, in dBFS. Drives the meter's line and, a fixed margin
+   * below it, the level at which the mic decides they have stopped talking.
    */
   const [micSensitivity, setMicSensitivityState] = useState(getInitialMicSensitivity);
   /**
@@ -117,7 +157,7 @@ export default function Home() {
   }, []);
   /**
    * Whether the browser may turn the mic up and down by itself. Off by default:
-   * with it on, the meter jumps on his first word and then settles, which makes
+   * with it on, the meter jumps on the first word and then settles, which makes
    * a quiet voice look loud enough.
    */
   const [micGain, setMicGainState] = useState(getInitialMicGain);
@@ -141,6 +181,14 @@ export default function Home() {
   useEffect(() => {
     setLang(lang);
   }, [lang]);
+
+  useEffect(() => {
+    setChildren(profiles);
+  }, [profiles]);
+
+  useEffect(() => {
+    setRatings(ratings);
+  }, [ratings]);
 
   // The decks are Spanish. Switching to a language without any leaves cards
   // mode rather than showing an empty picker.
@@ -212,11 +260,17 @@ export default function Home() {
     () => (activeGame === 'cards' ? (cardWord ? [cardWord] : []) : words),
     [activeGame, cardWord, words],
   );
+  const prefetchWords = useMemo(
+    () => (activeGame === 'cards' && deckCards ? deckCards : NO_WORDS),
+    [activeGame, deckCards],
+  );
   const voice = useVoice(lang, {
     syllables: syllableMode === 'on',
     live: liveVoice === 'on',
-    // In cards mode the word to prepare is the card showing, not the strip.
+    // In cards mode the word to prepare is the card showing, not the strip,
+    // and the rest of the open deck is readied behind it at no cost.
     words: voiceWords,
+    prefetch: prefetchWords,
   });
 
   const { stop: stopSpeech } = speech;
@@ -225,7 +279,7 @@ export default function Home() {
    * A tap on a pictogram: the word, then its syllables.
    *
    * The mic goes off first. It stays off afterwards rather than resuming on its
-   * own, because a mic that switches itself back on is a mic he cannot tell the
+   * own, because a mic that switches itself back on is a mic the child cannot tell the
    * state of, and the listening indicator has to mean what it says.
    */
   const handleSpeak = useCallback(
@@ -335,14 +389,19 @@ export default function Home() {
           // Mounted only here, like GameMode, so leaving and coming back always
           // starts again at the letter picker. Keyed on the language for the
           // same reason: a deck id like "m" exists in both, and must not carry
-          // one language's filters into the other.
+          // one language's filters into the other. The age band is in the key
+          // too, so changing the active child starts again at the picker.
           <LetterCards
-            key={lang}
+            key={`${lang}.${ageBand}`}
             lang={lang}
+            age={ageBand}
+            scores={scores}
+            onRate={onRate}
             revision={corrections}
             onFix={setFixTarget}
             onSpeak={handleSpeak}
             onCardChange={setCardWord}
+            onDeckChange={setDeckCards}
           />
         ) : activeGame === 'echo' ? (
           // GameMode is only ever mounted here, so toggling off and back on
@@ -358,6 +417,7 @@ export default function Home() {
             speechFloorDb={micSensitivity}
             showReadout={levelReadout === 'on'}
             onFix={setFixTarget}
+            childName={childName}
           />
         ) : (
           <>
@@ -424,6 +484,9 @@ export default function Home() {
         levelReadout={levelReadout}
         onLevelReadoutChange={setLevelReadoutState}
         voiceBudget={voice.budget}
+        profiles={profiles}
+        onProfilesChange={setProfilesState}
+        onClearRatings={onClearRatings}
       />
 
       {/* Adult-only, reached by a long press on a pictogram. Mounted only while

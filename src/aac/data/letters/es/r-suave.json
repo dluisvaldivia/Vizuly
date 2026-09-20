@@ -24,6 +24,17 @@
     { "word": "tira", "syllables": 2 },
     { "word": "vara", "syllables": 2 },
     { "word": "pared", "syllables": 2 },
-    { "word": "careta", "syllables": 3 }
+    { "word": "careta", "syllables": 3 },
+    { "word": "corona", "syllables": 3, "age": 6 },
+    { "word": "pirata", "syllables": 3, "age": 6 },
+    { "word": "naranja", "syllables": 3, "age": 6 },
+    { "word": "tijeras", "syllables": 3, "age": 6 },
+    { "word": "pájaro", "syllables": 3, "age": 6 },
+    { "word": "farola", "syllables": 3, "age": 6 },
+    { "word": "mariposa", "syllables": 4, "age": 9 },
+    { "word": "tesoro", "syllables": 3, "age": 6 },
+    { "word": "lavadora", "syllables": 4, "age": 9 },
+    { "word": "mariquita", "syllables": 4, "age": 9 },
+    { "word": "escalera", "syllables": 4, "age": 9 }
   ]
 }

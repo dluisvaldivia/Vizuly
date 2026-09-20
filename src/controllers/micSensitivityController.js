@@ -1,12 +1,12 @@
 /**
  * Persisted microphone sensitivity: how loud the child has to be.
  *
- * One number, in dBFS, and it means "the level at which his voice counts as
+ * One number, in dBFS, and it means "the level at which the voice counts as
  * speech". The meter turns green here, and the auto-stop keeps its own
  * voice-activity floor a fixed margin below it.
  *
  * Set by an adult in settings, behind the deliberate gesture, because it is a
- * calibration made once against his actual voice rather than something to flip
+ * calibration made once against the actual voice rather than something to flip
  * back and forth. Follows the same localStorage pattern as
  * readingTierController.js.
  *

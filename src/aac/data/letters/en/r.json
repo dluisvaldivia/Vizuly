@@ -17,6 +17,25 @@
     { "word": "rocket", "syllables": 2, "position": "inicial" },
     { "word": "carrot", "syllables": 2, "position": "media" },
     { "word": "parrot", "syllables": 2, "position": "media" },
-    { "word": "zero", "syllables": 2, "position": "media" }
+    { "word": "zero", "syllables": 2, "position": "media" },
+    { "word": "rainbow", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "river", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "radish", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "ribbon", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "rooster", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "ruler", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "mirror", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "arrow", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "giraffe", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "pirate", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "cherry", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "syrup", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "raspberry", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "rectangle", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "restaurant", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "kangaroo", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "gorilla", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "umbrella", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "strawberry", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

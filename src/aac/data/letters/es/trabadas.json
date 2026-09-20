@@ -33,6 +33,17 @@
     { "word": "dientes", "syllables": 2 },
     { "word": "pierna", "syllables": 2 },
     { "word": "hasta", "syllables": 2 },
-    { "word": "cinta", "syllables": 2 }
+    { "word": "cinta", "syllables": 2 },
+    { "word": "alfombra", "syllables": 3, "age": 6 },
+    { "word": "linterna", "syllables": 3, "age": 6 },
+    { "word": "pantalón", "syllables": 3, "age": 6 },
+    { "word": "bombero", "syllables": 3, "age": 6 },
+    { "word": "hormiga", "syllables": 3, "age": 6 },
+    { "word": "ambulancia", "syllables": 4, "age": 9 },
+    { "word": "sandalia", "syllables": 3, "age": 6 },
+    { "word": "calcetines", "syllables": 4, "age": 9 },
+    { "word": "helicóptero", "syllables": 5, "age": 9 },
+    { "word": "esqueleto", "syllables": 4, "age": 9 },
+    { "word": "ordenador", "syllables": 4, "age": 9 }
   ]
 }

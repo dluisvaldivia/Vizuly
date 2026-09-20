@@ -27,6 +27,19 @@
     { "word": "seven", "syllables": 2, "position": "media" },
     { "word": "elephant", "syllables": 3, "position": "inicial" },
     { "word": "envelope", "syllables": 3, "position": "inicial" },
-    { "word": "skeleton", "syllables": 3, "position": "media" }
+    { "word": "skeleton", "syllables": 3, "position": "media" },
+    { "word": "engine", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "exit", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "dentist", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "necklace", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "kettle", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "tennis", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "letter", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "detective", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "engineer", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "exercise", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "jellyfish", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "spaghetti", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "medicine", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

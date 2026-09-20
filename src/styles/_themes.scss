@@ -54,6 +54,17 @@
     --notice-text: #1a1a1a;
     // Deliberately translucent: pictograms must stay visible underneath.
     --celebrate-overlay: rgba(26, 127, 55, 0.35);
+
+    // One accent for the primary actions (talk, show, say). White on it is
+    // 7.3:1. The soft tint is for the mic's resting face.
+    --accent: #0b52cc;
+    --accent-text: #ffffff;
+    --accent-soft: #e8efff;
+    // Raised surfaces: tiles, header buttons, panels. Barely off the page
+    // colour, so hierarchy comes from the edge and shadow, not from contrast.
+    --surface: #f7f7fa;
+    --surface-border: #c9c9d1;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 [data-theme="dark"] {
@@ -95,4 +106,12 @@
     --notice-border: #8f9bb3;
     --notice-text: #f2f2f2;
     --celebrate-overlay: rgba(74, 222, 128, 0.32);
+
+    // #111111 on #8ab4ff is 9.4:1.
+    --accent: #8ab4ff;
+    --accent-text: #111111;
+    --accent-soft: #1f2b47;
+    --surface: #2b2b30;
+    --surface-border: #55555e;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }

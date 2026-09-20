@@ -3,8 +3,8 @@
 An AAC pictogram app. A child speaks a word or short sentence and immediately sees the
 matching ARASAAC pictogram sequence.
 
-Built for the owner's son, who has Down syndrome. **Real daily-use tool for a real child
-first, portfolio piece second.** When a choice is between "works every single time" and
+Built for a child with Down syndrome. **Real daily-use tool for real children first,
+portfolio piece second.** When a choice is between "works every single time" and
 "looks impressive" or "is architecturally elegant", the child wins.
 
 ## Non-negotiable rules
@@ -67,6 +67,17 @@ first, portfolio piece second.** When a choice is between "works every single ti
 - **Spanish syllable rules live in `src/aac/syllables.ts` and are shared** by the generator
   and the browser fallback. English deliberately does not split: it needs a dictionary, and a
   wrong split spoken aloud teaches the child something false.
+
+## Profiles, age bands and ratings
+
+- Children live in `vizuly.children.v1` (`src/controllers/childrenController.js`), one active
+  at a time. No children means an unnamed child at band 3. A child's name appears only in
+  game mode labels, never in code, comments, tests or docs.
+- The age band (3, 6 or 9, meaning 3 to 5, 6 to 8, 9 to 11) filters **letter cards only**,
+  via `DeckWord.age` (absent means 3). It never changes what the strip resolves.
+- Swipe ratings live in `vizuly.ratings.v1`, keyed by child then `lang.word`, clamped -3..3.
+  They only change the **order** cards come up in (`orderByScore`), never which words exist
+  and never which pictogram a word shows. They are not shown to the child.
 
 ## Commands
 

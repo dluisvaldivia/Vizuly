@@ -7,6 +7,8 @@
   "words": [
     { "word": "snake", "syllables": 1, "position": "inicial" },
     { "word": "snail", "syllables": 1, "position": "inicial" },
-    { "word": "snowman", "syllables": 2, "position": "inicial" }
+    { "word": "snowman", "syllables": 2, "position": "inicial" },
+    { "word": "snowflake", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "sneakers", "syllables": 2, "position": "inicial", "age": 6 }
   ]
 }

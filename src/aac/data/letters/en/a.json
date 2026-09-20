@@ -24,6 +24,21 @@
     { "word": "ladder", "syllables": 2, "position": "media" },
     { "word": "animal", "syllables": 3, "position": "inicial" },
     { "word": "astronaut", "syllables": 3, "position": "inicial" },
-    { "word": "camera", "syllables": 3, "position": "media" }
+    { "word": "camera", "syllables": 3, "position": "media" },
+    { "word": "arrow", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "actor", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "anchor", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "candy", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "ankle", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "panda", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "cactus", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "sandwich", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "hamster", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "acrobat", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "ambulance", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "hamburger", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "kangaroo", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "calendar", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "grasshopper", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

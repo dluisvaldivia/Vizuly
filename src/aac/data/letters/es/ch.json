@@ -22,6 +22,18 @@
     { "word": "hacha", "syllables": 2, "position": "media" },
     { "word": "bicho", "syllables": 2, "position": "media" },
     { "word": "noche", "syllables": 2, "position": "media" },
-    { "word": "ancho", "syllables": 2, "position": "media" }
+    { "word": "ancho", "syllables": 2, "position": "media" },
+    { "word": "chupete", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "chuleta", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "cuchara", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "cuchillo", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "muchacho", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "salchicha", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "mochila", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "cachorro", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "chocolate", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "chimenea", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "chubasquero", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "alcachofa", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

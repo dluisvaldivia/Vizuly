@@ -18,9 +18,14 @@ import type { Lang } from './types';
 
 export type CardPosition = 'inicial' | 'media';
 
+/** Minimum age of a band: 3 to 5, 6 to 8, 9 to 11. */
+export type AgeBand = 3 | 6 | 9;
+
 export interface DeckWord {
   word: string;
   syllables: number;
+  /** The youngest band this word is for. Absent means 3, the youngest. */
+  age?: AgeBand;
   /** Where the deck's letter sits. Absent for decks the list does not split. */
   position?: CardPosition;
   /** What the back shows, when the letter derived from the deck reads wrong. */
@@ -77,6 +82,8 @@ export interface CardFilter {
   syllables?: number;
   /** Only words with the letter here. Omitted means any. */
   position?: CardPosition;
+  /** Only words for this band or younger. Omitted means any. */
+  age?: AgeBand;
 }
 
 /** The words of a deck that pass the filter, in file order. */
@@ -84,8 +91,31 @@ export function cardWords(deck: LetterDeck, filter: CardFilter = {}): DeckWord[]
   return deck.words.filter(
     (entry) =>
       (filter.syllables === undefined || entry.syllables === filter.syllables) &&
-      (filter.position === undefined || entry.position === filter.position),
+      (filter.position === undefined || entry.position === filter.position) &&
+      (filter.age === undefined || (entry.age ?? 3) <= filter.age),
   );
+}
+
+/**
+ * A random order where a well-known word tends to come late and a word to
+ * review tends to come early.
+ *
+ * Weighted sampling without replacement (Efraimidis and Spirakis): each item
+ * draws a key of random ** (1 / weight) with weight 2 ** -score, and the list
+ * is sorted by key, highest first. A score of 3 is eight times less likely to
+ * lead than a score of 0, and -3 eight times more. Every item is always kept:
+ * a rating changes order, never membership. Ties keep the original order, so
+ * an unrated deck with a constant random source is simply file order.
+ */
+export function orderByScore<T>(
+  items: readonly T[],
+  scoreOf: (item: T) => number,
+  random: () => number = Math.random,
+): T[] {
+  return items
+    .map((item, index) => ({ item, index, key: random() ** (2 ** scoreOf(item)) }))
+    .sort((a, b) => b.key - a.key || a.index - b.index)
+    .map(({ item }) => item);
 }
 
 /**

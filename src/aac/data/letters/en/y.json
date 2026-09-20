@@ -9,6 +9,8 @@
     { "word": "yawn", "syllables": 1, "position": "inicial" },
     { "word": "yellow", "syllables": 2, "position": "inicial" },
     { "word": "yogurt", "syllables": 2, "position": "inicial" },
-    { "word": "yo-yo", "syllables": 2, "position": "inicial" }
+    { "word": "yo-yo", "syllables": 2, "position": "inicial" },
+    { "word": "yolk", "syllables": 1, "position": "inicial", "age": 6 },
+    { "word": "yacht", "syllables": 1, "position": "inicial", "age": 6 }
   ]
 }

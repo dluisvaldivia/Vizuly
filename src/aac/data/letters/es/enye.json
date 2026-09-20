@@ -19,6 +19,14 @@
     { "word": "cuña", "syllables": 2, "position": "media" },
     { "word": "peña", "syllables": 2, "position": "media" },
     { "word": "sueño", "syllables": 2, "position": "media" },
-    { "word": "año", "syllables": 2, "position": "media" }
+    { "word": "año", "syllables": 2, "position": "media" },
+    { "word": "araña", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "piñata", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "muñeca", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "castaña", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "montaña", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "cigüeña", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "cumpleaños", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "castañuelas", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

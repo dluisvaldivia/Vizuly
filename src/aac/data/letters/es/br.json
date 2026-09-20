@@ -13,6 +13,13 @@
     { "word": "cobre", "syllables": 2 },
     { "word": "sobre", "syllables": 2 },
     { "word": "cabra", "syllables": 2 },
-    { "word": "abre", "syllables": 2 }
+    { "word": "abre", "syllables": 2 },
+    { "word": "brócoli", "syllables": 3, "age": 6 },
+    { "word": "brújula", "syllables": 3, "age": 6 },
+    { "word": "sombrero", "syllables": 3, "age": 6 },
+    { "word": "abrigo", "syllables": 3, "age": 6 },
+    { "word": "colibrí", "syllables": 3, "age": 6 },
+    { "word": "libreta", "syllables": 3, "age": 6 },
+    { "word": "abrelatas", "syllables": 4, "age": 9 }
   ]
 }

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { listDecks, cardWords, cardLetter, foldForMatching, type LetterDeck } from './letterDecks';
+import { listDecks, cardWords, cardLetter, foldForMatching, orderByScore, type LetterDeck } from './letterDecks';
 import type { Lang } from './types';
 import { syllabify } from './syllables';
 import { cardToken } from './useWordCards';
@@ -50,6 +50,12 @@ describe('deck contents', () => {
     const words = d.words.map((w) => w.word);
     expect(new Set(words).size).toBe(words.length);
     for (const word of words) expect(word).toBe(word.toLowerCase().trim());
+  });
+
+  it.each(everyDeck)('%s: age, when present, is 3, 6 or 9', (_, _lang, d) => {
+    for (const { word, age } of d.words) {
+      expect({ word, ok: age === undefined || [3, 6, 9].includes(age) }).toEqual({ word, ok: true });
+    }
   });
 
   it.each(decks.map((d) => [d.id, d] as const))('es/%s: syllable counts match the shared syllable rules', (_, d) => {
@@ -127,9 +133,51 @@ describe('cardWords', () => {
   it('filters by syllables and position', () => {
     const m = deck('m');
     expect(cardWords(m, { syllables: 2 }).some((w) => w.word === 'tomate')).toBe(false);
-    expect(cardWords(m, { syllables: 3 }).map((w) => w.word)).toEqual(['tomate']);
+    expect(cardWords(m, { syllables: 3, age: 3 }).map((w) => w.word)).toEqual(['tomate']);
+    expect(cardWords(m, { syllables: 3, age: 6 }).map((w) => w.word)).toContain('manzana');
     expect(cardWords(m, { position: 'inicial' }).every((w) => w.position === 'inicial')).toBe(true);
     expect(cardWords(m)).toHaveLength(m.words.length);
+  });
+
+  it('filters by age band, treating an untagged word as the youngest', () => {
+    const x: LetterDeck = {
+      id: 'x',
+      label: 'X',
+      graphemes: ['x'],
+      words: [
+        { word: 'xa', syllables: 1 },
+        { word: 'xb', syllables: 1, age: 6 },
+        { word: 'xc', syllables: 1, age: 9 },
+      ],
+    };
+    const names = (filter: Parameters<typeof cardWords>[1]) => cardWords(x, filter).map((w) => w.word);
+    expect(names({ age: 3 })).toEqual(['xa']);
+    expect(names({ age: 6 })).toEqual(['xa', 'xb']);
+    expect(names({ age: 9 })).toEqual(['xa', 'xb', 'xc']);
+    expect(names({})).toEqual(['xa', 'xb', 'xc']);
+  });
+});
+
+describe('orderByScore', () => {
+  const half = () => 0.5;
+
+  it('keeps every item exactly once', () => {
+    const items = ['a', 'b', 'c', 'd'];
+    const out = orderByScore(items, () => 0);
+    expect([...out].sort()).toEqual(items);
+  });
+
+  it('puts a word to review first and a known word last', () => {
+    const scores: Record<string, number> = { known: 2, review: -1, plain: 0 };
+    expect(orderByScore(['known', 'review', 'plain'], (w) => scores[w], half)).toEqual(['review', 'plain', 'known']);
+  });
+
+  it('keeps file order when nothing is rated and the draw is constant', () => {
+    expect(orderByScore(['a', 'b', 'c'], () => 0, half)).toEqual(['a', 'b', 'c']);
+  });
+
+  it('handles an empty list', () => {
+    expect(orderByScore([], () => 0)).toEqual([]);
   });
 });
 

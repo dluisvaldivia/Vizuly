@@ -10,6 +10,14 @@
     { "word": "fox", "syllables": 1, "position": "media" },
     { "word": "six", "syllables": 1, "position": "media" },
     { "word": "ox", "syllables": 1, "position": "media" },
-    { "word": "taxi", "syllables": 2, "position": "media" }
+    { "word": "taxi", "syllables": 2, "position": "media" },
+    { "word": "mailbox", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "toolbox", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "exit", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "boxer", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "mixer", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "sixteen", "syllables": 2, "position": "media", "age": 6 },
+    { "word": "saxophone", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "taxicab", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

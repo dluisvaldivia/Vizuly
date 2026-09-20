@@ -26,6 +26,20 @@
     { "word": "lupa", "syllables": 2, "position": "media" },
     { "word": "sapo", "syllables": 2, "position": "media" },
     { "word": "apio", "syllables": 2, "position": "media" },
-    { "word": "campo", "syllables": 2, "position": "media" }
+    { "word": "campo", "syllables": 2, "position": "media" },
+    { "word": "pelota", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "patata", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "pijama", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "paloma", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "zapato", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "espada", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "lámpara", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "campana", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "pirámide", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "periódico", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "helicóptero", "syllables": 5, "position": "media", "age": 9 },
+    { "word": "palomitas", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "pelícano", "syllables": 4, "position": "inicial", "age": 9 },
+    { "word": "trompeta", "syllables": 3, "position": "media", "age": 9 }
   ]
 }

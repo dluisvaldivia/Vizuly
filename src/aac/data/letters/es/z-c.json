@@ -19,6 +19,22 @@
     { "word": "pozo", "syllables": 2 },
     { "word": "lazo", "syllables": 2 },
     { "word": "once", "syllables": 2 },
-    { "word": "doce", "syllables": 2 }
+    { "word": "doce", "syllables": 2 },
+    { "word": "zapato", "syllables": 3, "age": 6 },
+    { "word": "cebolla", "syllables": 3, "age": 6 },
+    { "word": "cocina", "syllables": 3, "age": 6 },
+    { "word": "cereza", "syllables": 3, "age": 6 },
+    { "word": "manzana", "syllables": 3, "age": 6 },
+    { "word": "corazón", "syllables": 3, "age": 6 },
+    { "word": "azúcar", "syllables": 3, "age": 6 },
+    { "word": "cepillo", "syllables": 3, "age": 6 },
+    { "word": "cabeza", "syllables": 3, "age": 6 },
+    { "word": "calcetines", "syllables": 4, "age": 9 },
+    { "word": "cerradura", "syllables": 4, "age": 9 },
+    { "word": "zanahoria", "syllables": 4, "age": 9 },
+    { "word": "bicicleta", "syllables": 4, "age": 9 },
+    { "word": "cenicero", "syllables": 4, "age": 9 },
+    { "word": "policía", "syllables": 4, "age": 9 },
+    { "word": "calabacín", "syllables": 4, "age": 9 }
   ]
 }

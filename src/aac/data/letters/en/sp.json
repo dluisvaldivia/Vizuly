@@ -7,6 +7,11 @@
   "words": [
     { "word": "spoon", "syllables": 1, "position": "inicial" },
     { "word": "sponge", "syllables": 1, "position": "inicial" },
-    { "word": "spider", "syllables": 2, "position": "inicial" }
+    { "word": "spider", "syllables": 2, "position": "inicial" },
+    { "word": "spinach", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "spaghetti", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "spatula", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "sparrow", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "spaceship", "syllables": 2, "position": "inicial", "age": 6 }
   ]
 }

@@ -8,6 +8,9 @@
     { "word": "grapes", "syllables": 1, "position": "inicial" },
     { "word": "grass", "syllables": 1, "position": "inicial" },
     { "word": "grandma", "syllables": 2, "position": "inicial" },
-    { "word": "grasshopper", "syllables": 3, "position": "inicial" }
+    { "word": "grasshopper", "syllables": 3, "position": "inicial" },
+    { "word": "grandpa", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "grapefruit", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "grandmother", "syllables": 3, "position": "inicial", "age": 9 }
   ]
 }

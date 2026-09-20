@@ -20,6 +20,17 @@
     { "word": "rifa", "syllables": 2, "position": "media" },
     { "word": "jefa", "syllables": 2, "position": "media" },
     { "word": "jefe", "syllables": 2, "position": "media" },
-    { "word": "bufón", "syllables": 2, "position": "media" }
+    { "word": "bufón", "syllables": 2, "position": "media" },
+    { "word": "familia", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "fantasma", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "bufanda", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "farola", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "fábrica", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "alfombra", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "jirafa", "syllables": 3, "position": "media", "age": 6 },
+    { "word": "elefante", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "frigorífico", "syllables": 5, "position": "inicial", "age": 9 },
+    { "word": "semáforo", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "teléfono", "syllables": 4, "position": "media", "age": 9 }
   ]
 }

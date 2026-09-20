@@ -8,7 +8,7 @@ import { toDbfs } from '../../speech/useSpeech.ts';
  * It answers two questions nothing else on screen does. For the adult: is the
  * microphone actually picking my voice up, or is the problem further down the
  * line? For the child: how loud do I have to be? The marked line is the level at
- * which his voice counts as speech, so getting the bar above it means getting
+ * which the voice counts as speech, so getting the bar above it means getting
  * picked up, and the colours say how comfortably.
  *
  * Measured in RMS decibels, not peak amplitude. Peak was tried and lied: speech
@@ -39,9 +39,9 @@ const METER_MAX_DB = -10;
  * How fast the bar chases the microphone, per frame.
  *
  * Deliberately high, and only slightly slower falling than rising: the bar
- * should feel attached to his voice. Anything heavier reads as lag, and a meter
- * that lags is worse than no meter, because it stops telling him which sound of
- * his moved it. There is no hold and no floor anywhere in this file, for the
+ * should feel attached to the voice. Anything heavier reads as lag, and a meter
+ * that lags is worse than no meter, because it stops telling the child which sound
+ * of theirs moved it. There is no hold and no floor anywhere in this file, for the
  * same reason.
  */
 const RISE = 0.55;
@@ -133,7 +133,7 @@ export default function MicLevelMeter({ getLevel, active, speechFloorDb, readout
       }
 
       // Throttled hard. At frame rate the number is an unreadable blur, and the
-      // whole point of it is that an adult can read it off while he talks.
+      // whole point of it is that an adult can read it off while the child talks.
       if (now - readoutAt >= READOUT_INTERVAL_MS) {
         readoutAt = now;
 
