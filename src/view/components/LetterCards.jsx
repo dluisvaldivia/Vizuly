@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { listDecks, cardWords, cardLetter, orderByScore, useWordCards } from '../../aac/useAac.ts';
 import LetterCard from './LetterCard.jsx';
+import FavoriteStar from './FavoriteStar.jsx';
 
 /**
  * Where a deck opens, by age band. Spanish starts at two syllables, where most
@@ -23,7 +24,19 @@ const DEFAULT_SYLLABLES = { es: { 3: 2, 6: 3, 9: 4 }, en: { 3: 1, 6: 2, 9: 3 } }
  *
  * `age` is the active child's band and `scores` their ratings so far.
  */
-export default function LetterCards({ lang, age, scores, onRate, revision, onFix, onSpeak, onCardChange, onDeckChange }) {
+export default function LetterCards({
+  lang,
+  age,
+  scores,
+  onRate,
+  revision,
+  onFix,
+  onSpeak,
+  onCardChange,
+  onDeckChange,
+  isFavorite,
+  onToggleFavorite,
+}) {
   const decks = listDecks(lang);
   const [deckId, setDeckId] = useState(null);
   const [syllables, setSyllables] = useState(DEFAULT_SYLLABLES[lang][age]);
@@ -238,9 +251,10 @@ export default function LetterCards({ lang, age, scores, onRate, revision, onFix
       {entry ? (
         <>
           <div className="letter-cards__stage">
-            {/* The speak button's slot is always there, so the card never jumps
-                on a turn. The matching left spacer centres it on wide screens
-                and is dropped on a phone, where the card needs the room. */}
+            {/* The slot holds both buttons and reserves the height of both, so
+                the card never jumps when a turn makes the speak button appear.
+                The matching left spacer centres it on wide screens and is
+                dropped on a phone, where the card needs the room. */}
             <span className="letter-cards__side letter-cards__side--balance" aria-hidden="true" />
             <LetterCard
               card={card}
@@ -253,6 +267,15 @@ export default function LetterCards({ lang, age, scores, onRate, revision, onFix
               lang={lang}
             />
             <span className="letter-cards__side">
+              {/* Saves the card's word, from either face: the word is the same
+                  whichever way up the card is. */}
+              <FavoriteStar
+                saved={isFavorite(entry.word)}
+                onToggle={() => onToggleFavorite(entry.word)}
+                name={entry.word}
+                lang={lang}
+                className="letter-cards__fav"
+              />
               {flipped ? (
                 <button
                   type="button"

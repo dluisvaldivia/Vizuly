@@ -42,6 +42,9 @@ export default function AdultPanel({
   profiles,
   onProfilesChange,
   onClearRatings,
+  favorites,
+  onRemoveFavorite,
+  onClearFavorites,
 }) {
   const [newName, setNewName] = useState('');
   const [newAge, setNewAge] = useState(BANDS[0]);
@@ -170,6 +173,12 @@ export default function AdultPanel({
       bands: { 3: '3 a 5 años', 6: '6 a 8 años', 9: '9 a 11 años' },
       clearRatings: 'Borrar valoraciones de este niño',
       clearRatingsHelp: 'Las cartas vuelven a salir en orden aleatorio.',
+      favorites: 'Favoritos',
+      favoritesHelp:
+        'Lo que se ha guardado con la estrella. Quitar un favorito solo se puede hacer aquí.',
+      noFavorites: 'Todavía no hay favoritos.',
+      removeFavorite: 'Quitar',
+      clearFavorites: 'Borrar favoritos de este niño',
       voice: 'Voz',
       voiceHelp: 'Qué se oye al tocar un pictograma.',
       syllablesOn: 'Palabra y sílabas ("cabeza, ca-be-za")',
@@ -248,6 +257,11 @@ export default function AdultPanel({
       bands: { 3: 'Ages 3 to 5', 6: 'Ages 6 to 8', 9: 'Ages 9 to 11' },
       clearRatings: 'Clear ratings for this child',
       clearRatingsHelp: 'Cards go back to random order.',
+      favorites: 'Favourites',
+      favoritesHelp: 'What the star has saved. Removing one can only be done here.',
+      noFavorites: 'No favourites yet.',
+      removeFavorite: 'Remove',
+      clearFavorites: 'Clear favourites for this child',
       voice: 'Voice',
       voiceHelp: 'What a tap on a pictogram says.',
       syllablesOn: 'Word and syllables ("cabeza, ca-be-za")',
@@ -592,6 +606,41 @@ export default function AdultPanel({
             {labels.forget}
           </button>
           <p className="adult-panel__help">{labels.forgetHelp}</p>
+        </fieldset>
+
+        {/* Saved words and phrases. The star can take one back off while it is
+            still on screen; this is where every older one is removed, which is
+            what makes the star safe to leave within the child's reach. Both
+            languages, so nothing is invisible just because the header flag is
+            the other way. */}
+        <fieldset className="adult-panel__group">
+          <legend>{labels.favorites}</legend>
+          <p className="adult-panel__help">{labels.favoritesHelp}</p>
+
+          {favorites.length === 0 ? (
+            <p className="adult-panel__help">{labels.noFavorites}</p>
+          ) : (
+            <ul className="adult-panel__corrections">
+              {favorites.map((favorite) => (
+                <li key={`${favorite.lang}.${favorite.text}`} className="adult-panel__correction">
+                  <span className="adult-panel__correction-word">
+                    {favorite.text} <span lang="en">({favorite.lang})</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => onRemoveFavorite(favorite.text, favorite.lang)}
+                    aria-label={`${labels.removeFavorite}: ${favorite.text}`}
+                  >
+                    {labels.removeFavorite}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <button type="button" onClick={onClearFavorites} disabled={favorites.length === 0}>
+            {labels.clearFavorites}
+          </button>
         </fieldset>
 
         {/* The review list. This is the only place a flag is visible, and the

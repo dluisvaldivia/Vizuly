@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { useAac, listDecks } from '../../aac/useAac.ts';
+import { useAac, listDecks, usePhraseCards } from '../../aac/useAac.ts';
 import { useSpeech } from '../../speech/useSpeech.ts';
 import { useVoice } from '../../speech/useVoice.ts';
 import { getInitialLang, setLang } from '../../controllers/languageController.js';
@@ -44,6 +44,15 @@ import {
   rateWord,
   clearChildRatings,
 } from '../../controllers/ratingsController.js';
+import {
+  getInitialFavorites,
+  setFavorites,
+  favoritesFor,
+  isSaved,
+  toggleFavorite,
+  removeFavorite,
+  clearChildFavorites,
+} from '../../controllers/favoritesController.js';
 import { useLongPress } from '../hooks/useLongPress.js';
 import PictogramStrip from '../components/PictogramStrip.jsx';
 import TextInput from '../components/TextInput.jsx';
@@ -58,6 +67,9 @@ import LetterCards from '../components/LetterCards.jsx';
 import LanguageToggle from '../components/LanguageToggle.jsx';
 import VoiceNotice from '../components/VoiceNotice.jsx';
 import OutputModeToggle from '../components/OutputModeToggle.jsx';
+import FavoritesToggle from '../components/FavoritesToggle.jsx';
+import FavoritesView from '../components/FavoritesView.jsx';
+import FavoriteStar from '../components/FavoriteStar.jsx';
 
 /**
  * The app.
@@ -73,6 +85,8 @@ import OutputModeToggle from '../components/OutputModeToggle.jsx';
 const NO_SCORES = {};
 /** Stable empty list, so a closed deck does not restart the voice's loading. */
 const NO_WORDS = [];
+/** Stable empty list, so a child with no favourites does not re-resolve tiles. */
+const NO_FAVORITES = [];
 
 export default function Home() {
   const [lang, setLangState] = useState(getInitialLang);
@@ -98,20 +112,52 @@ export default function Home() {
     () => setRatingsState((state) => clearChildRatings(state, childId)),
     [childId],
   );
+  /** Saved words and phrases for every child, keyed by child id. */
+  const [favorites, setFavoritesState] = useState(getInitialFavorites);
+  const childFavorites = favorites[childId] ?? NO_FAVORITES;
+  /**
+   * Only this language's favourites reach the screen. A Spanish phrase resolved
+   * in English would come back as a row of placeholders, which would read as the
+   * app having lost the favourite.
+   */
+  const langFavorites = useMemo(
+    () => favoritesFor(favorites, childId, lang),
+    [favorites, childId, lang],
+  );
+  const onToggleFavorite = useCallback(
+    (text) => setFavoritesState((state) => toggleFavorite(state, childId, lang, text)),
+    [childId, lang],
+  );
+  const onRemoveFavorite = useCallback(
+    (text, favoriteLang) => setFavoritesState((state) => removeFavorite(state, childId, favoriteLang, text)),
+    [childId],
+  );
+  const onClearFavorites = useCallback(
+    () => setFavoritesState((state) => clearChildFavorites(state, childId)),
+    [childId],
+  );
+  const isFavorite = useCallback(
+    (text) => isSaved(favorites, childId, lang, text),
+    [favorites, childId, lang],
+  );
   const [adultOpen, setAdultOpen] = useState(false);
   /** The word whose fix dialog is open, or null. Set by a long press. */
   const [fixTarget, setFixTarget] = useState(null);
   /**
-   * Which game is open, if any: null, 'echo' or 'cards'. One value rather than
-   * a boolean per game, so two games can never be open at once.
+   * Which screen is open over the strip, if any: null, 'echo', 'cards' or
+   * 'favorites'. One value rather than a boolean per screen, so two can never
+   * be open at once.
    */
-  const [activeGame, setActiveGame] = useState(null);
+  const [activeScreen, setActiveScreen] = useState(null);
   /** The letter card on screen, so the voice can prepare it. Cards mode only. */
   const [cardWord, setCardWord] = useState(null);
   /** The open letter deck, resolved, so the voice can ready its clips. */
   const [deckCards, setDeckCards] = useState(null);
   const hasDecks = listDecks(lang).length > 0;
-  const toggleGame = useCallback((game) => setActiveGame((current) => (current === game ? null : game)), []);
+  const toggleScreen = useCallback(
+    (screen) => setActiveScreen((current) => (current === screen ? null : screen)),
+    [],
+  );
   /**
    * Telegraphic speech output, or reading output with connectors.
    *
@@ -167,6 +213,7 @@ export default function Home() {
   const {
     words,
     isResolving,
+    phrase,
     say,
     clear,
     forgetAll,
@@ -190,10 +237,14 @@ export default function Home() {
     setRatings(ratings);
   }, [ratings]);
 
+  useEffect(() => {
+    setFavorites(favorites);
+  }, [favorites]);
+
   // The decks are Spanish. Switching to a language without any leaves cards
   // mode rather than showing an empty picker.
   useEffect(() => {
-    if (!hasDecks) setActiveGame((current) => (current === 'cards' ? null : current));
+    if (!hasDecks) setActiveScreen((current) => (current === 'cards' ? null : current));
   }, [hasDecks]);
 
   useEffect(() => {
@@ -257,12 +308,12 @@ export default function Home() {
   });
 
   const voiceWords = useMemo(
-    () => (activeGame === 'cards' ? (cardWord ? [cardWord] : []) : words),
-    [activeGame, cardWord, words],
+    () => (activeScreen === 'cards' ? (cardWord ? [cardWord] : []) : words),
+    [activeScreen, cardWord, words],
   );
   const prefetchWords = useMemo(
-    () => (activeGame === 'cards' && deckCards ? deckCards : NO_WORDS),
-    [activeGame, deckCards],
+    () => (activeScreen === 'cards' && deckCards ? deckCards : NO_WORDS),
+    [activeScreen, deckCards],
   );
   const voice = useVoice(lang, {
     syllables: syllableMode === 'on',
@@ -302,6 +353,42 @@ export default function Home() {
 
   const openAdult = useCallback(() => setAdultOpen(true), []);
   const longPress = useLongPress(openAdult);
+
+  /** Where focus goes when the favourites screen closes under it. */
+  const favoritesToggleRef = useRef(null);
+
+  /**
+   * The pictograms the favourites tiles show, one row per favourite.
+   *
+   * Resolved only while that screen is open, and every word on it is already in
+   * the cache, so opening the list costs nothing and touches no network.
+   */
+  const favoriteTexts = useMemo(
+    () => (activeScreen === 'favorites' ? langFavorites.map((favorite) => favorite.text) : []),
+    [activeScreen, langFavorites],
+  );
+  const { rows: favoriteRows } = usePhraseCards(favoriteTexts, lang, {
+    mode: outputMode,
+    tier: readingTier,
+    revision: corrections,
+  });
+
+  /**
+   * A favourite tapped: load it into the strip and come back to the strip.
+   *
+   * Silent on purpose. The tile loads the phrase and the child then taps the
+   * pictograms to hear them, the same as for anything else they said, so there
+   * is still only one thing a tap on a pictogram ever does. Focus is moved by
+   * hand because the view it was in has just unmounted.
+   */
+  const onPickFavorite = useCallback(
+    (text) => {
+      say(text);
+      setActiveScreen(null);
+      favoritesToggleRef.current?.focus();
+    },
+    [say],
+  );
 
   const closeFix = useCallback(() => setFixTarget(null), []);
 
@@ -369,10 +456,18 @@ export default function Home() {
         <div className="app__header-controls">
           {/* Plain tap, not gated behind the long-press gesture: unlike
               settings, a wrong tap into game mode does no harm. */}
-          <GameModeToggle active={activeGame === 'echo'} onToggle={() => toggleGame('echo')} lang={lang} />
+          <GameModeToggle active={activeScreen === 'echo'} onToggle={() => toggleScreen('echo')} lang={lang} />
           {hasDecks ? (
-            <LetterCardsToggle active={activeGame === 'cards'} onToggle={() => toggleGame('cards')} lang={lang} />
+            <LetterCardsToggle active={activeScreen === 'cards'} onToggle={() => toggleScreen('cards')} lang={lang} />
           ) : null}
+          {/* Same reasoning again: a wrong tap opens a list of saved phrases and
+              loses nothing, so it stays outside the gesture gate. */}
+          <FavoritesToggle
+            ref={favoritesToggleRef}
+            active={activeScreen === 'favorites'}
+            onToggle={() => toggleScreen('favorites')}
+            lang={lang}
+          />
           {/* Same reasoning: this only changes how the strip looks, so it stays
               a plain visible button rather than hiding behind the gesture. */}
           <OutputModeToggle
@@ -385,7 +480,7 @@ export default function Home() {
       </header>
 
       <main className="app__main">
-        {activeGame === 'cards' ? (
+        {activeScreen === 'cards' ? (
           // Mounted only here, like GameMode, so leaving and coming back always
           // starts again at the letter picker. Keyed on the language for the
           // same reason: a deck id like "m" exists in both, and must not carry
@@ -402,8 +497,17 @@ export default function Home() {
             onSpeak={handleSpeak}
             onCardChange={setCardWord}
             onDeckChange={setDeckCards}
+            isFavorite={isFavorite}
+            onToggleFavorite={onToggleFavorite}
           />
-        ) : activeGame === 'echo' ? (
+        ) : activeScreen === 'favorites' ? (
+          <FavoritesView
+            favorites={langFavorites}
+            rows={favoriteRows}
+            lang={lang}
+            onPick={onPickFavorite}
+          />
+        ) : activeScreen === 'echo' ? (
           // GameMode is only ever mounted here, so toggling off and back on
           // unmounts and remounts it, resetting its held/turn state fresh
           // every time without any extra bookkeeping.
@@ -432,6 +536,18 @@ export default function Home() {
               onSpeak={handleSpeak}
             />
 
+            {/* Saves the phrase the strip was built from, whether that is one
+                word or a whole sentence. Pressing it again takes it back off,
+                so a mis-save needs no gesture and no settings trip. */}
+            <div className="app__strip-actions">
+              <FavoriteStar
+                saved={isFavorite(phrase)}
+                onToggle={() => onToggleFavorite(phrase)}
+                disabled={words.length === 0}
+                lang={lang}
+              />
+            </div>
+
             <div className="app__inputs">
               {speech.isAvailable ? (
                 <MicButton
@@ -459,7 +575,7 @@ export default function Home() {
 
       <VoiceNotice notice={voice.notice} lang={lang} />
 
-      <Attribution />
+      <Attribution lang={lang} />
 
       <AdultPanel
         open={adultOpen}
@@ -487,6 +603,9 @@ export default function Home() {
         profiles={profiles}
         onProfilesChange={setProfilesState}
         onClearRatings={onClearRatings}
+        favorites={childFavorites}
+        onRemoveFavorite={onRemoveFavorite}
+        onClearFavorites={onClearFavorites}
       />
 
       {/* Adult-only, reached by a long press on a pictogram. Mounted only while

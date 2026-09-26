@@ -26,6 +26,7 @@ export { exportCorrections } from './corrections';
 export { listDecks, cardWords, cardLetter, orderByScore } from './letterDecks';
 export type { LetterDeck, DeckWord, CardPosition, AgeBand } from './letterDecks';
 export { useWordCards } from './useWordCards';
+export { usePhraseCards } from './usePhraseCards';
 
 export interface UseAacResult {
   /** The pictogram sequence, in order. Empty until something is submitted. */

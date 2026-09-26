@@ -60,6 +60,34 @@ that is permanently cached, so that even the generated image is always the same 
 The only obligation this creates on v1: keep `resolve(word, lang)` clean enough that the
 migration is a one-file change touching no UI code.
 
+### Things to keep in mind before that backend exists
+
+Researched, not yet built. Cross-device child profiles are the reason this comes up: syncing
+a profile needs a server, localStorage cannot do it.
+
+- **Render is not an option.** Its free tier hibernates on inactivity by design, so the first
+  request after a quiet spell waits 20 to 40 seconds. Nothing here may depend on a service
+  that sleeps. Its free tier also has no persistent disk, so the SQLite file mentioned above
+  would be wiped on every redeploy.
+- **Hosts that do not sleep**, in order of how much administration they ask for:
+  Oracle Cloud Always Free (a real always-on VM, genuinely free with no time limit, but you
+  install and maintain Node, HTTPS and the process supervisor yourself), Fly.io with
+  `min_machines_running = 1` (they manage the OS, needs a card on file and can bill past the
+  included usage), or a cheap VPS at a few euros a month.
+- **Chosen stack: Node plus Express, with MongoDB Atlas free tier** (M0 does not expire,
+  unlike Render's managed Postgres), rather than the Python and SQLite sketched above.
+- **Pairing, not accounts.** A short one-use code issued by one device and redeemed on the
+  other, which returns an opaque device token. No email, no password: this is a child's
+  profile, and a login is a security surface with no payoff here.
+- **The backend is additive and must never be load-bearing.** Rule 3 (cache-first) and rule 5
+  (typed text never depends on the speech connection) already say the child's app works with
+  no network. A dead server must cost the favourites sync and the story generator, never the
+  pictogram strip.
+- **What syncs:** favourites, corrections and ratings. Not the word to pictogram cache, which
+  is derivable and whose whole job is to be local.
+- The first real job for it is holding the API keys server-side: the story generator's, and
+  Deepgram's, which this file already lists above as a v2 goal.
+
 ## Deployment
 
 ```
