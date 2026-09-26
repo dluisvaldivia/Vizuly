@@ -39,6 +39,15 @@
     { "word": "pelican", "syllables": 3, "position": "media", "age": 9 },
     { "word": "octopus", "syllables": 3, "position": "media", "age": 9 },
     { "word": "broccoli", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "unicorn", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "unicorn", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "calculator", "syllables": 4, "position": "inicial", "age": 6 },
+    { "word": "calendar", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "caterpillar", "syllables": 4, "position": "inicial" },
+    { "word": "cauliflower", "syllables": 4, "position": "inicial" },
+    { "word": "crocodile", "syllables": 3, "position": "inicial" },
+    { "word": "helicopter", "syllables": 4, "position": "media" },
+    { "word": "avocado", "syllables": 4, "position": "media" },
+    { "word": "macaroni", "syllables": 4, "position": "media" },
+    { "word": "binoculars", "syllables": 4, "position": "media" }
   ]
 }

@@ -7,7 +7,6 @@
   "words": [
     { "word": "pig", "syllables": 1, "position": "inicial" },
     { "word": "pen", "syllables": 1, "position": "inicial" },
-    { "word": "pan", "syllables": 1, "position": "inicial" },
     { "word": "pot", "syllables": 1, "position": "inicial" },
     { "word": "pie", "syllables": 1, "position": "inicial" },
     { "word": "pear", "syllables": 1, "position": "inicial" },
@@ -42,6 +41,14 @@
     { "word": "octopus", "syllables": 3, "position": "media", "age": 9 },
     { "word": "hospital", "syllables": 3, "position": "media", "age": 9 },
     { "word": "grasshopper", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "trampoline", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "trampoline", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "pyjamas", "syllables": 3, "position": "inicial" },
+    { "word": "purple", "syllables": 2, "position": "inicial" },
+    { "word": "pyramid", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "playground", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "helicopter", "syllables": 4, "position": "media" },
+    { "word": "caterpillar", "syllables": 4, "position": "media" },
+    { "word": "hippopotamus", "syllables": 5, "position": "media" },
+    { "word": "supermarket", "syllables": 4, "position": "media" }
   ]
 }

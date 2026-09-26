@@ -20,6 +20,9 @@
     { "word": "winter", "syllables": 2, "position": "inicial", "age": 6 },
     { "word": "waterfall", "syllables": 3, "position": "inicial", "age": 9 },
     { "word": "wheelbarrow", "syllables": 3, "position": "inicial", "age": 9 },
-    { "word": "wallaby", "syllables": 3, "position": "inicial", "age": 9 }
+    { "word": "wallaby", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "watermelon", "syllables": 4 },
+    { "word": "wheelchair", "syllables": 2, "age": 6 },
+    { "word": "cauliflower", "syllables": 4 }
   ]
 }

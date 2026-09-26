@@ -21,6 +21,7 @@
     { "word": "toothpaste", "syllables": 2, "position": "media", "age": 6 },
     { "word": "birthday", "syllables": 2, "position": "media", "age": 6 },
     { "word": "panther", "syllables": 2, "position": "media", "age": 6 },
-    { "word": "theater", "syllables": 3, "position": "inicial", "age": 9 }
+    { "word": "theater", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "thermometer", "syllables": 4, "position": "inicial", "age": 6 }
   ]
 }

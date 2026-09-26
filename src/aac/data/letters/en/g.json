@@ -30,6 +30,9 @@
     { "word": "kangaroo", "syllables": 3, "position": "media", "age": 9 },
     { "word": "spaghetti", "syllables": 3, "position": "media", "age": 9 },
     { "word": "hamburger", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "magazine", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "magazine", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "grandmother", "syllables": 3, "position": "inicial" },
+    { "word": "grandfather", "syllables": 3, "position": "inicial" },
+    { "word": "alligator", "syllables": 4, "position": "media" }
   ]
 }

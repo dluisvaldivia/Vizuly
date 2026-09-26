@@ -24,6 +24,8 @@
     { "word": "violet", "syllables": 3, "position": "inicial", "age": 9 },
     { "word": "caravan", "syllables": 3, "position": "media", "age": 9 },
     { "word": "envelope", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "lavender", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "lavender", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "avocado", "syllables": 4, "position": "media" },
+    { "word": "television", "syllables": 4, "position": "media" }
   ]
 }

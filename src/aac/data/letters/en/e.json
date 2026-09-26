@@ -15,7 +15,6 @@
     { "word": "net", "syllables": 1, "position": "media" },
     { "word": "web", "syllables": 1, "position": "media" },
     { "word": "bell", "syllables": 1, "position": "media" },
-    { "word": "desk", "syllables": 1, "position": "media" },
     { "word": "tent", "syllables": 1, "position": "media" },
     { "word": "nest", "syllables": 1, "position": "media" },
     { "word": "jet", "syllables": 1, "position": "media" },
@@ -40,6 +39,7 @@
     { "word": "exercise", "syllables": 3, "position": "inicial", "age": 9 },
     { "word": "jellyfish", "syllables": 3, "position": "media", "age": 9 },
     { "word": "spaghetti", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "medicine", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "medicine", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "escalator", "syllables": 4, "position": "inicial" }
   ]
 }

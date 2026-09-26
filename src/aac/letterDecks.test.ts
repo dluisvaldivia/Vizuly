@@ -66,9 +66,9 @@ describe('deck contents', () => {
 
   // English has no syllable rules to check against, on purpose (see syllables.ts),
   // so these counts are checked by hand. This only catches a typo.
-  it.each(listDecks('en').map((d) => [d.id, d] as const))('en/%s: syllable counts are 1 to 3', (_, d) => {
+  it.each(listDecks('en').map((d) => [d.id, d] as const))('en/%s: syllable counts are 1 to 5', (_, d) => {
     for (const { word, syllables } of d.words) {
-      expect({ word, ok: Number.isInteger(syllables) && syllables >= 1 && syllables <= 3 }).toEqual({ word, ok: true });
+      expect({ word, ok: Number.isInteger(syllables) && syllables >= 1 && syllables <= 5 }).toEqual({ word, ok: true });
     }
   });
 

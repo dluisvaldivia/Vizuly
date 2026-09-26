@@ -33,6 +33,8 @@
     { "word": "bucket", "syllables": 2, "position": "media", "age": 6 },
     { "word": "sticker", "syllables": 2, "position": "media", "age": 6 },
     { "word": "kilogram", "syllables": 3, "position": "inicial", "age": 9 },
-    { "word": "lumberjack", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "lumberjack", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "kitchen", "syllables": 2, "position": "inicial" },
+    { "word": "supermarket", "syllables": 4, "position": "media" }
   ]
 }

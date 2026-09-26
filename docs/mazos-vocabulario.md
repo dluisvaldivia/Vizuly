@@ -45,3 +45,23 @@ contra el API en vivo salieron tres fallos distintos:
 diccionario. Es lo unico que distingue `bota` 5401, "odre pequeno de vino", de
 `bota` 8299, "calzado que resguarda el pie". Dos etiquetas identicas, dos dibujos
 distintos: el texto no basta, hay que mirar el pictograma.
+
+## El ingles es otro problema
+
+El vocabulario ingles estaba bien: de 521 palabras solo tres no tenian pictograma
+(`pan`, `ladder`, `desk`) y ninguna era inapropiada. Lo que fallaba era el techo de
+silabas: el maximo era 3 y no habia **ni una** palabra de cuatro.
+
+Dos cosas se hacen a mano en ingles, y no por pereza:
+
+- **El recuento de silabas.** `syllabify()` no divide ingles a proposito, porque haria
+  falta un diccionario y una division mal hecha, dicha en voz alta, le ensena al nino
+  algo falso. Cada palabra nueva trae su recuento escrito a mano.
+- **El mazo al que va cada palabra.** Los `_comment` de los ficheros ingleses piden
+  cosas que no se deducen de la ortografia: "short a only, as in cat", "hard c only",
+  "no silent k", "only the s sound, not z". Emparejar por letra meteria `cake` en el
+  mazo de la a corta. Las palabras nuevas se asignaron por el sonido inicial, que es
+  el unico inequivoco, y el script solo comprueba que la letra este en la palabra.
+
+Ortografia britanica, que es la que usa ARASAAC: `pyjamas`, no `pajamas`. El nino no
+lee, asi que la etiqueta es cosmetica, pero el pictograma solo aparece con la britanica.

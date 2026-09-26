@@ -31,6 +31,10 @@
     { "word": "furniture", "syllables": 3, "position": "inicial", "age": 9 },
     { "word": "sunflower", "syllables": 3, "position": "media", "age": 9 },
     { "word": "waterfall", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "butterfly", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "butterfly", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "family", "syllables": 3, "position": "inicial" },
+    { "word": "firefighter", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "cauliflower", "syllables": 4, "position": "media" },
+    { "word": "refrigerator", "syllables": 5, "position": "media" }
   ]
 }

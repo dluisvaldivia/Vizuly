@@ -36,6 +36,13 @@
     { "word": "kangaroo", "syllables": 3, "position": "media", "age": 9 },
     { "word": "gorilla", "syllables": 3, "position": "media", "age": 9 },
     { "word": "umbrella", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "strawberry", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "strawberry", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "rhinoceros", "syllables": 4, "position": "inicial" },
+    { "word": "refrigerator", "syllables": 5, "position": "inicial" },
+    { "word": "watermelon", "syllables": 4, "position": "media" },
+    { "word": "caterpillar", "syllables": 4, "position": "media" },
+    { "word": "macaroni", "syllables": 4, "position": "media" },
+    { "word": "supermarket", "syllables": 4, "position": "media" },
+    { "word": "binoculars", "syllables": 4, "position": "media" }
   ]
 }

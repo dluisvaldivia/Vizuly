@@ -38,6 +38,26 @@
     { "word": "telescope", "syllables": 3, "position": "inicial", "age": 9 },
     { "word": "potato", "syllables": 3, "position": "media", "age": 9 },
     { "word": "butterfly", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "waterfall", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "waterfall", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "television", "syllables": 4, "position": "inicial" },
+    { "word": "trousers", "syllables": 2, "position": "inicial" },
+    { "word": "trainers", "syllables": 2, "position": "inicial" },
+    { "word": "toothpaste", "syllables": 2, "position": "inicial" },
+    { "word": "tomorrow", "syllables": 3, "position": "inicial" },
+    { "word": "teacher", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "trumpet", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "trampoline", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "tractor", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "triangle", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "tired", "syllables": 1, "position": "inicial" },
+    { "word": "watermelon", "syllables": 4, "position": "media" },
+    { "word": "helicopter", "syllables": 4, "position": "media" },
+    { "word": "caterpillar", "syllables": 4, "position": "media" },
+    { "word": "alligator", "syllables": 4, "position": "media" },
+    { "word": "hippopotamus", "syllables": 5, "position": "media" },
+    { "word": "refrigerator", "syllables": 5, "position": "media" },
+    { "word": "motorcycle", "syllables": 4, "position": "media" },
+    { "word": "supermarket", "syllables": 4, "position": "media" },
+    { "word": "escalator", "syllables": 4, "position": "media" }
   ]
 }

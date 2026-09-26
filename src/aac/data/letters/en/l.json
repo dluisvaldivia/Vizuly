@@ -14,7 +14,6 @@
     { "word": "owl", "syllables": 1, "position": "media" },
     { "word": "lion", "syllables": 2, "position": "inicial" },
     { "word": "lemon", "syllables": 2, "position": "inicial" },
-    { "word": "ladder", "syllables": 2, "position": "inicial" },
     { "word": "balloon", "syllables": 2, "position": "media" },
     { "word": "pillow", "syllables": 2, "position": "media" },
     { "word": "yellow", "syllables": 2, "position": "media" },
@@ -33,6 +32,17 @@
     { "word": "umbrella", "syllables": 3, "position": "media", "age": 9 },
     { "word": "elephant", "syllables": 3, "position": "media", "age": 9 },
     { "word": "gorilla", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "volcano", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "volcano", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "library", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "watermelon", "syllables": 4, "position": "media" },
+    { "word": "helicopter", "syllables": 4, "position": "media" },
+    { "word": "caterpillar", "syllables": 4, "position": "media" },
+    { "word": "alligator", "syllables": 4, "position": "media" },
+    { "word": "cauliflower", "syllables": 4, "position": "media" },
+    { "word": "television", "syllables": 4, "position": "media" },
+    { "word": "motorcycle", "syllables": 4, "position": "media" },
+    { "word": "escalator", "syllables": 4, "position": "media" },
+    { "word": "ambulance", "syllables": 3, "position": "media" },
+    { "word": "binoculars", "syllables": 4, "position": "media" }
   ]
 }

@@ -31,6 +31,12 @@
     { "word": "cinnamon", "syllables": 3, "position": "media", "age": 9 },
     { "word": "kangaroo", "syllables": 3, "position": "media", "age": 9 },
     { "word": "unicorn", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "pineapple", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "pineapple", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "notebook", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "macaroni", "syllables": 4, "position": "media" },
+    { "word": "rhinoceros", "syllables": 4, "position": "media" },
+    { "word": "television", "syllables": 4, "position": "media" },
+    { "word": "ambulance", "syllables": 3, "position": "media" },
+    { "word": "binoculars", "syllables": 4, "position": "media" }
   ]
 }

@@ -9,7 +9,6 @@
     { "word": "duck", "syllables": 1, "position": "inicial" },
     { "word": "doll", "syllables": 1, "position": "inicial" },
     { "word": "door", "syllables": 1, "position": "inicial" },
-    { "word": "desk", "syllables": 1, "position": "inicial" },
     { "word": "dad", "syllables": 1, "position": "inicial" },
     { "word": "bed", "syllables": 1, "position": "media" },
     { "word": "bird", "syllables": 1, "position": "media" },
@@ -18,7 +17,6 @@
     { "word": "doctor", "syllables": 2, "position": "inicial" },
     { "word": "dinner", "syllables": 2, "position": "inicial" },
     { "word": "donkey", "syllables": 2, "position": "inicial" },
-    { "word": "ladder", "syllables": 2, "position": "media" },
     { "word": "window", "syllables": 2, "position": "media" },
     { "word": "garden", "syllables": 2, "position": "media" },
     { "word": "dinosaur", "syllables": 3, "position": "inicial" },
@@ -35,6 +33,9 @@
     { "word": "medicine", "syllables": 3, "position": "media", "age": 9 },
     { "word": "tornado", "syllables": 3, "position": "media", "age": 9 },
     { "word": "radio", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "crocodile", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "crocodile", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "dictionary", "syllables": 4, "position": "inicial", "age": 6 },
+    { "word": "dirty", "syllables": 2, "position": "inicial" },
+    { "word": "avocado", "syllables": 4, "position": "media" }
   ]
 }

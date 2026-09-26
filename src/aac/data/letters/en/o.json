@@ -31,6 +31,7 @@
     { "word": "lollipop", "syllables": 3, "position": "media", "age": 9 },
     { "word": "broccoli", "syllables": 3, "position": "media", "age": 9 },
     { "word": "crocodile", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "dominoes", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "dominoes", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "orange", "syllables": 2, "position": "inicial" }
   ]
 }

@@ -39,6 +39,12 @@
     { "word": "blueberry", "syllables": 3, "position": "inicial", "age": 9 },
     { "word": "strawberry", "syllables": 3, "position": "media", "age": 9 },
     { "word": "umbrella", "syllables": 3, "position": "media", "age": 9 },
-    { "word": "ladybug", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "ladybug", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "bathroom", "syllables": 2, "position": "inicial" },
+    { "word": "bedroom", "syllables": 2, "position": "inicial" },
+    { "word": "blanket", "syllables": 2, "position": "inicial" },
+    { "word": "birthday", "syllables": 2, "position": "inicial" },
+    { "word": "binoculars", "syllables": 4, "position": "inicial" },
+    { "word": "ambulance", "syllables": 3, "position": "media" }
   ]
 }

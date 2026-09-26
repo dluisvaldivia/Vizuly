@@ -23,6 +23,11 @@
     { "word": "hanger", "syllables": 2, "position": "inicial", "age": 6 },
     { "word": "honeycomb", "syllables": 3, "position": "inicial", "age": 9 },
     { "word": "hospital", "syllables": 3, "position": "inicial", "age": 9 },
-    { "word": "hurricane", "syllables": 3, "position": "inicial", "age": 9 }
+    { "word": "hurricane", "syllables": 3, "position": "inicial", "age": 9 },
+    { "word": "happy", "syllables": 2 },
+    { "word": "helicopter", "syllables": 4 },
+    { "word": "hungry", "syllables": 2 },
+    { "word": "heavy", "syllables": 2 },
+    { "word": "hippopotamus", "syllables": 5 }
   ]
 }

@@ -32,6 +32,17 @@
     { "word": "sandcastle", "syllables": 3, "position": "inicial", "age": 9 },
     { "word": "basketball", "syllables": 3, "position": "media", "age": 9 },
     { "word": "seventeen", "syllables": 3, "position": "inicial", "age": 9 },
-    { "word": "mosquito", "syllables": 3, "position": "media", "age": 9 }
+    { "word": "mosquito", "syllables": 3, "position": "media", "age": 9 },
+    { "word": "strawberry", "syllables": 3, "position": "inicial" },
+    { "word": "spaghetti", "syllables": 3, "position": "inicial" },
+    { "word": "scissors", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "supermarket", "syllables": 4, "position": "inicial" },
+    { "word": "skeleton", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "skateboard", "syllables": 2, "position": "inicial", "age": 6 },
+    { "word": "saucepan", "syllables": 2, "position": "inicial" },
+    { "word": "stepladder", "syllables": 3, "position": "inicial", "age": 6 },
+    { "word": "rhinoceros", "syllables": 4, "position": "media" },
+    { "word": "hippopotamus", "syllables": 5, "position": "media" },
+    { "word": "escalator", "syllables": 4, "position": "media" }
   ]
 }
