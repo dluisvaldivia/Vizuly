@@ -10,7 +10,6 @@
     { "word": "jabón", "syllables": 2, "position": "inicial" },
     { "word": "jarra", "syllables": 2, "position": "inicial" },
     { "word": "jugo", "syllables": 2, "position": "inicial" },
-    { "word": "jefe", "syllables": 2, "position": "inicial" },
     { "word": "joya", "syllables": 2, "position": "inicial" },
     { "word": "jaula", "syllables": 2, "position": "inicial" },
     { "word": "jamón", "syllables": 2, "position": "inicial" },
@@ -21,9 +20,7 @@
     { "word": "ojo", "syllables": 2, "position": "media" },
     { "word": "caja", "syllables": 2, "position": "media" },
     { "word": "teja", "syllables": 2, "position": "media" },
-    { "word": "reja", "syllables": 2, "position": "media" },
     { "word": "roja", "syllables": 2, "position": "media" },
-    { "word": "mojo", "syllables": 2, "position": "media" },
     { "word": "viejo", "syllables": 2, "position": "media" },
     { "word": "dibujo", "syllables": 3, "position": "media" },
     { "word": "jirafa", "syllables": 3, "position": "inicial", "age": 6 },
@@ -41,6 +38,12 @@
     { "word": "berenjena", "syllables": 4, "position": "media", "age": 9 },
     { "word": "jardinero", "syllables": 4, "position": "inicial", "age": 9 },
     { "word": "gelatina", "syllables": 4, "position": "inicial", "age": 9 },
-    { "word": "escarabajo", "syllables": 5, "position": "media", "age": 9 }
+    { "word": "escarabajo", "syllables": 5, "position": "media", "age": 9 },
+    { "word": "oreja", "syllables": 3, "position": "media" },
+    { "word": "pijama", "syllables": 3, "position": "media" },
+    { "word": "conejo", "syllables": 3, "position": "media" },
+    { "word": "oveja", "syllables": 3, "position": "media" },
+    { "word": "esponja", "syllables": 3, "position": "media" },
+    { "word": "naranjada", "syllables": 4, "position": "media" }
   ]
 }

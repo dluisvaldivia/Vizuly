@@ -9,7 +9,6 @@
     { "word": "chico", "syllables": 2, "position": "inicial" },
     { "word": "chica", "syllables": 2, "position": "inicial" },
     { "word": "chapa", "syllables": 2, "position": "inicial" },
-    { "word": "chupa", "syllables": 2, "position": "inicial" },
     { "word": "chiste", "syllables": 2, "position": "inicial" },
     { "word": "chicle", "syllables": 2, "position": "inicial" },
     { "word": "chaqueta", "syllables": 3, "position": "inicial" },
@@ -18,7 +17,6 @@
     { "word": "coche", "syllables": 2, "position": "media" },
     { "word": "techo", "syllables": 2, "position": "media" },
     { "word": "mucho", "syllables": 2, "position": "media" },
-    { "word": "lucha", "syllables": 2, "position": "media" },
     { "word": "hacha", "syllables": 2, "position": "media" },
     { "word": "bicho", "syllables": 2, "position": "media" },
     { "word": "noche", "syllables": 2, "position": "media" },
@@ -34,6 +32,8 @@
     { "word": "chocolate", "syllables": 4, "position": "inicial", "age": 9 },
     { "word": "chimenea", "syllables": 4, "position": "inicial", "age": 9 },
     { "word": "chubasquero", "syllables": 4, "position": "inicial", "age": 9 },
-    { "word": "alcachofa", "syllables": 4, "position": "media", "age": 9 }
+    { "word": "alcachofa", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "lechuga", "syllables": 3, "position": "media" },
+    { "word": "peluche", "syllables": 3, "position": "media" }
   ]
 }

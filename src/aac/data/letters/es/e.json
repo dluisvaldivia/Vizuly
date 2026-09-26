@@ -7,8 +7,6 @@
   "words": [
     { "word": "eco", "syllables": 2 },
     { "word": "ese", "syllables": 2 },
-    { "word": "era", "syllables": 2 },
-    { "word": "echa", "syllables": 2 },
     { "word": "edad", "syllables": 2 },
     { "word": "ella", "syllables": 2 },
     { "word": "escoba", "syllables": 3, "age": 6 },
@@ -18,6 +16,10 @@
     { "word": "escalera", "syllables": 4, "age": 9 },
     { "word": "elefante", "syllables": 4, "age": 9 },
     { "word": "esqueleto", "syllables": 4, "age": 9 },
-    { "word": "ensalada", "syllables": 4, "age": 9 }
+    { "word": "ensalada", "syllables": 4, "age": 9 },
+    { "word": "espalda", "syllables": 3 },
+    { "word": "esponja", "syllables": 3 },
+    { "word": "espaguetis", "syllables": 4 },
+    { "word": "escuela", "syllables": 3, "age": 6 }
   ]
 }

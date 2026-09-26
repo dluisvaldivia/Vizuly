@@ -20,7 +20,6 @@
     { "word": "mesa", "syllables": 2, "position": "media" },
     { "word": "misa", "syllables": 2, "position": "media" },
     { "word": "masa", "syllables": 2, "position": "media" },
-    { "word": "peso", "syllables": 2, "position": "media" },
     { "word": "paso", "syllables": 2, "position": "media" },
     { "word": "rosa", "syllables": 2, "position": "media" },
     { "word": "risa", "syllables": 2, "position": "media" },
@@ -43,6 +42,24 @@
     { "word": "sacapuntas", "syllables": 4, "position": "inicial", "age": 9 },
     { "word": "aspiradora", "syllables": 5, "position": "media", "age": 9 },
     { "word": "escalera", "syllables": 4, "position": "media", "age": 9 },
-    { "word": "ensalada", "syllables": 4, "position": "media", "age": 9 }
+    { "word": "ensalada", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "espalda", "syllables": 3, "position": "media" },
+    { "word": "zapatos", "syllables": 3, "position": "media" },
+    { "word": "vestido", "syllables": 3, "position": "media" },
+    { "word": "cerezas", "syllables": 3, "position": "media" },
+    { "word": "esponja", "syllables": 3, "position": "media" },
+    { "word": "cansado", "syllables": 3, "position": "media" },
+    { "word": "camiseta", "syllables": 4, "position": "media" },
+    { "word": "calcetines", "syllables": 4, "position": "media" },
+    { "word": "macarrones", "syllables": 4, "position": "media" },
+    { "word": "espaguetis", "syllables": 4, "position": "media" },
+    { "word": "mariposa", "syllables": 4, "position": "media" },
+    { "word": "rompecabezas", "syllables": 5, "position": "media" },
+    { "word": "acuarelas", "syllables": 4, "position": "media", "age": 6 },
+    { "word": "plastilina", "syllables": 4, "position": "media", "age": 6 },
+    { "word": "semáforo", "syllables": 4, "position": "inicial", "age": 6 },
+    { "word": "dinosaurio", "syllables": 4, "position": "media", "age": 6 },
+    { "word": "astronauta", "syllables": 4, "position": "media", "age": 6 },
+    { "word": "gasolinera", "syllables": 5, "position": "media", "age": 6 }
   ]
 }

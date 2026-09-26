@@ -20,12 +20,10 @@
     { "word": "calle", "syllables": 2, "position": "media" },
     { "word": "ella", "syllables": 2, "position": "media" },
     { "word": "mayo", "syllables": 2, "position": "media" },
-    { "word": "hoyo", "syllables": 2, "position": "media" },
     { "word": "rayo", "syllables": 2, "position": "media" },
     { "word": "joya", "syllables": 2, "position": "media" },
     { "word": "sello", "syllables": 2, "position": "media" },
     { "word": "gallo", "syllables": 2, "position": "media" },
-    { "word": "pillo", "syllables": 2, "position": "media" },
     { "word": "llavero", "syllables": 3, "position": "inicial", "age": 6 },
     { "word": "bombilla", "syllables": 3, "position": "media", "age": 6 },
     { "word": "cuchillo", "syllables": 3, "position": "media", "age": 6 },
@@ -39,6 +37,13 @@
     { "word": "bocadillo", "syllables": 4, "position": "media", "age": 9 },
     { "word": "mantequilla", "syllables": 4, "position": "media", "age": 9 },
     { "word": "caballito", "syllables": 4, "position": "media", "age": 9 },
-    { "word": "zapatilla", "syllables": 4, "position": "media", "age": 9 }
+    { "word": "zapatilla", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "rodilla", "syllables": 3, "position": "media" },
+    { "word": "tobillo", "syllables": 3, "position": "media" },
+    { "word": "cebolla", "syllables": 3, "position": "media" },
+    { "word": "galleta", "syllables": 3, "position": "media" },
+    { "word": "caballo", "syllables": 3, "position": "media" },
+    { "word": "ballena", "syllables": 3, "position": "media" },
+    { "word": "amarillo", "syllables": 4, "position": "media" }
   ]
 }

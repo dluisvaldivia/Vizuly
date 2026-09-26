@@ -6,8 +6,6 @@
   ],
   "words": [
     { "word": "ala", "syllables": 2 },
-    { "word": "ama", "syllables": 2 },
-    { "word": "ata", "syllables": 2 },
     { "word": "año", "syllables": 2 },
     { "word": "agua", "syllables": 2 },
     { "word": "aula", "syllables": 2 },
@@ -21,6 +19,16 @@
     { "word": "alcachofa", "syllables": 4, "age": 9 },
     { "word": "aspiradora", "syllables": 5, "age": 9 },
     { "word": "armadillo", "syllables": 4, "age": 9 },
-    { "word": "aguacate", "syllables": 4, "age": 9 }
+    { "word": "aguacate", "syllables": 4, "age": 9 },
+    { "word": "abuela", "syllables": 3 },
+    { "word": "abuelo", "syllables": 3 },
+    { "word": "amiga", "syllables": 3 },
+    { "word": "ardilla", "syllables": 3 },
+    { "word": "armario", "syllables": 3 },
+    { "word": "almohada", "syllables": 4 },
+    { "word": "amarillo", "syllables": 4 },
+    { "word": "autobús", "syllables": 3, "age": 6 },
+    { "word": "acuarelas", "syllables": 4, "age": 6 },
+    { "word": "astronauta", "syllables": 4, "age": 6 }
   ]
 }

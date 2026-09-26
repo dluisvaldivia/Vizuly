@@ -133,7 +133,11 @@ describe('cardWords', () => {
   it('filters by syllables and position', () => {
     const m = deck('m');
     expect(cardWords(m, { syllables: 2 }).some((w) => w.word === 'tomate')).toBe(false);
-    expect(cardWords(m, { syllables: 3, age: 3 }).map((w) => w.word)).toEqual(['tomate']);
+    // Asserts the filter, not the deck's inventory: pinning the exact list here
+    // once hid the fact that band 3 had a single three-syllable word in it.
+    const three = cardWords(m, { syllables: 3, age: 3 });
+    expect(three.map((w) => w.word)).toContain('tomate');
+    expect(three.every((w) => w.syllables === 3 && (w.age ?? 3) <= 3)).toBe(true);
     expect(cardWords(m, { syllables: 3, age: 6 }).map((w) => w.word)).toContain('manzana');
     expect(cardWords(m, { position: 'inicial' }).every((w) => w.position === 'inicial')).toBe(true);
     expect(cardWords(m)).toHaveLength(m.words.length);

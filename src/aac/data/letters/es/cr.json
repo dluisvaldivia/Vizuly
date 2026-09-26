@@ -6,9 +6,7 @@
   ],
   "words": [
     { "word": "crema", "syllables": 2 },
-    { "word": "cromo", "syllables": 2 },
     { "word": "crudo", "syllables": 2 },
-    { "word": "cráter", "syllables": 2 },
     { "word": "micro", "syllables": 2 },
     { "word": "escritor", "syllables": 3, "age": 6 },
     { "word": "recreo", "syllables": 3, "age": 6 },
@@ -17,6 +15,7 @@
     { "word": "crucigrama", "syllables": 4, "age": 9 },
     { "word": "escritorio", "syllables": 4, "age": 9 },
     { "word": "microondas", "syllables": 4, "age": 9 },
-    { "word": "micrófono", "syllables": 4, "age": 9 }
+    { "word": "micrófono", "syllables": 4, "age": 9 },
+    { "word": "microscopio", "syllables": 4, "age": 6 }
   ]
 }

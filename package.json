@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "test": "vitest",
     "preview": "vite preview",
-    "voices": "node scripts/generate-voices.mjs"
+    "voices": "node scripts/generate-voices.mjs",
+    "audit:decks": "node scripts/audit-decks.mjs"
   },
   "dependencies": {
     "@deepgram/sdk": "^5.8.0",

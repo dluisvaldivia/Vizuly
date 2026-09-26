@@ -6,18 +6,15 @@
     "ñ"
   ],
   "words": [
-    { "word": "ñoño", "syllables": 2, "position": "inicial" },
     { "word": "niño", "syllables": 2, "position": "media" },
     { "word": "niña", "syllables": 2, "position": "media" },
     { "word": "uña", "syllables": 2, "position": "media" },
     { "word": "caña", "syllables": 2, "position": "media" },
-    { "word": "leña", "syllables": 2, "position": "media" },
     { "word": "piña", "syllables": 2, "position": "media" },
     { "word": "puño", "syllables": 2, "position": "media" },
     { "word": "moño", "syllables": 2, "position": "media" },
     { "word": "baño", "syllables": 2, "position": "media" },
     { "word": "cuña", "syllables": 2, "position": "media" },
-    { "word": "peña", "syllables": 2, "position": "media" },
     { "word": "sueño", "syllables": 2, "position": "media" },
     { "word": "año", "syllables": 2, "position": "media" },
     { "word": "araña", "syllables": 3, "position": "media", "age": 6 },
@@ -27,6 +24,9 @@
     { "word": "montaña", "syllables": 3, "position": "media", "age": 6 },
     { "word": "cigüeña", "syllables": 3, "position": "media", "age": 6 },
     { "word": "cumpleaños", "syllables": 4, "position": "media", "age": 9 },
-    { "word": "castañuelas", "syllables": 4, "position": "media", "age": 9 }
+    { "word": "castañuelas", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "bañador", "syllables": 3 },
+    { "word": "pequeño", "syllables": 3 },
+    { "word": "mañana", "syllables": 3 }
   ]
 }

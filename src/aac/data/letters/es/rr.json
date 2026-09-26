@@ -15,7 +15,6 @@
     { "word": "ropa", "syllables": 2, "position": "inicial" },
     { "word": "rueda", "syllables": 2, "position": "inicial" },
     { "word": "rizo", "syllables": 2, "position": "inicial" },
-    { "word": "ruso", "syllables": 2, "position": "inicial" },
     { "word": "remo", "syllables": 2, "position": "inicial" },
     { "word": "rico", "syllables": 2, "position": "inicial" },
     { "word": "ratón", "syllables": 2, "position": "inicial" },
@@ -25,10 +24,8 @@
     { "word": "gorra", "syllables": 2, "position": "media" },
     { "word": "jarra", "syllables": 2, "position": "media" },
     { "word": "barro", "syllables": 2, "position": "media" },
-    { "word": "cerro", "syllables": 2, "position": "media" },
     { "word": "burro", "syllables": 2, "position": "media" },
     { "word": "zorro", "syllables": 2, "position": "media" },
-    { "word": "guerra", "syllables": 2, "position": "media" },
     { "word": "tierra", "syllables": 2, "position": "media" },
     { "word": "arroz", "syllables": 2, "position": "media" },
     { "word": "regalo", "syllables": 3, "position": "inicial", "age": 6 },
@@ -46,6 +43,11 @@
     { "word": "rinoceronte", "syllables": 5, "position": "inicial", "age": 9 },
     { "word": "carretera", "syllables": 4, "position": "media", "age": 9 },
     { "word": "herramienta", "syllables": 4, "position": "media", "age": 9 },
-    { "word": "cerradura", "syllables": 4, "position": "media", "age": 9 }
+    { "word": "cerradura", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "barriga", "syllables": 3, "position": "media" },
+    { "word": "macarrones", "syllables": 4, "position": "media" },
+    { "word": "rompecabezas", "syllables": 5, "position": "inicial" },
+    { "word": "rotulador", "syllables": 4, "position": "inicial", "age": 6 },
+    { "word": "rectángulo", "syllables": 4, "position": "inicial", "age": 6 }
   ]
 }

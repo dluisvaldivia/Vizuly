@@ -10,16 +10,12 @@
     { "word": "fila", "syllables": 2, "position": "inicial" },
     { "word": "faro", "syllables": 2, "position": "inicial" },
     { "word": "fino", "syllables": 2, "position": "inicial" },
-    { "word": "fama", "syllables": 2, "position": "inicial" },
     { "word": "fuego", "syllables": 2, "position": "inicial" },
     { "word": "fuerte", "syllables": 2, "position": "inicial" },
     { "word": "fuente", "syllables": 2, "position": "inicial" },
     { "word": "falda", "syllables": 2, "position": "inicial" },
     { "word": "sofá", "syllables": 2, "position": "media" },
     { "word": "café", "syllables": 2, "position": "media" },
-    { "word": "rifa", "syllables": 2, "position": "media" },
-    { "word": "jefa", "syllables": 2, "position": "media" },
-    { "word": "jefe", "syllables": 2, "position": "media" },
     { "word": "bufón", "syllables": 2, "position": "media" },
     { "word": "familia", "syllables": 3, "position": "inicial", "age": 6 },
     { "word": "fantasma", "syllables": 3, "position": "inicial", "age": 6 },
@@ -31,6 +27,7 @@
     { "word": "elefante", "syllables": 4, "position": "media", "age": 9 },
     { "word": "frigorífico", "syllables": 5, "position": "inicial", "age": 9 },
     { "word": "semáforo", "syllables": 4, "position": "media", "age": 9 },
-    { "word": "teléfono", "syllables": 4, "position": "media", "age": 9 }
+    { "word": "teléfono", "syllables": 4, "position": "media", "age": 9 },
+    { "word": "xilófono", "syllables": 4, "position": "media", "age": 6 }
   ]
 }
