@@ -1,0 +1,9 @@
+name = "vizuly-sync"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+# Created already; this is the live namespace. Recreate with:
+#   npx wrangler kv namespace create SYNC
+[[kv_namespaces]]
+binding = "SYNC"
+id = "dcdc8380ce5642429e2075b70187d11e"

@@ -1,9 +1,12 @@
+import { VscInsert } from 'react-icons/vsc';
+
 /**
- * The header switch between telegraphic speech output and reading output.
+ * The switch between telegraphic speech output and reading output.
  *
  * Visible and plain, like the language and game-mode toggles and unlike the
  * settings gate: a wrong tap only changes how the strip looks and loses
- * nothing, so it does not need the long-press gesture.
+ * nothing, so it does not need the long-press gesture. Sits in the typed-input
+ * row, between the submit and clear buttons, rather than the header.
  *
  * How MANY function words reading mode shows is not decided here. That is the
  * tier, and it lives in the adult panel because it is a calibration rather than
@@ -16,31 +19,26 @@ export default function OutputModeToggle({ active, onToggle, lang }) {
       // (WCAG 2.5.3) and the action follows.
       on: 'Lectura: mostrar palabras de enlace',
       off: 'Lectura: ocultar palabras de enlace',
+      caption: 'Lectura',
     },
     en: {
       on: 'Reading: show linking words',
       off: 'Reading: hide linking words',
+      caption: 'Reading',
     },
   }[lang];
 
   return (
     <button
       type="button"
-      className={`output-mode-toggle${active ? ' is-active' : ''}`}
+      className={`app__clear output-mode-toggle${active ? ' is-active' : ''}`}
       onClick={onToggle}
       aria-pressed={active}
       aria-label={active ? labels.off : labels.on}
       title={active ? labels.off : labels.on}
     >
-      {/* Two full blocks with a small one between them: the connector joining
-          two content words. Decorative, the accessible name carries the
-          meaning. */}
-      <svg viewBox="0 0 24 24" width="1.5rem" height="1.5rem" aria-hidden="true" focusable="false">
-        <rect x="1" y="7" width="7" height="10" rx="1.5" fill="none" stroke="currentColor" strokeWidth="2" />
-        <rect x="10.5" y="10.5" width="3" height="3" rx="0.75" fill="currentColor" />
-        <rect x="16" y="7" width="7" height="10" rx="1.5" fill="none" stroke="currentColor" strokeWidth="2" />
-      </svg>
-      <span className="header-toggle__caption">{{ es: 'Lectura', en: 'Reading' }[lang]}</span>
+      <VscInsert aria-hidden="true" />
+      {labels.caption}
     </button>
   );
 }

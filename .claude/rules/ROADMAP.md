@@ -60,10 +60,35 @@ that is permanently cached, so that even the generated image is always the same 
 The only obligation this creates on v1: keep `resolve(word, lang)` clean enough that the
 migration is a one-file change touching no UI code.
 
-### Things to keep in mind before that backend exists
+### The sync backend, built
 
-Researched, not yet built. Cross-device child profiles are the reason this comes up: syncing
-a profile needs a server, localStorage cannot do it.
+Profile sync exists: a Cloudflare Worker in `worker/`, with one KV namespace, deployed at
+`https://vizuly-sync.vizuly.workers.dev`. It is the whole backend, and it replaces the Node
+plus Express and MongoDB Atlas plan below: Workers do not sleep, there is no OS to maintain,
+and the free tier covers a handful of devices many times over.
+
+- **Pairing, not accounts**, exactly as sketched below. `/pair` issues a six digit code that
+  lasts ten minutes and one use, `/claim` redeems it, and both devices then hold the same
+  opaque account id. No email, no password, nothing to log into.
+- **It stores one opaque blob per account and never parses it.** The client sends the raw
+  localStorage strings for profiles, favourites, ratings and corrections, so a shape change
+  in the app needs no change to the Worker.
+- **The UI is `SyncPanel.jsx`, inside the adult panel**, behind the same long press as
+  everything else there.
+- **`VITE_SYNC_URL` switches it on.** Unset, the app has no sync and no sync controls, which
+  is what a build with no Worker behind it should look like. Unlike the Deepgram key, this
+  URL is safe in the bundle: the Worker holds no key and no name, and its only secret is an
+  account id that lives in the adult's own storage.
+- **Sending happens when the tab is hidden**, which is also how corrections reach it without
+  `src/aac` having to know sync exists.
+- **Conflicts are last write wins on the whole snapshot.** Two devices edited between syncs
+  and the older push loses. Per-key merging is the upgrade, marked `ponytail:` in
+  `syncController.js`.
+
+### Things to keep in mind before the rest of that backend exists
+
+The story generator and the server-side Deepgram key are still unbuilt. Researched, not yet
+built.
 
 - **Render is not an option.** Its free tier hibernates on inactivity by design, so the first
   request after a quiet spell waits 20 to 40 seconds. Nothing here may depend on a service
@@ -74,8 +99,10 @@ a profile needs a server, localStorage cannot do it.
   install and maintain Node, HTTPS and the process supervisor yourself), Fly.io with
   `min_machines_running = 1` (they manage the OS, needs a card on file and can bill past the
   included usage), or a cheap VPS at a few euros a month.
-- **Chosen stack: Node plus Express, with MongoDB Atlas free tier** (M0 does not expire,
+- **Chosen stack was Node plus Express, with MongoDB Atlas free tier** (M0 does not expire,
   unlike Render's managed Postgres), rather than the Python and SQLite sketched above.
+  Superseded for sync by the Worker above. Reconsider it only if something genuinely needs a
+  long-running process.
 - **Pairing, not accounts.** A short one-use code issued by one device and redeemed on the
   other, which returns an opaque device token. No email, no password: this is a child's
   profile, and a login is a security surface with no payoff here.

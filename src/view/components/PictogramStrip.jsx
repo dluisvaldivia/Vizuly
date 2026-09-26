@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { LuSquareDashed } from 'react-icons/lu';
 
 import { pictogramImageUrl } from '../../aac/useAac.ts';
 import { useLongPress } from '../hooks/useLongPress.js';
@@ -62,11 +63,7 @@ export default function PictogramStrip({
         // Three empty frames where the pictograms will go. The picture is for
         // the child, the sentence under it for the adult.
         <div className="pictogram-strip__empty">
-          <svg className="pictogram-strip__empty-art" viewBox="0 0 96 32" aria-hidden="true" focusable="false">
-            <rect x="2" y="2" width="28" height="28" rx="6" fill="none" stroke="currentColor" strokeWidth="2.5" />
-            <rect x="34" y="2" width="28" height="28" rx="6" fill="none" stroke="currentColor" strokeWidth="2.5" strokeDasharray="4 4" />
-            <rect x="66" y="2" width="28" height="28" rx="6" fill="none" stroke="currentColor" strokeWidth="2.5" strokeDasharray="4 4" />
-          </svg>
+          <LuSquareDashed className="pictogram-strip__empty-art" aria-hidden="true" />
           <p>{labels.empty}</p>
         </div>
       ) : (

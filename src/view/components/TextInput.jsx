@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { FaPlay } from 'react-icons/fa';
+import { MdDeleteForever } from 'react-icons/md';
+
+import OutputModeToggle from './OutputModeToggle.jsx';
 
 /**
  * Typed input. A first-class input path, not a fallback.
@@ -7,19 +11,25 @@ import { useState } from 'react';
  * on any speech state. If Deepgram is down, the key is missing, or the mic is
  * denied, typing still works perfectly.
  */
-export default function TextInput({ onSubmit, onClear, clearLabel, lang, disabled = false }) {
+export default function TextInput({
+  onSubmit,
+  onClear,
+  clearLabel,
+  lang,
+  disabled = false,
+  outputModeActive,
+  onOutputModeToggle,
+}) {
   const [value, setValue] = useState('');
 
   const labels = {
     es: {
-      label: 'Escribe una palabra o frase',
-      placeholder: 'Escribe aquí',
-      submit: 'Mostrar pictogramas',
+      placeholder: 'Escribe una palabra o frase',
+      submit: 'Mostrar',
     },
     en: {
-      label: 'Type a word or phrase',
-      placeholder: 'Type here',
-      submit: 'Show pictograms',
+      placeholder: 'Type a word or phrase',
+      submit: 'Show',
     },
   }[lang];
 
@@ -35,10 +45,6 @@ export default function TextInput({ onSubmit, onClear, clearLabel, lang, disable
 
   return (
     <form className="text-input" onSubmit={handleSubmit}>
-      <label className="text-input__label" htmlFor="phrase">
-        {labels.label}
-      </label>
-
       <div className="text-input__row">
         <input
           id="phrase"
@@ -47,6 +53,7 @@ export default function TextInput({ onSubmit, onClear, clearLabel, lang, disable
           value={value}
           onChange={(event) => setValue(event.target.value)}
           placeholder={labels.placeholder}
+          aria-label={labels.placeholder}
           autoComplete="off"
           autoCorrect="off"
           spellCheck="false"
@@ -59,11 +66,17 @@ export default function TextInput({ onSubmit, onClear, clearLabel, lang, disable
           type="submit"
           disabled={disabled || value.trim().length === 0}
         >
+          <FaPlay aria-hidden="true" />
           {labels.submit}
         </button>
 
+        {onOutputModeToggle ? (
+          <OutputModeToggle active={outputModeActive} onToggle={onOutputModeToggle} lang={lang} />
+        ) : null}
+
         {onClear ? (
           <button className="app__clear" type="button" onClick={onClear}>
+            <MdDeleteForever aria-hidden="true" />
             {clearLabel}
           </button>
         ) : null}

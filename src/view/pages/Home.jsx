@@ -53,6 +53,11 @@ import {
   removeFavorite,
   clearChildFavorites,
 } from '../../controllers/favoritesController.js';
+import {
+  pull as pullSync,
+  push as pushSync,
+  applySnapshot as applySyncSnapshot,
+} from '../../controllers/syncController.js';
 import { useLongPress } from '../hooks/useLongPress.js';
 import PictogramStrip from '../components/PictogramStrip.jsx';
 import TextInput from '../components/TextInput.jsx';
@@ -66,7 +71,6 @@ import LetterCardsToggle from '../components/LetterCardsToggle.jsx';
 import LetterCards from '../components/LetterCards.jsx';
 import LanguageToggle from '../components/LanguageToggle.jsx';
 import VoiceNotice from '../components/VoiceNotice.jsx';
-import OutputModeToggle from '../components/OutputModeToggle.jsx';
 import FavoritesToggle from '../components/FavoritesToggle.jsx';
 import FavoritesView from '../components/FavoritesView.jsx';
 import FavoriteStar from '../components/FavoriteStar.jsx';
@@ -241,6 +245,35 @@ export default function Home() {
     setFavorites(favorites);
   }, [favorites]);
 
+  /**
+   * Cross-device sync, when an adult has paired this device.
+   *
+   * Receiving happens on start AND every time the tab comes back to the front,
+   * so a device left open all afternoon is up to date the moment someone looks
+   * at it again rather than only after a restart. A newer snapshot reloads the
+   * page, because every controller reads storage once on init.
+   *
+   * Sending happens when the tab goes to the back, the one moment nobody is
+   * waiting on it, and it covers corrections too without src/aac having to know
+   * sync exists.
+   *
+   * Both calls swallow every failure: this may never block the child.
+   */
+  useEffect(() => {
+    const receive = () =>
+      pullSync().then((remote) => {
+        if (remote && applySyncSnapshot(remote)) window.location.reload();
+      });
+
+    receive();
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') pushSync();
+      else receive();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, []);
+
   // The decks are Spanish. Switching to a language without any leaves cards
   // mode rather than showing an empty picker.
   useEffect(() => {
@@ -352,7 +385,9 @@ export default function Home() {
   );
 
   const openAdult = useCallback(() => setAdultOpen(true), []);
-  const longPress = useLongPress(openAdult);
+  // A short tap on the title goes home: whichever mode is open turns off.
+  const goHome = useCallback(() => setActiveScreen(null), []);
+  const longPress = useLongPress(openAdult, { onTap: goHome });
 
   /** Where focus goes when the favourites screen closes under it. */
   const favoritesToggleRef = useRef(null);
@@ -449,7 +484,13 @@ export default function Home() {
             aria-label={`Vizuly. ${labels.adultHint}`}
             title={labels.adultHint}
           >
-            Vizuly
+            {/* Stretched to the header's full height: the viewBox is squashed on
+                purpose (preserveAspectRatio none), so the letters grow tall. */}
+            <svg className="app__wordmark" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
+              <text x="0" y="100" textLength="300" lengthAdjust="spacingAndGlyphs">
+                VIZULY
+              </text>
+            </svg>
           </button>
         </h1>
 
@@ -466,13 +507,6 @@ export default function Home() {
             ref={favoritesToggleRef}
             active={activeScreen === 'favorites'}
             onToggle={() => toggleScreen('favorites')}
-            lang={lang}
-          />
-          {/* Same reasoning: this only changes how the strip looks, so it stays
-              a plain visible button rather than hiding behind the gesture. */}
-          <OutputModeToggle
-            active={outputMode === 'reading'}
-            onToggle={() => setOutputModeState((m) => (m === 'reading' ? 'speech' : 'reading'))}
             lang={lang}
           />
           <LanguageToggle lang={lang} onChange={setLangState} />
@@ -567,7 +601,14 @@ export default function Home() {
               )}
 
               {/* Never disabled by speech state. The two paths are independent. */}
-              <TextInput onSubmit={say} onClear={clear} clearLabel={labels.clear} lang={lang} />
+              <TextInput
+                onSubmit={say}
+                onClear={clear}
+                clearLabel={labels.clear}
+                lang={lang}
+                outputModeActive={outputMode === 'reading'}
+                onOutputModeToggle={() => setOutputModeState((m) => (m === 'reading' ? 'speech' : 'reading'))}
+              />
             </div>
           </>
         )}

@@ -16,7 +16,7 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
 
 .app__header {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   gap: 1rem;
 }
@@ -33,6 +33,7 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
+  align-self: center;
   gap: 1rem;
 }
 
@@ -127,8 +128,8 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
 }
 
 .pictogram-strip__empty-art {
-  width: 9rem;
-  height: auto;
+  width: 6rem;
+  height: 6rem;
   opacity: 0.8;
 }
 
@@ -230,11 +231,6 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
 
 // Typed input
 
-.text-input__label {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
 .text-input__row {
   display: flex;
   gap: 0.75rem;
@@ -255,6 +251,9 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
 .text-input__submit,
 .app__clear,
 .app__temp-controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   min-height: $target-min;
   min-width: $target-min;
   padding: 0.5rem 1.25rem;
@@ -283,6 +282,15 @@ $target-min: 3rem; // Never smaller than this for anything tappable.
   border-color: var(--surface-border);
   box-shadow: none;
   cursor: default;
+}
+
+// Sits between the submit and clear buttons, same [icon "name"] shape as its
+// row neighbours. Colour plus a visible mark for the active state: the border
+// thickens, never colour alone.
+.output-mode-toggle.is-active {
+  background: var(--turn-toggle-active-bg);
+  border-color: var(--turn-toggle-active-border);
+  font-weight: 800;
 }
 
 // Focus must always be visible, in both themes.
@@ -575,14 +583,13 @@ $meter-width: clamp(1.5rem, 7vw, 2.25rem);
   }
 }
 
-// Header buttons: game, letters, reading, language.
+// Header buttons: game, letters, language.
 //
-// One rule for all four so they can never drift apart. An icon over a short
+// One rule for all three so they can never drift apart. An icon over a short
 // caption: the caption is for the adult and for a child who is starting to
 // read, and the icon is what the child learns to aim at. Rounded, raised, plain.
 
 .game-mode-toggle,
-.output-mode-toggle,
 .language-toggle {
   flex-shrink: 0;
   display: flex;
@@ -1182,6 +1189,21 @@ button.app__title {
   -webkit-touch-callout: none;
   // Comfortably above the 44px minimum without looking like a button.
   min-height: 2.75rem;
+  display: flex;
+}
+
+// Fills the header's height, so the word is as tall as the buttons beside it.
+.app__title-wrap {
+  display: flex;
+}
+
+.app__wordmark {
+  width: 8rem;
+  max-height: 4.5rem;
+  fill: currentColor;
+  font-size: 138px; // cap height lands near the top of the 100-high viewBox
+  font-weight: 800;
+  font-family: inherit;
 }
 
 // The fix dialog and the correction list.

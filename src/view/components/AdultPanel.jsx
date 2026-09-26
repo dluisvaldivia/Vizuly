@@ -8,6 +8,7 @@ import {
 import { getInitialTheme, setTheme } from '../../controllers/themeController.js';
 import { BANDS, newChildId } from '../../controllers/childrenController.js';
 import { listMicrophones } from '../../speech/useSpeech.ts';
+import SyncPanel from './SyncPanel.jsx';
 
 /**
  * Adult-only settings.
@@ -408,6 +409,10 @@ export default function AdultPanel({
           </button>
           <p className="adult-panel__help">{labels.clearRatingsHelp}</p>
         </fieldset>
+
+        {/* Right below the children, because that is what an adult is looking
+            at when they realise they do not want to set it all up twice. */}
+        <SyncPanel lang={lang} />
 
         {/* Reading tier. Lives here rather than in the header because it is a
             calibration an adult sets once, not something to flip back and
